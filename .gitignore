@@ -1,0 +1,27 @@
+## ----------------------------------------------------------------------- INFO
+## [.gitignore]
+## created       : 2023-09-17 12:41:45 UTC
+## updated       : 2023-09-19 22:44:14 UTC
+## author        : fantomH
+## description   : .gitignore file.
+
+## -------------------- [ PYTHON ]
+
+## (* python env *)
+venv/
+
+## (* python flask *)
+instance/*.db
+migrations/
+
+## (* python other *)
+__pycache__/
+
+## -------------------- [ OTHERS ]
+
+## (* libreoffice *)
+.~lock*
+
+# vim: foldmethod=marker
+## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯
+
