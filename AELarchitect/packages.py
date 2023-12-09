@@ -35,19 +35,25 @@ def package_info(package):
     package_info = {}
     for line in pkg_info:
         package_info["package"] = package
+        if line.startswith("Repository"):
+            package_info["repository"] = line.split(":")[1].strip()
         if line.startswith("Description"):
             package_info["description"] = line.split(":")[1].strip() + "."
         if line.startswith("URL"):
             package_info["url"] = line.split(": ")[1]
 
-    print(package_info.get('package'))
+    if package_info.get('repository') is None:
+        print(f"{package_info.get('package')}")
+    else:
+        pass
 
     package_Ql_bin = []
     for line in pkg_Ql:
         if "/usr/bin/" in line and not line.endswith("/"):
             package_Ql_bin.append(line)
         else:
-            print(line)
+            pass
+            # print(line)
 
     package_info["Ql_bin"] = package_Ql_bin
     
@@ -58,7 +64,7 @@ def main():
     pkgs = packages_list(mode='hacker')
 
     for p in pkgs:
-        print(package_info(p))
+        package_info(p)
 
 if __name__ == "__main__":
     main()
