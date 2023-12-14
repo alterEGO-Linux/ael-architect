@@ -22,6 +22,26 @@ else:
 
 ## -------------------- [ UTILS ] 
 
+def menu(opt):
+
+    opt = ''.join([f"{o}\n" for o in opt]).encode('UTF-8')
+
+    menu = subprocess.run(['fzf', 
+                           "--prompt=LAUNCH ❯ ",
+                           "--header= ",
+                           "--no-hscroll",
+                           "--reverse",
+                           "-i",
+                           "--exact",
+                           "--tiebreak=begin",
+                           "--no-info",
+                           "--pointer=•",
+                           ], input=opt, stdout=subprocess.PIPE)
+
+    selection = menu.stdout.decode('UTF-8')
+
+    return selection.strip()
+
 ## ---------- (* messages *) 
 def message(msg_type, msg, wait=0):
 
@@ -105,8 +125,16 @@ def copy_files():
 
 if __name__ == '__main__':
 
-    get_files()
-    copy_files()
+    # get_files()
+    # copy_files()
+
+    s1 = menu(['1', '2', '3'])
+    execute(f"echo 'hello'")
+    print(s1 + "l")
+    if s1 == '1':
+        print(type(s1))
+        s2 = menu(['yes', 'no'])
+        print(s2)
 
 # vim: foldmethod=marker
 ## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯
