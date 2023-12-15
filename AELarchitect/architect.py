@@ -11,8 +11,11 @@ import os
 import shlex
 import shutil
 import subprocess
+import sys
 import time
 import tomllib
+
+import config
 
 ## Checking privileges.
 if os.getenv('USER') == 'root':
@@ -123,18 +126,82 @@ def copy_files():
                     message('results', f'Copying {_dst}...')
                     shutil.copy2(_src, _dst)
 
+class Menu:
+
+    def fzf(self, opt):
+
+        opt = ''.join([f"{o}\n" for o in opt]).encode('UTF-8')
+
+        menu = subprocess.run(['fzf', 
+                            "--prompt=LAUNCH ❯ ",
+                            "--header= ",
+                            "--no-hscroll",
+                            "--reverse",
+                            "-i",
+                            "--exact",
+                            "--tiebreak=begin",
+                            "--no-info",
+                            "--pointer=•",
+                            ], input=opt, stdout=subprocess.PIPE)
+
+        selection = menu.stdout.decode('UTF-8')
+
+        return selection.strip()
+
+    def main_menu(self):
+        main_items = ["Review installation config",
+                      "Update system",
+                      "Exit"]
+
+        selection = self.fzf(main_items)
+
+        if selection == "Review installation config":
+            execute(f"vim {config.CONFIG}")
+            # what = input(f"What's your name: ")
+            # main_items.append(what)
+            # selection = self.fzf(main_items)
+            self.main_menu()
+
+        elif selection == "Update system":
+            get_files()
+            copy_files()
+            self.main_menu()
+            
+        elif selection == 'Exit':
+            sys.exit(0)
+        else:
+            return selection
+
+def main():
+
+    menu = Menu()
+
+    menu.main_menu()
+
+    # if menu.main_menu() == "Review installation config":
+        # execute(f"vim {config.CONFIG}")
+        # menu.main_menu()
+
+
+    t_menu = menu(['YES', 'NO'])
+
+    if t_menu == 'YES':
+        sys.exit()
+
+
 if __name__ == '__main__':
+    main()
 
     # get_files()
     # copy_files()
 
-    s1 = menu(['1', '2', '3'])
-    execute(f"echo 'hello'")
-    print(s1 + "l")
-    if s1 == '1':
-        print(type(s1))
-        s2 = menu(['yes', 'no'])
-        print(s2)
+    # s1 = menu(['1', '2', '3'])
+    # execute(f"echo 'hello'")
+    # print(s1 + "l")
+    # if s1 == '1':
+        # print(type(s1))
+        # s2 = menu(['yes', 'no'])
+        # print(s2)
 
 # vim: foldmethod=marker
 ## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯
