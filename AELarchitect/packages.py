@@ -3,7 +3,7 @@
 ## [AELarchitect/packages.py]
 ## author        : fantomH @alterEGO Linux
 ## created       : 2023-12-08 11:12:16 UTC
-## updated       : 2023-12-10 02:12:52 UTC
+## updated       : 2024-01-16 12:39:23 UTC
 ## description   : Generates packages lists and stuff.
 
 import sqlite3 as sql
@@ -27,9 +27,9 @@ def packages_list(mode='hacker'):
 
 def package_info(package):
 
-    pkg_info = execute(f"paru -Si {package}", capture_output=True).stdout.decode("UTF-8").split("\n")
+    pkg_Si = execute(f"paru -Si {package}", capture_output=True).stdout.decode("UTF-8").split("\n")
     package_info = {}
-    for line in pkg_info:
+    for line in pkg_Si:
         ## Package name.
         package_info["package"] = package
         ## Package repository.
@@ -49,10 +49,6 @@ def package_info(package):
         # print(f"{package_info.get('package')}")
     else:
         pass
-
-    print(package_info.get('package'))
-    print('++++++++++++++++++++++++++')
-    # print(package_info.get('aur_url'))
 
     pkg_Ql = execute(f"paru -Qlq {package}", capture_output=True).stdout.decode("UTF-8").split("\n")
     # for line in pkg_Ql:
@@ -99,18 +95,14 @@ def package_info(package):
     package_info["Ql_man"] = package_Ql_man
     package_info["Ql_info"] = package_Ql_info
 
-    # print(package_info)
-    print(package_info.get("Ql_info"))
-    print()
-    
-    return ' '
+    return package_info
 
 def main():
 
-    pkgs = packages_list(mode='hacker')
+    pkgs = packages_list(mode='hacker-hyprland')
 
     for p in pkgs:
-        package_info(p)
+        print(package_info(p))
 
 if __name__ == "__main__":
     main()
