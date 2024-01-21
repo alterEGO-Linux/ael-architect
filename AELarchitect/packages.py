@@ -179,7 +179,7 @@ def pkg_manager(manager='paru', modes=['i3wm', 'hyprland']):
                     pkgs.append(pkg)
             pkgs = " ".join(pkgs)
             print(pkgs)
-            execute(f"paru -S --noconfirm --needed {pkgs}")
+            execute(f"paru -S --needed {pkgs}")
         
 
 def _test():
