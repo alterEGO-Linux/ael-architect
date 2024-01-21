@@ -203,7 +203,7 @@ def main():
     # print(package_info("xautomation"))
 
     ## (* Generate packages.toml *)
-    generate_packagestoml()
+    # generate_packagestoml()
 
     ## (* Packages diff *)
     # packages_diff()
