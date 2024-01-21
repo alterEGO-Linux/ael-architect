@@ -11,6 +11,7 @@ from datetime import (datetime,
 import os
 import sqlite3 as sql
 import tomllib
+import pprint
 
 from command import execute
 
@@ -108,7 +109,7 @@ def package_info(package):
     cur.execute(q)
     modes = cur.fetchone()
 
-    package_info["modes"] = [mode for mode in modes]
+    package_info["modes"] = modes[0].split()
     con.close
 
     return package_info
@@ -132,11 +133,12 @@ def generate_packagestoml(modes=['i3wm', 'hyprland', 'pip']):
 
         for pkg in pkgs:
             pkg_info = package_info(pkg)
+            description = pkg_info.get('description').replace('"', f'{chr(92)}"')
             file_out.write(f"""\
 [{pkg_info.get('name')}]
 repository      = "{pkg_info.get('repository')}"
 url             = "{pkg_info.get('url')}"
-description     = "{pkg_info.get('description')}"
+description     = "{description}"
 modes           = {pkg_info.get('modes')}
 
 """)
@@ -159,6 +161,35 @@ def packages_diff():
 
     print(set(from_PACKAGES).difference(locally))
 
+def pkg_manager(manager='paru', modes=['i3wm', 'hyprland']):
+
+    PACKAGES = os.path.join('/', 'home', 'ghost', 'main', 'ael-files', 'usr', 'share', 'ael', 'packages.toml')
+
+    with open(PACKAGES, 'rb') as _input:
+        data = tomllib.load(_input)
+
+        pkgs = []
+        if manager == 'paru':
+            for pkg in data.keys():
+                # print('package:', pkg)
+                # print('mode:', modes)
+                # print(data.get(pkg))
+                # print(data.get(pkg)['modes'])
+                if set(modes).intersection(set(data.get(pkg)['modes'])):
+                    pkgs.append(pkg)
+            pkgs = " ".join(pkgs)
+            print(pkgs)
+            execute(f"paru -S --noconfirm --needed {pkgs}")
+        
+
+def _test():
+
+    l1 = ['cat', 'dog', 'bird']
+    l2 = ['cat', 'cow', 'bird']
+
+    same = set(l1).intersection(l2)
+    print(same)
+
 def main():
 
     ## packages_list(mode='hyprland')
@@ -169,11 +200,18 @@ def main():
     # for p in packages_list(modes=['hyprland']):
         # print(package_info(p))
 
+    # print(package_info("xautomation"))
+
     ## (* Generate packages.toml *)
-    # generate_packagestoml()
+    generate_packagestoml()
 
     ## (* Packages diff *)
-    packages_diff()
+    # packages_diff()
+
+    ## (* Install *)
+    pkg_manager(modes=['i3wm', 'hyprland'])
+
+    # _test()
 
 if __name__ == "__main__":
     main()
