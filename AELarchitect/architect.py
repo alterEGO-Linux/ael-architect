@@ -82,7 +82,7 @@ def execute(cmd, cwd=None, shell=False, text=True, input=None):
 
 ## -------------------- [ GIT ]
 
-FILES_URL = 'https://github.com/alterEGO-Linux/ael-files.git'
+FILES_SRC = 'https://github.com/alterEGO-Linux/ael-files.git'
 FILES_PATH = '/usr/share/ael/cache/files'
 
 def get_files():
@@ -92,39 +92,44 @@ def get_files():
         execute(f"git pull", cwd=FILES_PATH)
     else:
         message('action', f"Downloading AEL files...")
-        execute(f"git clone {FILES_URL} {FILES_PATH}")
+        execute(f"git clone {FILES_SRC} {FILES_PATH}")
 
 ## -------------------- [ FILES ] 
 
 def copy_files():
     FILES_CONFIG = os.path.join(FILES_PATH, 'usr', 'share', 'ael', 'files.toml')
+    # FILES_CONFIG = '/home/ghost/main/ael-files/usr/share/ael/files.toml'
 
     with open(FILES_CONFIG, 'rb') as _input:
         data = tomllib.load(_input)
 
         ## Convert dict of dict to namedtuple
-        AELFiles = namedtuple('AELFiles', ['filename', 'category', 'src', 'dst', 'description', 'mode', 'is_symlink', 'create_bkp'])
-        files_list = [AELFiles(**values) for values in data['file'].values()]
+        AELFiles = namedtuple('AELFiles', ['filename', 'category', 'src', 'dst', 'description', 'modes', 'is_symlink', 'create_bkp'])
+        files = [AELFiles(**values) for values in data['file'].values()]
 
-        for f in files_list:
-            if f.src == 'FILESGIT':
-                _src = FILES_PATH + os.path.join(f.dst, f.filename)
+        for f in files:
+            if f.src.startswith('AEL-FILES'):
+                _src = os.path.join(FILES_PATH,  f.src.replace('AEL-FILES/', ''), f.filename)
             else:
                 _src = os.path.join(f.src, f.filename)
 
-            _dst = os.path.join(f.dst, f.filename)
+            for _dst in f.dst:
 
-            os.makedirs(f.dst, exist_ok = True)
-            if f.create_bkp == True:
-                pass
-            else:
+                if "/USER/" in _dst:
+                    _dst = _dst.replace("/USER/", f"/{config.USER}/")
+
+                os.makedirs(os.path.dirname(_dst), exist_ok = True)
+
+
+                (* COPY *)
                 if os.path.exists(_dst):
-                    os.remove(_dst)
-                    message('results', f'Copying {_dst}...')
-                    shutil.copy2(_src, _dst)
-                else:
-                    message('results', f'Copying {_dst}...')
-                    shutil.copy2(_src, _dst)
+                    ## (* BACKUP *)
+                    if f.create_bkp == True:
+                        os.rename(_dst, _dst + ".aelbkup")
+                    else:
+                        os.remove(_dst)
+                message('results', f'Copying {_dst}...')
+                shutil.copy2(_src, _dst)
 
 class Menu:
 
@@ -190,10 +195,10 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # main()
 
     # get_files()
-    # copy_files()
+    copy_files()
 
     # s1 = menu(['1', '2', '3'])
     # execute(f"echo 'hello'")
