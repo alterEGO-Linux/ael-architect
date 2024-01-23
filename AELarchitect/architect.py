@@ -121,7 +121,7 @@ def copy_files():
                 os.makedirs(os.path.dirname(_dst), exist_ok = True)
 
 
-                (* COPY *)
+                ## (* COPY *)
                 if os.path.exists(_dst):
                     ## (* BACKUP *)
                     if f.create_bkp == True:
