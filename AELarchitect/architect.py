@@ -128,8 +128,13 @@ def copy_files():
                         os.rename(_dst, _dst + ".aelbkup")
                     else:
                         os.remove(_dst)
-                message('results', f'Copying {_dst}...')
-                shutil.copy2(_src, _dst)
+
+                if f.is_symlink == True:
+                    message('results', f'Creating symlink for {_dst}...')
+                    os.symlink(_src, _dst)
+                else:
+                    message('results', f'Copying {_dst}...')
+                    shutil.copy2(_src, _dst)
 
 class Menu:
 
