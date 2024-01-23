@@ -195,10 +195,10 @@ def main():
 
 
 if __name__ == '__main__':
-    # main()
+    main()
 
     # get_files()
-    copy_files()
+    # copy_files()
 
     # s1 = menu(['1', '2', '3'])
     # execute(f"echo 'hello'")
