@@ -2,7 +2,7 @@
 ## [AELarchitect/architect.py]
 ## author        : fantomH @alerEGO Linux
 ## created       : 2023-11-20 00:23:25 UTC
-## updated       : 2023-12-07 19:51:37 UTC
+## updated       : 2024-02-05 23:51:08 UTC
 ## description   : Installer and Updater.
 
 import argparse
@@ -25,25 +25,25 @@ else:
 
 ## -------------------- [ UTILS ] 
 
-def menu(opt):
+# def menu(opt):
 
-    opt = ''.join([f"{o}\n" for o in opt]).encode('UTF-8')
+    # opt = ''.join([f"{o}\n" for o in opt]).encode('UTF-8')
 
-    menu = subprocess.run(['fzf', 
-                           "--prompt=LAUNCH ❯ ",
-                           "--header= ",
-                           "--no-hscroll",
-                           "--reverse",
-                           "-i",
-                           "--exact",
-                           "--tiebreak=begin",
-                           "--no-info",
-                           "--pointer=•",
-                           ], input=opt, stdout=subprocess.PIPE)
+    # menu = subprocess.run(['fzf', 
+                           # "--prompt=AEL Architect ❯ ",
+                           # "--header= ",
+                           # "--no-hscroll",
+                           # "--reverse",
+                           # "-i",
+                           # "--exact",
+                           # "--tiebreak=begin",
+                           # "--no-info",
+                           # "--pointer=•",
+                           # ], input=opt, stdout=subprocess.PIPE)
 
-    selection = menu.stdout.decode('UTF-8')
+    # selection = menu.stdout.decode('UTF-8')
 
-    return selection.strip()
+    # return selection.strip()
 
 ## ---------- (* messages *) 
 def message(msg_type, msg, wait=0):
@@ -143,7 +143,7 @@ class Menu:
         opt = ''.join([f"{o}\n" for o in opt]).encode('UTF-8')
 
         menu = subprocess.run(['fzf', 
-                            "--prompt=LAUNCH ❯ ",
+                            "--prompt=AEL Architect ❯ ",
                             "--header= ",
                             "--no-hscroll",
                             "--reverse",
@@ -167,9 +167,6 @@ class Menu:
 
         if selection == "Review installation config":
             execute(f"vim {config.CONFIG}")
-            # what = input(f"What's your name: ")
-            # main_items.append(what)
-            # selection = self.fzf(main_items)
             self.main_menu()
 
         elif selection == "Update system":
@@ -187,11 +184,6 @@ def main():
     menu = Menu()
 
     menu.main_menu()
-
-    # if menu.main_menu() == "Review installation config":
-        # execute(f"vim {config.CONFIG}")
-        # menu.main_menu()
-
 
     t_menu = menu(['YES', 'NO'])
 

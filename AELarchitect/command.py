@@ -25,6 +25,5 @@ def execute(cmd, cwd=None, shell=False, capture_output=False, text=True, input=N
     # CommandResults = namedtuple('CommandResults', ['returncode'])
     # return CommandResults(cmd_run.returncode)
 
-
 # vim: foldmethod=marker
 ## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯
