@@ -2,12 +2,16 @@
 ## [AELarchitect/config.py]
 ## author        : fantomH @alterEGO Linux
 ## created       : 2023-12-14 11:37:06 UTC
-## updated       : 2023-12-14 11:37:06 UTC
+## updated       : 2024-02-15 15:24:41 UTC
 ## description   : General config for AELarchitect
 
-## PATHS
+import os
 
-CONFIG = '/home/ghost/main/ael-architect/AELarchitect/config.py'
+## PATHS
+AELFILES_GIT = 'https://github.com/alterEGO-Linux/ael-files.git'
+AELFILES_LOCAL = '/usr/share/ael/cache/files'
+AELFILES_CONFIG = os.path.join(AELFILES_LOCAL, 'usr', 'share', 'ael', 'files.toml')
+ARCHITECT_CONFIG = '/home/ghost/main/ael-architect/AELarchitect/config.py'
 
 TIMEZONE = 'America/New_York'
 HOSTNAME = 'alterEGO'

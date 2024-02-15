@@ -2,7 +2,7 @@
 ## [AELarchitect/architect.py]
 ## author        : fantomH @alerEGO Linux
 ## created       : 2023-11-20 00:23:25 UTC
-## updated       : 2024-02-05 23:51:08 UTC
+## updated       : 2024-02-15 15:24:29 UTC
 ## description   : Installer and Updater.
 
 import argparse
@@ -16,6 +16,9 @@ import time
 import tomllib
 
 import config
+from config import (AELFILES_GIT,
+                    AELFILES_LOCAL,
+                    AELFILES_CONFIG)
 
 ## Checking privileges.
 if os.getenv('USER') == 'root':
@@ -82,25 +85,20 @@ def execute(cmd, cwd=None, shell=False, text=True, input=None):
 
 ## -------------------- [ GIT ]
 
-FILES_SRC = 'https://github.com/alterEGO-Linux/ael-files.git'
-FILES_PATH = '/usr/share/ael/cache/files'
-
 def get_files():
-    if os.path.isdir(FILES_PATH):
-        message('action', f'Found {FILES_PATH}')
+    if os.path.isdir(AELFILES_LOCAL):
+        message('action', f'Found {AELFILES_LOCAL}')
         message('results', f'Updating AEL files...')
-        execute(f"git pull", cwd=FILES_PATH)
+        execute(f"git pull", cwd=AELFILES_LOCAL)
     else:
         message('action', f"Downloading AEL files...")
-        execute(f"git clone {FILES_SRC} {FILES_PATH}")
+        execute(f"git clone {AELFILES_GIT} {AELFILES_LOCAL}")
 
 ## -------------------- [ FILES ] 
 
 def copy_files():
-    FILES_CONFIG = os.path.join(FILES_PATH, 'usr', 'share', 'ael', 'files.toml')
-    # FILES_CONFIG = '/home/ghost/main/ael-files/usr/share/ael/files.toml'
 
-    with open(FILES_CONFIG, 'rb') as _input:
+    with open(AELFILES_CONFIG, 'rb') as _input:
         data = tomllib.load(_input)
 
         ## Convert dict of dict to namedtuple
@@ -108,33 +106,29 @@ def copy_files():
         files = [AELFiles(**values) for values in data['file'].values()]
 
         for f in files:
-            if f.src.startswith('AEL-FILES'):
-                _src = os.path.join(FILES_PATH,  f.src.replace('AEL-FILES/', ''), f.filename)
+            if f.src.startswith('AELFILES_LOCAL'):
+                _src = os.path.join(AELFILES_LOCAL,  f.src.replace('AELFILES_LOCAL/', ''), f.filename)
             else:
                 _src = os.path.join(f.src, f.filename)
 
-            for _dst in f.dst:
-
-                if "/USER/" in _dst:
-                    _dst = _dst.replace("/USER/", f"/{config.USER}/")
-
-                os.makedirs(os.path.dirname(_dst), exist_ok = True)
-
-
-                ## (* COPY *)
-                if os.path.exists(_dst):
-                    ## (* BACKUP *)
-                    if f.create_bkp == True:
-                        os.rename(_dst, _dst + ".aelbkup")
-                    else:
-                        os.remove(_dst)
-
-                if f.is_symlink == True:
-                    message('results', f'Creating symlink for {_dst}...')
-                    os.symlink(_src, _dst)
+            ## Checks if exists.
+            if os.path.exists(f.dst):
+                ## (* BACKUP *)
+                if f.create_bkp == True:
+                    os.rename(f.dst, f.dst + ".aelbkup")
                 else:
-                    message('results', f'Copying {_dst}...')
-                    shutil.copy2(_src, _dst)
+                    os.remove(f.dst)
+
+            ## (* SYMLINK *)
+            if f.is_symlink == True:
+                message('results', f'Creating symlink for {_dst}...')
+                os.symlink(_src, f.dst)
+            ## (* COPY *)
+            else:
+                message('results', f'Copying {_dst}...')
+                shutil.copy2(_src, dst)
+
+            ## (* HOME *)
 
 class Menu:
 
@@ -166,7 +160,7 @@ class Menu:
         selection = self.fzf(main_items)
 
         if selection == "Review installation config":
-            execute(f"vim {config.CONFIG}")
+            execute(f"vim {config.ARCHITECT_CONFIG}")
             self.main_menu()
 
         elif selection == "Update system":
