@@ -121,11 +121,11 @@ def copy_files():
 
             ## (* SYMLINK *)
             if f.is_symlink == True:
-                message('results', f'Creating symlink for {_dst}...')
+                message('results', f'Creating symlink for {f.dst}...')
                 os.symlink(_src, f.dst)
             ## (* COPY *)
             else:
-                message('results', f'Copying {_dst}...')
+                message('results', f'Copying {f.dst}...')
                 shutil.copy2(_src, dst)
 
             ## (* HOME *)
