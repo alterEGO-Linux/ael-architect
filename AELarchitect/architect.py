@@ -126,7 +126,7 @@ def copy_files():
             ## (* COPY *)
             else:
                 message('results', f'Copying {f.dst}...')
-                shutil.copy2(_src, dst)
+                shutil.copy2(_src, f.dst)
 
             ## (* HOME *)
 
