@@ -18,7 +18,9 @@ import tomllib
 import config
 from config import (AELFILES_GIT,
                     AELFILES_LOCAL,
-                    AELFILES_CONFIG)
+                    AELFILES_CONFIG,
+                    ARCHITECT_CONFIG,
+                    USER)
 
 ## Checking privileges.
 if os.getenv('USER') == 'root':
@@ -107,9 +109,9 @@ def copy_files():
 
         for f in files:
             if f.src.startswith('AELFILES_LOCAL'):
-                _src = os.path.join(AELFILES_LOCAL,  f.src.replace('AELFILES_LOCAL/', ''), f.filename)
+                src = os.path.join(AELFILES_LOCAL,  f.src.replace('AELFILES_LOCAL/', ''), f.filename)
             else:
-                _src = os.path.join(f.src, f.filename)
+                src = os.path.join(f.src, f.filename)
 
             ## Checks if exists.
             if os.path.exists(f.dst):
@@ -121,15 +123,22 @@ def copy_files():
 
             ## (* SYMLINK *)
             if f.is_symlink == True:
-                message('results', f'Creating symlink for {f.dst}...')
-                os.symlink(_src, f.dst)
+                message('results', f'Symlink {f.dst}')
+                os.symlink(src, f.dst)
             ## (* COPY *)
             else:
-                message('results', f'Copying {f.dst}...')
-                shutil.copy2(_src, f.dst)
+                message('results', f'Copying {f.dst}')
+                shutil.copy2(src, f.dst)
 
             ## (* HOME *)
-
+            if "/skel/" in f.dst:
+                dst = f.dst.replace('/etc/skel', '/home/' + USER)
+                ## (* BACKUP *)
+                if os.path.exists(dst):
+                    os.rename(dst, dst + ".aelbkup")
+                    message('results', f'Copying {dst}')
+                    shutil.copy2(src, dst)
+                    shutil.chown(dst, USER, 'users')
 class Menu:
 
     def fzf(self, opt):
@@ -160,7 +169,7 @@ class Menu:
         selection = self.fzf(main_items)
 
         if selection == "Review installation config":
-            execute(f"vim {config.ARCHITECT_CONFIG}")
+            execute(f"vim {ARCHITECT_CONFIG}")
             self.main_menu()
 
         elif selection == "Update system":
