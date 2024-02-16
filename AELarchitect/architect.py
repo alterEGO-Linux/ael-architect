@@ -125,6 +125,10 @@ def copy_files():
                     os.rename(f.dst, f.dst + ".aelbkup")
                 else:
                     os.remove(f.dst)
+            else:
+                ## Remove broken symlinks.
+                if os.path.islink(f.dst):
+                    os.remove(f.dst)
 
             ## (* SYMLINK *)
             if f.is_symlink == True:
@@ -148,6 +152,10 @@ def copy_files():
                 ## (* BACKUP *)
                 if os.path.exists(dst):
                     os.rename(dst, dst + ".aelbkup")
+                else:
+                    ## Remove broken symlinks.
+                    if os.path.islink(dst):
+                        os.remove(dst)
 
                 message('results', f'Copying {dst}')
                 shutil.copy2(src, dst)
