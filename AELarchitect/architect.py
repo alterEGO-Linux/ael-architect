@@ -113,6 +113,11 @@ def copy_files():
             else:
                 src = os.path.join(f.src, f.filename)
 
+            ## Checks if dst directory exists.
+            dst_directory = os.path.dirname(f.dst)
+            if not os.path.exists(dst_directory):
+                os.makedirs(dst_directory)
+
             ## Checks if exists.
             if os.path.exists(f.dst):
                 ## (* BACKUP *)
@@ -133,12 +138,20 @@ def copy_files():
             ## (* HOME *)
             if "/skel/" in f.dst:
                 dst = f.dst.replace('/etc/skel', '/home/' + USER)
+
+                ## Checks if dst directory exists.
+                dst_directory = os.path.dirname(dst)
+                if not os.path.exists(dst_directory):
+                    os.makedirs(dst_directory)
+                    shutil.chown(dst_directory, USER, 'users')
+
                 ## (* BACKUP *)
                 if os.path.exists(dst):
                     os.rename(dst, dst + ".aelbkup")
-                    message('results', f'Copying {dst}')
-                    shutil.copy2(src, dst)
-                    shutil.chown(dst, USER, 'users')
+
+                message('results', f'Copying {dst}')
+                shutil.copy2(src, dst)
+                shutil.chown(dst, USER, 'users')
 class Menu:
 
     def fzf(self, opt):
