@@ -164,6 +164,10 @@ modes           = {pkg_info.get('modes')}
 
 def packages_diff():
 
+    """
+    Checks packages.toml and give a list of packages not yet installed.
+    """
+
     PACKAGES = os.path.join('/', 'home', 'ghost', 'main', 'ael-files', 'usr', 'share', 'ael', 'packages.toml')
 
     with open(PACKAGES, 'rb') as _input:
@@ -171,9 +175,9 @@ def packages_diff():
 
         from_PACKAGES = [x for x in data.keys()]
     
-    locally = execute(f"paru -Qeq", capture_output=True).stdout.decode("UTF-8").split("\n")
+    locally = execute(f"paru -Qq", capture_output=True).stdout.decode("UTF-8").split("\n")
 
-    print(set(from_PACKAGES).difference(locally))
+    return set(from_PACKAGES).difference(locally)
 
 def pkg_manager(manager='paru', modes=['i3wm', 'hyprland']):
 
@@ -214,11 +218,11 @@ def main():
     # for p in packages_list():
         # print(package_info(p))
 
-    ## (* Generate packages.toml *)
-    generate_packagestoml()
+    # :(* Generate packages.toml *)
+    # generate_packagestoml()
 
     ## (* Packages diff *)
-    # packages_diff()
+    print(packages_diff())
 
     ## (* Install *)
     # pkg_manager(modes=['i3wm', 'hyprland'])
