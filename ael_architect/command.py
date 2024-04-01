@@ -1,10 +1,10 @@
 #! /usr/bin/env python
-## ----------------------------------------------------------------------- INFO
-## [command.py]
-## author        : fantomH @alterEGO Linux
-## created       : 2023-12-08 11:52:32 UTC
-## updated       : 2023-12-08 11:52:32 UTC
-## description   : Commands utils
+# :----------------------------------------------------------------------- INFO
+# :[command.py]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-12-08 11:52:32 UTC
+# :updated       : 2023-12-08 11:52:32 UTC
+# :description   : Commands utils
 
 from collections import namedtuple
 import shlex
@@ -25,5 +25,9 @@ def execute(cmd, cwd=None, shell=False, capture_output=False, text=True, input=N
     # CommandResults = namedtuple('CommandResults', ['returncode'])
     # return CommandResults(cmd_run.returncode)
 
-# vim: foldmethod=marker
-## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯
+if __name__ == "__main__":
+
+    # print(execute(f'for x in *; do echo $x; done', shell=True, capture_output=True, text=False))
+    print(execute('cat', shell=True, input='what', capture_output=True))
+
+# :------------------------------------------------------------- FIN ¯\_(ツ)_/¯
