@@ -1,9 +1,9 @@
-## ----------------------------------------------------------------------- INFO
-## [AELarchitect/config.py]
-## author        : fantomH @alterEGO Linux
-## created       : 2023-12-14 11:37:06 UTC
-## updated       : 2024-02-15 15:24:41 UTC
-## description   : General config for AELarchitect
+# :----------------------------------------------------------------------- INFO
+# :ael_architect/config.py]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-12-14 11:37:06 UTC
+# :updated       : 2024-04-10 02:32:19 UTC
+# :description   : General config for AELarchitect
 
 import os
 
