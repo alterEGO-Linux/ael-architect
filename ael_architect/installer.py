@@ -7,6 +7,7 @@
 
 import argparse
 import importlib.util
+import json
 
 from command import execute
 
@@ -24,8 +25,11 @@ class Installer:
         self.config = config
 
     def get_disk(self):
-        cmd = f"lsblk --json"
-        return execute(cmd, interact=True)
+        cmd = f"lsblk --output TRAN,NAME,PATH,ID-LINK,SIZE,STATE,PARTTYPENAME,UUID,PTTYPE,FSTYPE,TYPE,MOUNTPOINTS --json --tree"
+        json_string = execute(cmd, text=True).stdout
+        data = json.loads(json_string)
+
+        return data
     
 def main():
     parser = argparse.ArgumentParser(description="Installer")
@@ -41,7 +45,7 @@ def main():
 
     installer = Installer(config)
 
-    installer.get_disk()
+    print(installer.get_disk())
     # print([x for x in config])
 
     # Access the user_name list from the loaded configuration file
