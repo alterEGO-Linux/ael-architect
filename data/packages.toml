@@ -729,15 +729,6 @@ info            = ['help',
                    'man:grc(1)',
                   ]
 
-# [grep]
-# repository      = "core"
-# url             = "https://www.gnu.org/software/grep/"
-# description     = "A string search utility."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# required_by     = []
-# parent          = []
-# info            = []
-# 
 # [grimblast-git]
 # repository      = "aur"
 # url             = "https://github.com/hyprwm/contrib"
@@ -953,7 +944,16 @@ info            = ['help',
 # required_by     = []
 # parent          = []
 # info            = []
-# 
+
+[iproute2]
+repository        = "core"
+url               = "https://git.kernel.org/pub/scm/network/iproute2/iproute2.git"
+description       = "IP Routing Utilities. Includes ip."
+mode              = ['base', 'network']
+required_by       = ['tunnel-info']
+parent            = []
+info              = ['man:ip(8)']
+
 # [jd-gui-bin]
 # repository      = "aur"
 # url             = "http://jd.benow.ca/"
@@ -2037,6 +2037,7 @@ mode            = ['base', 'Hyprland', 'i3wm']
 required_by     = ['deep-nmap',
                    'deep-scan',
                    'ports',
+                   'tunnel-info',
                   ]
 parent          = []
 info            = ['help',

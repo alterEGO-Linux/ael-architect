@@ -22,3 +22,9 @@ filename        = ".ael/scripts/ports"
 url             = ""
 description     = "Displays open ports."
 mode            = ['network']
+
+[tunnel-info]
+filename        = ".ael/scripts/tunnel-info"
+url             = ""
+description     = "Displays tunnels/vpn info."
+mode            = ['network']
