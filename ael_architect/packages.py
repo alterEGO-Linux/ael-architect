@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 # :----------------------------------------------------------------------- INFO
-# :[AELarchitect/packages.py]
+# :[ael-architect/ael_architect/packages.py]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2023-12-08 11:12:16 UTC
-# :updated       : 2024-03-24 12:32:14 UTC
+# :updated       : 2024-08-29 09:39:45 UTC
 # :description   : Generates packages lists and stuff.
 
 from datetime import (datetime,
@@ -46,7 +46,7 @@ def package_info(package):
 
     package_info = {}
 
-    pkg_Si = execute(f"paru -Si {package}", capture_output=True).stdout.decode("UTF-8").split("\n")
+    pkg_Si = execute(f"paru -Si {package}", interact=False).stdout.decode("UTF-8").split("\n")
     for line in pkg_Si:
 
         # :(* Package name *)
@@ -72,7 +72,7 @@ def package_info(package):
     else:
         pass
 
-    pkg_Ql = execute(f"paru -Qlq {package}", capture_output=True).stdout.decode("UTF-8").split("\n")
+    pkg_Ql = execute(f"paru -Qlq {package}", interact=False).stdout.decode("UTF-8").split("\n")
     package_Ql_bin = []
     package_Ql_desktop = []
     package_Ql_man = []
@@ -118,14 +118,14 @@ def package_info(package):
     package_info["Ql_info"] = package_Ql_info
 
     # :(* modes *)
-    con = sql.connect(DB)
-    cur = con.cursor()
-    q = f"""SELECT mode FROM packages WHERE package == '{package}'"""
-    cur.execute(q)
-    modes = cur.fetchone()
+    # con = sql.connect(DB)
+    # cur = con.cursor()
+    # q = f"""SELECT mode FROM packages WHERE package == '{package}'"""
+    # cur.execute(q)
+    # modes = cur.fetchone()
 
-    package_info["modes"] = modes[0].split(', ')
-    con.close
+    # package_info["modes"] = modes[0].split(', ')
+    # con.close
 
     return package_info
 
@@ -150,7 +150,10 @@ def generate_packagestoml(modes=['i3wm', 'hyprland', 'pip']):
 
         for pkg in pkgs:
             pkg_info = package_info(pkg)
-            description = pkg_info.get('description').replace('"', f'{chr(92)}"')
+            try:
+                description = pkg_info.get('description').replace('"', f'{chr(92)}"')
+            except:
+                description = pkg_info.get('description')
             file_out.write(f"""\
 [{pkg_info.get('name')}]
 repository      = "{pkg_info.get('repository')}"
@@ -163,6 +166,47 @@ modes           = {pkg_info.get('modes')}
         file_out.write(f"""\
 # :------------------------------------------------------------- FIN ¯\_(ツ)_/¯
 """)
+
+def generate_packages_toml():
+
+    f = '/tmp/packages.txt'
+
+    pkg_list = []
+    with open(f, mode='r') as INPUT:
+        data = INPUT.readlines()
+
+        for pkg in data:
+            pkg_list.append(pkg.replace('\n', ''))
+
+    with open('/home/ghost/main/ael-architect/data/packages.toml', mode='w') as OUTPUT:
+        OUTPUT.write(f"""\
+# :----------------------------------------------------------------------- INFO
+# :[ael-architect/data/packages.toml]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2024-08-29 10:04:28 UTC
+# :updated       : {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S %Z')}
+# :description   : Packages file.
+
+""")
+
+        for pkg in pkg_list:
+            pkg_info = package_info(pkg)
+            try:
+                description = pkg_info.get('description').replace('"', f'{chr(92)}"')
+            except:
+                description = pkg_info.get('description')
+            OUTPUT.write(f"""\
+[{pkg_info.get('name')}]
+repository      = "{pkg_info.get('repository')}"
+url             = "{pkg_info.get('url')}"
+description     = "{description}"
+mode            = ['base', 'Hyprland', 'i3wm']
+required_by     = []
+parent          = []
+info            = []
+
+""")
+
 
 def packages_diff():
 
@@ -229,12 +273,11 @@ def main():
     # print(packages_diff())
 
     # (* Install *)
-    pkg_manager()
+    # pkg_manager()
+
+    generate_packages_toml()
 
     # _test()
 
 if __name__ == "__main__":
     main()
-
-# vim: foldmethod=marker
-## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯
