@@ -1,0 +1,24 @@
+# :----------------------------------------------------------------------- INFO
+# :[ael-architect/data/scripts.toml]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2024-08-29 14:11:18 UTC
+# :updated       : 2024-08-29 16:27:56 UTC
+# :description   : scripts file.
+
+[deep-nmap]
+filename        = ".ael/scripts/deep-nmap"
+url             = ""
+description     = "Complete Nmap scan."
+mode            = ['network']
+
+[deep-scan]
+filename        = ".ael/scripts/deep-scan"
+url             = ""
+description     = "Scans IP with rustscan and nmap."
+mode            = ['network']
+
+[ports]
+filename        = ".ael/scripts/ports"
+url             = ""
+description     = "Displays open ports."
+mode            = ['network']

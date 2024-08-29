@@ -2,7 +2,7 @@
 # :[ael-architect/data/packages.toml]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2024-08-29 10:04:28 UTC
-# :updated       : 2024-08-29 10:27:21 UTC
+# :updated       : 2024-08-29 16:58:13 UTC
 # :description   : Packages file.
 
 # [adobe-source-code-pro-fonts]
@@ -715,16 +715,20 @@
 # required_by     = []
 # parent          = []
 # info            = []
-# 
-# [grc]
-# repository      = "extra"
-# url             = "https://github.com/garabik/grc"
-# description     = "Yet another colouriser for beautifying your logfiles or output of commands."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# required_by     = []
-# parent          = []
-# info            = []
-# 
+
+[grc]
+repository      = "extra"
+url             = "https://github.com/garabik/grc"
+description     = "Yet another colouriser for beautifying your logfiles or output of commands."
+mode            = []
+required_by     = ['deep-nmap',
+                   'ports',
+                  ]
+parent          = []
+info            = ['help',
+                   'man:grc(1)',
+                  ]
+
 # [grep]
 # repository      = "core"
 # url             = "https://www.gnu.org/software/grep/"
@@ -1282,16 +1286,16 @@
 # required_by     = []
 # parent          = []
 # info            = []
-# 
-# [net-tools]
-# repository      = "core"
-# url             = "http://net-tools.sourceforge.net/"
-# description     = "Configuration tools for Linux networking."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# required_by     = []
-# parent          = []
-# info            = []
-# 
+
+[net-tools]
+repository      = "core"
+url             = "http://net-tools.sourceforge.net/"
+description     = "Configuration tools for Linux networking. Includes arp, ifconfig, netstat, route."
+mode            = ['network']
+required_by     = ['ports']
+parent          = []
+info            = ['man:netstat(8)']
+
 # [network-manager-applet]
 # repository      = "extra"
 # url             = "https://gitlab.gnome.org/GNOME/network-manager-applet"
@@ -1345,16 +1349,20 @@
 # required_by     = []
 # parent          = []
 # info            = []
-# 
-# [nmap]
-# repository      = "extra"
-# url             = "https://nmap.org/"
-# description     = "Utility for network discovery and security auditing."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# required_by     = []
-# parent          = []
-# info            = []
-# 
+
+[nmap]
+repository      = "extra"
+url             = "https://nmap.org/"
+description     = "Utility for network discovery and security auditing."
+mode            = ['network']
+required_by     = ['deep-nmap',
+                   'deep-scan',
+                  ]
+parent          = []
+info            = ['help',
+                   'man:nmap(1)',
+                  ]
+
 # [nmon]
 # repository      = "extra"
 # url             = "http://nmon.sourceforge.net"
@@ -1894,16 +1902,16 @@
 # required_by     = []
 # parent          = []
 # info            = []
-# 
-# [rustscan]
-# repository      = "extra"
-# url             = "https://github.com/rustscan/RustScan"
-# description     = "A modern port scanner."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# required_by     = []
-# parent          = []
-# info            = []
-# 
+
+[rustscan]
+repository      = "extra"
+url             = "https://github.com/rustscan/RustScan"
+description     = "A modern port scanner."
+mode            = ['network']
+required_by     = ['deep-scan']
+parent          = []
+info            = ['help']
+
 # [screen]
 # repository      = "extra"
 # url             = "https://www.gnu.org/software/screen/"
@@ -2020,16 +2028,21 @@
 # required_by     = []
 # parent          = []
 # info            = []
-# 
-# [sudo]
-# repository      = "core"
-# url             = "https://www.sudo.ws/sudo/"
-# description     = "Give certain users the ability to run some commands as root."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# required_by     = []
-# parent          = []
-# info            = []
-# 
+
+[sudo]
+repository      = "core"
+url             = "https://www.sudo.ws/sudo/"
+description     = "Give certain users the ability to run some commands as root."
+mode            = ['base', 'Hyprland', 'i3wm']
+required_by     = ['deep-nmap',
+                   'deep-scan',
+                   'ports',
+                  ]
+parent          = []
+info            = ['help',
+                   'man:sudo(8)',
+                  ]
+
 # [swaybg]
 # repository      = "extra"
 # url             = "https://github.com/swaywm/swaybg"
