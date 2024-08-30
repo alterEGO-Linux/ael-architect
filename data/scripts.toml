@@ -2,7 +2,7 @@
 # :[ael-architect/data/scripts.toml]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2024-08-29 14:11:18 UTC
-# :updated       : 2024-08-29 16:27:56 UTC
+# :updated       : 2024-08-30 04:24:53 UTC
 # :description   : scripts file.
 
 [deep-nmap]
@@ -22,6 +22,12 @@ filename        = ".ael/scripts/ports"
 url             = ""
 description     = "Displays open ports."
 mode            = ['network']
+
+[processes]
+filename        = ".ael/scripts/processes"
+url             = ""
+description     = "Show processes."
+mode            = []
 
 [tunnel-info]
 filename        = ".ael/scripts/tunnel-info"
