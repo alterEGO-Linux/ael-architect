@@ -29,8 +29,32 @@ url             = ""
 description     = "Show processes."
 mode            = []
 
+[ps-grep]
+filename        = ".ael/scripts/ps-grep"
+url             = ""
+description     = "Show processes for a particular application."
+mode            = []
+
+[reset-time]
+filename        = ".ael/scripts/reset-time"
+url             = ""
+description     = "Reset system time. Usefull when Windows boot screws time."
+mode            = []
+
+[tagalog]
+filename        = ".ael/scripts/tagalog"
+url             = ""
+description     = "Translate to Tagalog using Google translate."
+mode            = []
+
 [tunnel-info]
 filename        = ".ael/scripts/tunnel-info"
 url             = ""
 description     = "Displays tunnels/vpn info."
 mode            = ['network']
+
+[translate]
+filename        = ".ael/scripts/translate"
+url             = ""
+description     = "Translate using Google translate."
+mode            = []

@@ -2394,16 +2394,20 @@ info            = ['help',
 # required_by     = []
 # parent          = []
 # info            = []
-# 
-# [wget]
-# repository      = "extra"
-# url             = "https://www.gnu.org/software/wget/wget.html"
-# description     = "Network utility to retrieve files from the Web."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# required_by     = []
-# parent          = []
-# info            = []
-# 
+
+[wget]
+repository      = "extra"
+url             = "https://www.gnu.org/software/wget/wget.html"
+description     = "Network utility to retrieve files from the Web."
+mode            = ['base']
+required_by     = ['tagalog',
+                   'translate',
+                  ]
+parent          = []
+info            = ['help',
+                   'man:wget(1)',
+                  ]
+
 # [which]
 # repository      = "core"
 # url             = "https://savannah.gnu.org/projects/which/"
