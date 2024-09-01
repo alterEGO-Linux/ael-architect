@@ -2036,6 +2036,7 @@ description     = "Give certain users the ability to run some commands as root."
 mode            = ['base', 'Hyprland', 'i3wm']
 required_by     = ['deep-nmap',
                    'deep-scan',
+                   'fuck',
                    'ports',
                    'tunnel-info',
                   ]

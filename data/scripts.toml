@@ -17,6 +17,18 @@ url             = ""
 description     = "Scans IP with rustscan and nmap."
 mode            = ['network']
 
+[fixout]
+filename        = ".ael/scripts/fixout"
+url             = ""
+description     = "Fix bash history and exit."
+mode            = []
+
+[fuck]
+filename        = ".ael/scripts/fuck"
+url             = ""
+description     = "Repeats last cmd with sudo if forgotten."
+mode            = []
+
 [ports]
 filename        = ".ael/scripts/ports"
 url             = ""
@@ -39,6 +51,18 @@ mode            = []
 filename        = ".ael/scripts/reset-time"
 url             = ""
 description     = "Reset system time. Usefull when Windows boot screws time."
+mode            = []
+
+[shell-info]
+filename        = ".ael/scripts/shell-info"
+url             = ""
+description     = "Show shell info."
+mode            = []
+
+[show-utc]
+filename        = ".ael/scripts/show-utc"
+url             = ""
+description     = "Show UTC time."
 mode            = []
 
 [tagalog]
