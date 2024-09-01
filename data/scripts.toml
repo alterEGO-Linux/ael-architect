@@ -5,6 +5,12 @@
 # :updated       : 2024-08-30 04:24:53 UTC
 # :description   : scripts file.
 
+[busy]
+filename        = ".ael/scripts/busy"
+url             = ""
+description     = "When the boss comes around to look busy."
+mode            = []
+
 [deep-nmap]
 filename        = ".ael/scripts/deep-nmap"
 url             = ""
@@ -69,6 +75,12 @@ mode            = []
 filename        = ".ael/scripts/tagalog"
 url             = ""
 description     = "Translate to Tagalog using Google translate."
+mode            = []
+
+[termbin]
+filename        = ".ael/scripts/termbin"
+url             = ""
+description     = "Netcat-based command-line pastebin."
 mode            = []
 
 [tunnel-info]

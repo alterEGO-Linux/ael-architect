@@ -679,16 +679,19 @@
 # required_by     = []
 # parent          = []
 # info            = []
-# 
-# [gnu-netcat]
-# repository      = "extra"
-# url             = "http://netcat.sourceforge.net/"
-# description     = "GNU rewrite of netcat, the network piping application."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# required_by     = []
-# parent          = []
-# info            = []
-# 
+
+[gnu-netcat]
+repository      = "extra"
+url             = "http://netcat.sourceforge.net/"
+description     = "GNU rewrite of netcat, the network piping application."
+mode            = ['base']
+required_by     = ['termbin']
+parent          = []
+info            = ['help',
+                   'man:ncat(1)',
+                   'man:netcat(1)',
+                  ]
+
 # [go-to-meeting-nativefier]
 # repository      = "aur"
 # url             = "None"
