@@ -53,10 +53,22 @@ url             = ""
 description     = "Show processes for a particular application."
 mode            = []
 
+[py-cleaner]
+filename        = ".ael/scripts/py-cleaner"
+url             = ""
+description     = "Clean python current directory."
+mode            = []
+
 [reset-time]
 filename        = ".ael/scripts/reset-time"
 url             = ""
 description     = "Reset system time. Usefull when Windows boot screws time."
+mode            = []
+
+[search-content]
+filename        = ".ael/scripts/search-content"
+url             = ""
+description     = "Search files for content."
 mode            = []
 
 [shell-info]

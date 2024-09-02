@@ -562,16 +562,20 @@
 # required_by     = []
 # parent          = []
 # info            = []
-# 
-# [findutils]
-# repository      = "core"
-# url             = "https://www.gnu.org/software/findutils/"
-# description     = "GNU utilities to locate files."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# required_by     = []
-# parent          = []
-# info            = []
-# 
+
+[findutils]
+repository      = "core"
+url             = "https://www.gnu.org/software/findutils/"
+description     = "GNU utilities to locate files."
+mode            = []
+required_by     = ['py-cleaner']
+parent          = []
+info            = ['help:find',
+                   'info:find',
+                   'man:find(1)',
+                  ]
+note            = ['Part of Arch Linux base package.']
+
 # [firefox]
 # repository      = "extra"
 # url             = "https://www.mozilla.org/firefox/"
@@ -616,16 +620,19 @@
 # required_by     = []
 # parent          = []
 # info            = []
-# 
-# [fzf]
-# repository      = "extra"
-# url             = "https://github.com/junegunn/fzf"
-# description     = "Command-line fuzzy finder."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# required_by     = []
-# parent          = []
-# info            = []
-# 
+
+[fzf]
+repository      = "extra"
+url             = "https://github.com/junegunn/fzf"
+description     = "Command-line fuzzy finder."
+mode            = ['base']
+required_by     = ['search-content']
+parent          = []
+info            = ['help',
+                   'man:fzf(1)',
+                   'man:fzf-tmux(1)'
+                  ]
+
 # [gawk]
 # repository      = "core"
 # url             = "https://www.gnu.org/software/gawk/"
@@ -830,7 +837,16 @@ info            = ['help',
 # required_by     = []
 # parent          = []
 # info            = []
-# 
+
+[highlight]
+repository      = "extra"
+url             = "http://www.andre-simon.de/doku/highlight/highlight.html"
+description     = "Fast and flexible source code highlighter (CLI version)."
+mode            = []
+required_by     = ['search-content']
+parent          = []
+info            = ['help']
+
 # [htmlq-git]
 # repository      = "aur"
 # url             = "https://github.com/mgdm/htmlq"
@@ -1888,6 +1904,17 @@ info            = ['help',
 # parent          = []
 # info            = []
 # 
+[ripgrep]
+repository      = "extra"
+url             = "https://github.com/BurntSushi/ripgrep"
+description     = "A search tool that combines the usability of ag with the raw speed of grep."
+mode            = []
+required_by     = ['search-content']
+parent          = []
+info            = ['help',
+                   'man:rg(1)'
+                  ]
+
 # [rsync]
 # repository      = "extra"
 # url             = "https://rsync.samba.org/"
