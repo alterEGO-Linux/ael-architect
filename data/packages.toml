@@ -544,16 +544,18 @@
 # required_by     = []
 # parent          = []
 # info            = []
-# 
-# [ffmpeg]
-# repository      = "extra"
-# url             = "https://ffmpeg.org"
-# description     = "Complete solution to record, convert and stream audio and video."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# required_by     = []
-# parent          = []
-# info            = []
-# 
+
+[ffmpeg]
+repository      = "extra"
+url             = "https://ffmpeg.org"
+description     = "Complete solution to record, convert and stream audio and video."
+mode            = ['minimal']
+required_by     = ['getmp3']
+parent          = []
+info            = ['ffmpeg --help',
+                   'man 1 ffmpeg',
+                  ]
+
 # [file]
 # repository      = "core"
 # url             = "https://www.darwinsys.com/file/"
@@ -570,9 +572,9 @@ description     = "GNU utilities to locate files."
 mode            = []
 required_by     = ['py-cleaner']
 parent          = []
-info            = ['help:find',
-                   'info:find',
-                   'man:find(1)',
+info            = ['find --help',
+                   'info find',
+                   'man 1 find',
                   ]
 note            = ['Part of Arch Linux base package.']
 
@@ -626,22 +628,27 @@ repository      = "extra"
 url             = "https://github.com/junegunn/fzf"
 description     = "Command-line fuzzy finder."
 mode            = ['base']
-required_by     = ['search-content']
+required_by     = ['search-content',
+                   'history-cleaner',
+                  ]
 parent          = []
 info            = ['help',
                    'man:fzf(1)',
                    'man:fzf-tmux(1)'
                   ]
 
-# [gawk]
-# repository      = "core"
-# url             = "https://www.gnu.org/software/gawk/"
-# description     = "GNU version of awk."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# required_by     = []
-# parent          = []
-# info            = []
-# 
+[gawk]
+repository      = "core"
+url             = "https://www.gnu.org/software/gawk/"
+description     = "GNU version of awk."
+mode            = []
+required_by     = ['history-cleaner']
+parent          = []
+info            = ['help:awk --help',
+                   'man:awk(1p)',
+                  ]
+note            = ['Part of Arch Linux base package.']
+
 # [gcc]
 # repository      = "core"
 # url             = "https://gcc.gnu.org"
@@ -1959,16 +1966,20 @@ info            = ['help']
 # required_by     = []
 # parent          = []
 # info            = []
-# 
-# [sed]
-# repository      = "core"
-# url             = "https://www.gnu.org/software/sed/"
-# description     = "GNU stream editor."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# required_by     = []
-# parent          = []
-# info            = []
-# 
+
+[sed]
+repository      = "core"
+url             = "https://www.gnu.org/software/sed/"
+description     = "GNU stream editor."
+mode            = []
+required_by     = ['history-cleaner']
+parent          = []
+info            = ['sed --help',
+                   'info sed',
+                   'man 1 sed',
+                  ]
+note            = ['Part of Arch Linux base package.']
+
 # [sendmail]
 # repository      = "aur"
 # url             = "http://www.sendmail.org"
@@ -2933,16 +2944,18 @@ info            = ['help',
 # required_by     = []
 # parent          = []
 # info            = []
-# 
-# [yt-dlp]
-# repository      = "extra"
-# url             = "https://github.com/yt-dlp/yt-dlp"
-# description     = "A youtube-dl fork with additional features and fixes."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# required_by     = []
-# parent          = []
-# info            = []
-# 
+
+[yt-dlp]
+repository      = "extra"
+url             = "https://github.com/yt-dlp/yt-dlp"
+description     = "A youtube-dl fork with additional features and fixes."
+mode            = []
+required_by     = ['getmp3']
+parent          = []
+info            = ['yt-dlp --help',
+                   'man 1 yt-dlp',
+                  ]
+
 # [zaproxy]
 # repository      = "extra"
 # url             = "https://www.zaproxy.org/"

@@ -2,7 +2,7 @@
 # :[ael-architect/data/scripts.toml]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2024-08-29 14:11:18 UTC
-# :updated       : 2024-08-30 04:24:53 UTC
+# :updated       : 2024-09-04 10:29:46 UTC
 # :description   : scripts file.
 
 [busy]
@@ -23,6 +23,18 @@ url             = ""
 description     = "Scans IP with rustscan and nmap."
 mode            = ['network']
 
+[delete]
+filename        = ".ael/scripts/delete"
+url             = ""
+description     = "Delete directory."
+mode            = []
+
+[directory-size]
+filename        = ".ael/scripts/directory-size"
+url             = ""
+description     = "Check size of biggest directories."
+mode            = []
+
 [fixout]
 filename        = ".ael/scripts/fixout"
 url             = ""
@@ -33,6 +45,18 @@ mode            = []
 filename        = ".ael/scripts/fuck"
 url             = ""
 description     = "Repeats last cmd with sudo if forgotten."
+mode            = []
+
+[getmp3]
+filename        = ".ael/scripts/getmp3"
+url             = ""
+description     = "Extract video audio to .mp3."
+mode            = []
+
+[history-cleaner]
+filename        = ".ael/scripts/history-cleaner"
+url             = ""
+description     = "Cleans bash history."
 mode            = []
 
 [ports]
