@@ -373,7 +373,18 @@
 # required_by     = []
 # parent          = []
 # info            = []
-# 
+
+[curl]
+repository      = "core"
+url             = "https://curl.se/"
+description     = "command line tool and library for transferring data with URLs."
+mode            = ['base']
+required_by     = ['cheat']
+parent          = []
+info            = ['curl --help',
+                   'man curl (1)',
+                    ]
+
 # [curlftpfs]
 # repository      = "extra"
 # url             = "http://curlftpfs.sourceforge.net/"
@@ -628,8 +639,9 @@ repository      = "extra"
 url             = "https://github.com/junegunn/fzf"
 description     = "Command-line fuzzy finder."
 mode            = ['base']
-required_by     = ['search-content',
+required_by     = ['cheat',
                    'history-cleaner',
+                   'search-content',
                   ]
 parent          = []
 info            = ['help',
@@ -1042,7 +1054,18 @@ info              = ['man:ip(8)']
 # required_by     = []
 # parent          = []
 # info            = []
-# 
+
+[less]
+repository      = "core"
+url             = "https://www.greenwoodsoftware.com/less/"
+description     = "A terminal based program for viewing text files."
+mode            = ['base']
+required_by     = ['cheat']
+parent          = []
+info            = ['less --help',
+                   'man less (1)',
+                  ]
+
 # [libreoffice-fresh]
 # repository      = "extra"
 # url             = "https://www.libreoffice.org/"

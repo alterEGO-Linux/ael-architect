@@ -2,13 +2,19 @@
 # :[ael-architect/data/scripts.toml]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2024-08-29 14:11:18 UTC
-# :updated       : 2024-09-04 10:29:46 UTC
+# :updated       : 2024-09-05 11:14:35 UTC
 # :description   : scripts file.
 
 [busy]
 filename        = ".ael/scripts/busy"
 url             = ""
 description     = "When the boss comes around to look busy."
+mode            = []
+
+[cheat]
+filename        = ".ael/scripts/cheat"
+url             = ""
+description     = "Query https://cheat.sh."
 mode            = []
 
 [deep-nmap]
