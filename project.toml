@@ -3,7 +3,7 @@
 # :author        : fantomH
 # :created       : 2024-08-29 08:58:35 UTC
 # :updated       : 2024-08-29 08:58:41 UTC
-# :description   : "Setup script for ael-architect"
+# :description   : Setup script for ael-architect.
 
 [build-system]
 requires = ["setuptools>=42", "wheel"]

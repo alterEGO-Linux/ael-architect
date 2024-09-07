@@ -113,6 +113,12 @@ url             = ""
 description     = "Show UTC time."
 mode            = []
 
+[systeminfo]
+filename        = ".ael/scripts/systeminfo"
+url             = ""
+description     = "Display system info."
+mode            = []
+
 [tagalog]
 filename        = ".ael/scripts/tagalog"
 url             = ""
