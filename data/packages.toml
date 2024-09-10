@@ -13,6 +13,8 @@
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [alacritty]
 # repository      = "extra"
@@ -22,6 +24,8 @@
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [alsa-utils]
 # repository      = "extra"
@@ -31,6 +35,8 @@
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [amd-ucode]
 # repository      = "core"
@@ -40,6 +46,8 @@
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [arandr]
 # repository      = "extra"
@@ -49,6 +57,8 @@
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [arch-wiki-docs]
 # repository      = "extra"
@@ -58,6 +68,8 @@
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [archlinux-java-run]
 # repository      = "aur"
@@ -67,6 +79,8 @@
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [arp-scan]
 # repository      = "extra"
@@ -76,6 +90,8 @@
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [autoconf]
 # repository      = "core"
@@ -85,6 +101,8 @@
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [automake]
 # repository      = "core"
@@ -94,6 +112,8 @@
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [awesome-terminal-fonts]
 # repository      = "extra"
@@ -103,6 +123,8 @@
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [base]
 # repository      = "core"
@@ -112,6 +134,8 @@
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [base-devel]
 # repository      = "core"
@@ -121,6 +145,8 @@
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [bash-completion]
 # repository      = "extra"
@@ -130,6 +156,8 @@
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [bat]
 # repository      = "extra"
@@ -139,6 +167,8 @@
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [bc]
 # repository      = "extra"
@@ -148,6 +178,8 @@
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [bdf-unifont]
 # repository      = "aur"
@@ -157,6 +189,8 @@
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 
 [bind]
 repository      = "extra"
@@ -176,6 +210,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [binwalk]
 # repository      = "extra"
@@ -185,6 +221,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [bison]
 # repository      = "core"
@@ -194,6 +232,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [bleachbit]
 # repository      = "extra"
@@ -203,6 +243,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [blueman]
 # repository      = "extra"
@@ -212,6 +254,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [bluez]
 # repository      = "extra"
@@ -221,6 +265,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [bluez-utils]
 # repository      = "extra"
@@ -230,6 +276,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [bmon]
 # repository      = "extra"
@@ -239,6 +287,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [bpytop]
 # repository      = "extra"
@@ -248,6 +298,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [brasero]
 # repository      = "extra"
@@ -257,6 +309,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [brave-bin]
 # repository      = "aur"
@@ -266,6 +320,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [brightnessctl]
 # repository      = "extra"
@@ -275,6 +331,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [bsd-games]
 # repository      = "extra"
@@ -284,6 +342,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [bumblebee-status-git]
 # repository      = "aur"
@@ -293,6 +353,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [burpsuite]
 # repository      = "aur"
@@ -302,6 +364,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [canon-pixma-g6000-complete]
 # repository      = "aur"
@@ -311,6 +375,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [captdriver-git]
 # repository      = "aur"
@@ -320,6 +386,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [chromium]
 # repository      = "extra"
@@ -329,6 +397,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [clinfo]
 # repository      = "extra"
@@ -338,6 +408,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [cmatrix]
 # repository      = "extra"
@@ -347,6 +419,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 
 # [code]
 # repository      = "extra"
@@ -356,6 +430,8 @@ notes           = []
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 
 [coreutils]
 repository      = "core"
@@ -378,6 +454,8 @@ notes           = ['Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [crunch]
 # repository      = "aur"
@@ -387,6 +465,8 @@ notes           = ['Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 
 [curl]
 repository      = "core"
@@ -398,6 +478,7 @@ parent          = []
 info            = ['curl --help',
                    'man curl (1)',
                     ]
+notes           = []
 
 # [curlftpfs]
 # repository      = "extra"
@@ -407,6 +488,8 @@ info            = ['curl --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [dcmtk-git]
 # repository      = "aur"
@@ -416,6 +499,8 @@ info            = ['curl --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [dex]
 # repository      = "extra"
@@ -425,6 +510,8 @@ info            = ['curl --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [dirbuster]
 # repository      = "aur"
@@ -434,6 +521,8 @@ info            = ['curl --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [dmg2img]
 # repository      = "aur"
@@ -443,6 +532,8 @@ info            = ['curl --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [docker]
 # repository      = "extra"
@@ -452,6 +543,8 @@ info            = ['curl --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [domination]
 # repository      = "aur"
@@ -461,6 +554,8 @@ info            = ['curl --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [dos2unix]
 # repository      = "extra"
@@ -470,6 +565,8 @@ info            = ['curl --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [doublecmd-qt5]
 # repository      = "extra"
@@ -479,6 +576,8 @@ info            = ['curl --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [dropbox]
 # repository      = "aur"
@@ -488,6 +587,8 @@ info            = ['curl --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [duf]
 # repository      = "extra"
@@ -497,6 +598,8 @@ info            = ['curl --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [dunst]
 # repository      = "extra"
@@ -506,6 +609,8 @@ info            = ['curl --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [easy-rsa]
 # repository      = "extra"
@@ -515,6 +620,8 @@ info            = ['curl --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [entr]
 # repository      = "extra"
@@ -524,6 +631,8 @@ info            = ['curl --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [espeak]
 # repository      = "aur"
@@ -533,6 +642,8 @@ info            = ['curl --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [exfat-utils]
 # repository      = "extra"
@@ -542,6 +653,8 @@ info            = ['curl --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [exploitdb]
 # repository      = "extra"
@@ -551,6 +664,8 @@ info            = ['curl --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [eza]
 # repository      = "extra"
@@ -560,6 +675,8 @@ info            = ['curl --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [fakeroot]
 # repository      = "core"
@@ -569,6 +686,8 @@ info            = ['curl --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 
 [ffmpeg]
 repository      = "extra"
@@ -580,6 +699,7 @@ parent          = []
 info            = ['ffmpeg --help',
                    'man 1 ffmpeg',
                   ]
+notes           = []
 
 # [file]
 # repository      = "core"
@@ -589,6 +709,8 @@ info            = ['ffmpeg --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 
 [findutils]
 repository      = "core"
@@ -601,7 +723,7 @@ info            = ['find --help',
                    'info find',
                    'man 1 find',
                   ]
-note            = ['Part of Arch Linux base package.']
+notes           = ['Part of Arch Linux base package.']
 
 # [firefox]
 # repository      = "extra"
@@ -611,6 +733,8 @@ note            = ['Part of Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [fish]
 # repository      = "extra"
@@ -620,6 +744,8 @@ note            = ['Part of Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [flex]
 # repository      = "core"
@@ -629,6 +755,8 @@ note            = ['Part of Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [foomatic-db-gutenprint-ppds]
 # repository      = "extra"
@@ -638,6 +766,8 @@ note            = ['Part of Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [freerdp]
 # repository      = "extra"
@@ -647,6 +777,8 @@ note            = ['Part of Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 
 [fzf]
 repository      = "extra"
@@ -662,6 +794,7 @@ info            = ['help',
                    'man:fzf(1)',
                    'man:fzf-tmux(1)'
                   ]
+notes           = []
 
 [gawk]
 repository      = "core"
@@ -683,6 +816,8 @@ notes           = ['Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
+# notes           = []
 # 
 # [gettext]
 # repository      = "core"
@@ -692,6 +827,7 @@ notes           = ['Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [gimp]
 # repository      = "extra"
@@ -701,6 +837,7 @@ notes           = ['Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [git]
 # repository      = "extra"
@@ -710,6 +847,7 @@ notes           = ['Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [glow]
 # repository      = "extra"
@@ -719,6 +857,7 @@ notes           = ['Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 
 [gnu-netcat]
 repository      = "extra"
@@ -731,6 +870,7 @@ info            = ['help',
                    'man:ncat(1)',
                    'man:netcat(1)',
                   ]
+notes           = []
 
 # [go-to-meeting-nativefier]
 # repository      = "aur"
@@ -740,6 +880,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [gobuster-git]
 # repository      = "aur"
@@ -749,6 +890,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [gping]
 # repository      = "extra"
@@ -758,6 +900,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 
 [grc]
 repository      = "extra"
@@ -771,6 +914,7 @@ parent          = []
 info            = ['help',
                    'man:grc(1)',
                   ]
+notes           = []
 
 [grep]
 repository      = "core"
@@ -783,6 +927,7 @@ info            = ['grep --help',
                    'info grep',
                    'man grep(1)',
                    'man grep(1p)']
+notes           = []
 
 # [grimblast-git]
 # repository      = "aur"
@@ -792,6 +937,7 @@ info            = ['grep --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [groff]
 # repository      = "core"
@@ -801,6 +947,7 @@ info            = ['grep --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [gromit-mpx-git]
 # repository      = "aur"
@@ -810,6 +957,7 @@ info            = ['grep --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [grub]
 # repository      = "core"
@@ -819,6 +967,7 @@ info            = ['grep --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [gscan2pdf]
 # repository      = "extra"
@@ -828,6 +977,7 @@ info            = ['grep --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [gucharmap]
 # repository      = "extra"
@@ -837,6 +987,7 @@ info            = ['grep --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [gunicorn]
 # repository      = "extra"
@@ -846,6 +997,7 @@ info            = ['grep --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [gutenprint]
 # repository      = "extra"
@@ -855,6 +1007,7 @@ info            = ['grep --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [gvfs]
 # repository      = "extra"
@@ -864,6 +1017,7 @@ info            = ['grep --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [gzip]
 # repository      = "core"
@@ -873,6 +1027,7 @@ info            = ['grep --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [hdparm]
 # repository      = "core"
@@ -882,6 +1037,7 @@ info            = ['grep --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 
 [highlight]
 repository      = "extra"
@@ -891,6 +1047,7 @@ mode            = []
 ael_scripts     = ['search-content']
 parent          = []
 info            = ['help']
+notes           = []
 
 # [htmlq-git]
 # repository      = "aur"
@@ -900,6 +1057,7 @@ info            = ['help']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [htop]
 # repository      = "extra"
@@ -909,6 +1067,7 @@ info            = ['help']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [hydra]
 # repository      = "extra"
@@ -918,6 +1077,7 @@ info            = ['help']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [hyprland]
 # repository      = "extra"
@@ -927,6 +1087,7 @@ info            = ['help']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [i3-wm]
 # repository      = "extra"
@@ -936,6 +1097,7 @@ info            = ['help']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [i3blocks]
 # repository      = "extra"
@@ -945,6 +1107,7 @@ info            = ['help']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [icedtea-web]
 # repository      = "extra"
@@ -954,6 +1117,7 @@ info            = ['help']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [imagemagick]
 # repository      = "extra"
@@ -963,6 +1127,7 @@ info            = ['help']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [inkscape]
 # repository      = "extra"
@@ -972,6 +1137,7 @@ info            = ['help']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [insomnia]
 # repository      = "aur"
@@ -981,6 +1147,7 @@ info            = ['help']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [intel-gpu-tools]
 # repository      = "extra"
@@ -990,6 +1157,7 @@ info            = ['help']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [intel-opencl-runtime]
 # repository      = "aur"
@@ -999,6 +1167,7 @@ info            = ['help']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [inxi]
 # repository      = "extra"
@@ -1008,17 +1177,19 @@ info            = ['help']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 
 [iproute2]
 repository        = "core"
 url               = "https://git.kernel.org/pub/scm/network/iproute2/iproute2.git"
 description       = "IP Routing Utilities. Includes ip."
 mode              = ['base']
-required_by       = ['systeminfo',
+ael_scripts       = ['systeminfo',
                      'tunnel-info']
 parent            = []
 info              = ['ip --help',
                      'man ip(8)']
+notes           = []
 
 # [jd-gui-bin]
 # repository      = "aur"
@@ -1028,6 +1199,7 @@ info              = ['ip --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [jdk-openjdk]
 # repository      = "extra"
@@ -1037,6 +1209,7 @@ info              = ['ip --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [john]
 # repository      = "extra"
@@ -1046,6 +1219,7 @@ info              = ['ip --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [jq]
 # repository      = "extra"
@@ -1055,6 +1229,7 @@ info              = ['ip --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [jupyter-notebook]
 # repository      = "extra"
@@ -1064,6 +1239,7 @@ info              = ['ip --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [kdenlive]
 # repository      = "extra"
@@ -1073,6 +1249,7 @@ info              = ['ip --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [krusader]
 # repository      = "extra"
@@ -1082,6 +1259,7 @@ info              = ['ip --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 
 [less]
 repository      = "core"
@@ -1093,6 +1271,7 @@ parent          = []
 info            = ['less --help',
                    'man less (1)',
                   ]
+notes           = []
 
 # [libreoffice-fresh]
 # repository      = "extra"
@@ -1102,6 +1281,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [librespeed-cli-bin]
 # repository      = "aur"
@@ -1111,6 +1291,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [libtool]
 # repository      = "core"
@@ -1120,6 +1301,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [libvncserver]
 # repository      = "extra"
@@ -1129,6 +1311,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [libxcrypt-compat]
 # repository      = "core"
@@ -1138,6 +1321,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [linux]
 # repository      = "core"
@@ -1147,6 +1331,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [linux-firmware]
 # repository      = "core"
@@ -1156,6 +1341,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [linux-headers]
 # repository      = "core"
@@ -1165,6 +1351,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [lshw]
 # repository      = "extra"
@@ -1174,6 +1361,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [luit]
 # repository      = "extra"
@@ -1183,6 +1371,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [lxappearance]
 # repository      = "extra"
@@ -1192,6 +1381,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [lxc]
 # repository      = "extra"
@@ -1201,6 +1391,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [lynx]
 # repository      = "extra"
@@ -1210,6 +1401,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [m4]
 # repository      = "core"
@@ -1219,6 +1411,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [make]
 # repository      = "core"
@@ -1228,6 +1421,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [man-db]
 # repository      = "core"
@@ -1237,6 +1431,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [man-pages]
 # repository      = "core"
@@ -1246,6 +1441,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [mangl]
 # repository      = "aur"
@@ -1255,6 +1451,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [mariadb-clients]
 # repository      = "extra"
@@ -1264,6 +1461,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [meld]
 # repository      = "extra"
@@ -1273,6 +1471,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [mesa-amber]
 # repository      = "extra"
@@ -1282,6 +1481,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [mesa-utils]
 # repository      = "extra"
@@ -1291,6 +1491,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [metasploit]
 # repository      = "extra"
@@ -1300,6 +1501,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [mlocate]
 # repository      = "core"
@@ -1309,6 +1511,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [mpv]
 # repository      = "extra"
@@ -1318,6 +1521,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [mpvpaper]
 # repository      = "aur"
@@ -1327,6 +1531,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [mtools]
 # repository      = "extra"
@@ -1336,6 +1541,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [mtr]
 # repository      = "extra"
@@ -1345,6 +1551,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [ncdu]
 # repository      = "extra"
@@ -1354,6 +1561,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [neofetch]
 # repository      = "extra"
@@ -1363,6 +1571,7 @@ info            = ['less --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 
 [net-tools]
 repository      = "core"
@@ -1372,6 +1581,7 @@ mode            = ['network']
 ael_scripts     = ['ports']
 parent          = []
 info            = ['man:netstat(8)']
+notes           = []
 
 # [network-manager-applet]
 # repository      = "extra"
@@ -1381,6 +1591,7 @@ info            = ['man:netstat(8)']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [networkmanager]
 # repository      = "extra"
@@ -1390,6 +1601,7 @@ info            = ['man:netstat(8)']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [nfs-utils]
 # repository      = "core"
@@ -1399,6 +1611,7 @@ info            = ['man:netstat(8)']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [nginx]
 # repository      = "extra"
@@ -1408,6 +1621,7 @@ info            = ['man:netstat(8)']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [nikto]
 # repository      = "extra"
@@ -1417,6 +1631,7 @@ info            = ['man:netstat(8)']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [nitrogen]
 # repository      = "extra"
@@ -1426,6 +1641,7 @@ info            = ['man:netstat(8)']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 
 [nmap]
 repository      = "extra"
@@ -1439,6 +1655,7 @@ parent          = []
 info            = ['help',
                    'man:nmap(1)',
                   ]
+notes           = []
 
 # [nmon]
 # repository      = "extra"
@@ -1448,6 +1665,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [nomacs]
 # repository      = "aur"
@@ -1457,6 +1675,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [nordvpn-bin]
 # repository      = "aur"
@@ -1466,6 +1685,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [ntfs-3g]
 # repository      = "extra"
@@ -1475,6 +1695,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [nwg-displays]
 # repository      = "extra"
@@ -1484,6 +1705,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [nwg-look]
 # repository      = "extra"
@@ -1493,6 +1715,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [obs-studio]
 # repository      = "extra"
@@ -1502,6 +1725,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [octopi]
 # repository      = "aur"
@@ -1511,6 +1735,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [openvpn]
 # repository      = "extra"
@@ -1520,6 +1745,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [os-prober]
 # repository      = "extra"
@@ -1529,6 +1755,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [p7zip]
 # repository      = "extra"
@@ -1538,6 +1765,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [pacman]
 # repository      = "core"
@@ -1547,6 +1775,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [pacman-contrib]
 # repository      = "extra"
@@ -1556,6 +1785,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [pamac-aur]
 # repository      = "aur"
@@ -1565,6 +1795,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [pandoc-bin]
 # repository      = "aur"
@@ -1574,6 +1805,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [paru]
 # repository      = "aur"
@@ -1583,6 +1815,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [paru-debug]
 # repository      = "None"
@@ -1592,6 +1825,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [pasystray]
 # repository      = "extra"
@@ -1601,6 +1835,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [patch]
 # repository      = "core"
@@ -1610,6 +1845,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [pavucontrol]
 # repository      = "extra"
@@ -1619,6 +1855,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [pcmanfm-gtk3]
 # repository      = "extra"
@@ -1628,6 +1865,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [perl-image-exiftool]
 # repository      = "extra"
@@ -1637,6 +1875,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [php]
 # repository      = "extra"
@@ -1646,6 +1885,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [pipdeptree]
 # repository      = "aur"
@@ -1655,6 +1895,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [pkgconf]
 # repository      = "core"
@@ -1664,6 +1905,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [polenum]
 # repository      = "aur"
@@ -1673,6 +1915,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [polkit-gnome]
 # repository      = "extra"
@@ -1682,6 +1925,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [polkit-kde-agent]
 # repository      = "extra"
@@ -1691,6 +1935,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [postgresql]
 # repository      = "extra"
@@ -1700,6 +1945,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [powershell-bin]
 # repository      = "aur"
@@ -1709,6 +1955,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [pptpclient]
 # repository      = "core"
@@ -1718,6 +1965,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [proxychains-ng]
 # repository      = "extra"
@@ -1727,6 +1975,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [pulseaudio]
 # repository      = "extra"
@@ -1736,6 +1985,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [pulseaudio-bluetooth]
 # repository      = "extra"
@@ -1745,6 +1995,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [pv]
 # repository      = "extra"
@@ -1754,6 +2005,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [python-bcrypt]
 # repository      = "extra"
@@ -1763,6 +2015,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [python-beautifulsoup4]
 # repository      = "extra"
@@ -1772,6 +2025,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [python-conda]
 # repository      = "aur"
@@ -1781,6 +2035,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [python-flask-sqlalchemy]
 # repository      = "extra"
@@ -1790,6 +2045,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [python-flask-wtf]
 # repository      = "extra"
@@ -1799,6 +2055,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [python-markdown]
 # repository      = "extra"
@@ -1808,6 +2065,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [python-markdownify]
 # repository      = "aur"
@@ -1817,6 +2075,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [python-openpyxl]
 # repository      = "extra"
@@ -1826,6 +2085,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [python-pandas]
 # repository      = "extra"
@@ -1835,6 +2095,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [python-pip]
 # repository      = "extra"
@@ -1844,6 +2105,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [python-pyaml]
 # repository      = "extra"
@@ -1853,6 +2115,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [python-pylint]
 # repository      = "extra"
@@ -1862,6 +2125,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [python-rich]
 # repository      = "extra"
@@ -1871,6 +2135,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [python-xlib]
 # repository      = "extra"
@@ -1880,6 +2145,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [python-xlrd]
 # repository      = "extra"
@@ -1889,6 +2155,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [qrencode]
 # repository      = "extra"
@@ -1898,6 +2165,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [qsolocards]
 # repository      = "aur"
@@ -1907,6 +2175,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [qt4]
 # repository      = "aur"
@@ -1916,6 +2185,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [qt5-webkit]
 # repository      = "aur"
@@ -1925,6 +2195,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [qtile]
 # repository      = "extra"
@@ -1934,6 +2205,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [ranger]
 # repository      = "extra"
@@ -1943,6 +2215,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [realvnc-vnc-viewer]
 # repository      = "aur"
@@ -1952,6 +2225,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [remmina]
 # repository      = "extra"
@@ -1961,6 +2235,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 
 [ripgrep]
 repository      = "extra"
@@ -1971,6 +2246,7 @@ ael_scripts     = ['search-content']
 parent          = []
 info            = ['rg --help',
                    'man rg(1)']
+notes           = []
 
 # [rsync]
 # repository      = "extra"
@@ -1980,6 +2256,7 @@ info            = ['rg --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [rtl88x2bu-dkms-git]
 # repository      = "aur"
@@ -1989,6 +2266,7 @@ info            = ['rg --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 
 [rustscan]
 repository      = "extra"
@@ -1998,6 +2276,7 @@ mode            = ['network']
 ael_scripts     = ['deep-scan']
 parent          = []
 info            = ['help']
+notes           = []
 
 # [screen]
 # repository      = "extra"
@@ -2007,6 +2286,7 @@ info            = ['help']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [screenkey]
 # repository      = "extra"
@@ -2016,6 +2296,7 @@ info            = ['help']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 
 [sed]
 repository      = "core"
@@ -2028,7 +2309,7 @@ info            = ['sed --help',
                    'info sed',
                    'man 1 sed',
                   ]
-note            = ['Part of Arch Linux base package.']
+notes           = ['Part of Arch Linux base package.']
 
 # [sendmail]
 # repository      = "aur"
@@ -2038,6 +2319,7 @@ note            = ['Part of Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [shellcheck]
 # repository      = "extra"
@@ -2047,6 +2329,7 @@ note            = ['Part of Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [simple-mtpfs]
 # repository      = "aur"
@@ -2056,6 +2339,7 @@ note            = ['Part of Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [smbclient]
 # repository      = "extra"
@@ -2065,6 +2349,7 @@ note            = ['Part of Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [snapd]
 # repository      = "aur"
@@ -2074,6 +2359,7 @@ note            = ['Part of Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [socat]
 # repository      = "extra"
@@ -2083,6 +2369,7 @@ note            = ['Part of Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [speedtest-cli]
 # repository      = "extra"
@@ -2092,6 +2379,7 @@ note            = ['Part of Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [sqlitebrowser]
 # repository      = "extra"
@@ -2101,6 +2389,7 @@ note            = ['Part of Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [sqlmap]
 # repository      = "extra"
@@ -2110,6 +2399,7 @@ note            = ['Part of Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [sqsh]
 # repository      = "aur"
@@ -2119,6 +2409,7 @@ note            = ['Part of Arch Linux base package.']
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 
 [sudo]
 repository      = "core"
@@ -2135,6 +2426,7 @@ parent          = []
 info            = ['help',
                    'man:sudo(8)',
                   ]
+notes           = []
 
 # [swaybg]
 # repository      = "extra"
@@ -2144,6 +2436,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [swww]
 # repository      = "extra"
@@ -2153,6 +2446,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [sxiv]
 # repository      = "extra"
@@ -2162,6 +2456,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [system-config-printer]
 # repository      = "extra"
@@ -2171,6 +2466,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [tcpdump]
 # repository      = "extra"
@@ -2180,6 +2476,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [teams]
 # repository      = "aur"
@@ -2189,6 +2486,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [tesseract]
 # repository      = "extra"
@@ -2198,6 +2496,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [tesseract-data-eng]
 # repository      = "extra"
@@ -2207,6 +2506,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [tesseract-data-fra]
 # repository      = "extra"
@@ -2216,6 +2516,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [texinfo]
 # repository      = "core"
@@ -2225,6 +2526,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [thunar]
 # repository      = "extra"
@@ -2234,6 +2536,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [thunar-volman]
 # repository      = "extra"
@@ -2243,6 +2546,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [tidy]
 # repository      = "extra"
@@ -2252,6 +2556,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [tk]
 # repository      = "extra"
@@ -2261,6 +2566,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [tmux]
 # repository      = "extra"
@@ -2270,6 +2576,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [torbrowser-launcher]
 # repository      = "extra"
@@ -2279,6 +2586,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [traceroute]
 # repository      = "core"
@@ -2288,6 +2596,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [transmission-gtk]
 # repository      = "extra"
@@ -2297,6 +2606,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [tree]
 # repository      = "extra"
@@ -2306,6 +2616,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [ttf-courier-prime]
 # repository      = "aur"
@@ -2315,6 +2626,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [ttf-font-awesome-4]
 # repository      = "aur"
@@ -2324,6 +2636,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [ttf-inconsolata]
 # repository      = "extra"
@@ -2333,6 +2646,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [ttf-lato]
 # repository      = "extra"
@@ -2342,6 +2656,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [ttf-symbola]
 # repository      = "aur"
@@ -2351,6 +2666,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [ufw]
 # repository      = "extra"
@@ -2360,6 +2676,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [ugrep]
 # repository      = "extra"
@@ -2369,6 +2686,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [unrar]
 # repository      = "extra"
@@ -2378,6 +2696,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [unzip]
 # repository      = "extra"
@@ -2387,6 +2706,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [usbutils]
 # repository      = "core"
@@ -2396,6 +2716,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [vim]
 # repository      = "extra"
@@ -2405,6 +2726,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [virtualbox]
 # repository      = "extra"
@@ -2414,6 +2736,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [virtualbox-guest-utils]
 # repository      = "extra"
@@ -2423,6 +2746,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [virtualbox-host-modules-arch]
 # repository      = "extra"
@@ -2432,6 +2756,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [vlc]
 # repository      = "extra"
@@ -2441,6 +2766,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [w3m]
 # repository      = "extra"
@@ -2450,6 +2776,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [waybar]
 # repository      = "extra"
@@ -2459,6 +2786,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [waypaper-git]
 # repository      = "aur"
@@ -2468,6 +2796,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [weasis-bin]
 # repository      = "aur"
@@ -2477,6 +2806,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [wfuzz-git]
 # repository      = "aur"
@@ -2486,6 +2816,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 
 [wget]
 repository      = "extra"
@@ -2499,6 +2830,7 @@ parent          = []
 info            = ['help',
                    'man:wget(1)',
                   ]
+notes           = []
 
 # [which]
 # repository      = "core"
@@ -2508,6 +2840,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [whois]
 # repository      = "extra"
@@ -2517,6 +2850,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [wine]
 # repository      = "multilib"
@@ -2526,6 +2860,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [wireless_tools]
 # repository      = "extra"
@@ -2535,6 +2870,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [wireshark-qt]
 # repository      = "extra"
@@ -2544,6 +2880,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [wkhtmltox]
 # repository      = "None"
@@ -2553,6 +2890,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [wl-clipboard]
 # repository      = "extra"
@@ -2562,6 +2900,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [wlr-randr]
 # repository      = "extra"
@@ -2571,6 +2910,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xautomation]
 # repository      = "extra"
@@ -2580,6 +2920,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xclip]
 # repository      = "extra"
@@ -2589,6 +2930,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xcompmgr]
 # repository      = "extra"
@@ -2598,6 +2940,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xdg-ninja-git]
 # repository      = "aur"
@@ -2607,6 +2950,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xdg-user-dirs]
 # repository      = "extra"
@@ -2616,6 +2960,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xdotool]
 # repository      = "extra"
@@ -2625,6 +2970,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xf86-video-intel]
 # repository      = "extra"
@@ -2634,6 +2980,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xfce4-terminal]
 # repository      = "extra"
@@ -2643,6 +2990,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-iceauth]
 # repository      = "extra"
@@ -2652,6 +3000,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-server]
 # repository      = "extra"
@@ -2661,6 +3010,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-server-xephyr]
 # repository      = "extra"
@@ -2670,6 +3020,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-sessreg]
 # repository      = "extra"
@@ -2679,6 +3030,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-setxkbmap]
 # repository      = "extra"
@@ -2688,6 +3040,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-smproxy]
 # repository      = "extra"
@@ -2697,6 +3050,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-twm]
 # repository      = "extra"
@@ -2706,6 +3060,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-x11perf]
 # repository      = "extra"
@@ -2715,6 +3070,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xauth]
 # repository      = "extra"
@@ -2724,6 +3080,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xbacklight]
 # repository      = "extra"
@@ -2733,6 +3090,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xclock]
 # repository      = "extra"
@@ -2742,6 +3100,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xcmsdb]
 # repository      = "extra"
@@ -2751,6 +3110,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xcursorgen]
 # repository      = "extra"
@@ -2760,6 +3120,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xdpyinfo]
 # repository      = "extra"
@@ -2769,6 +3130,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xdriinfo]
 # repository      = "extra"
@@ -2778,6 +3140,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xev]
 # repository      = "extra"
@@ -2787,6 +3150,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xgamma]
 # repository      = "extra"
@@ -2796,6 +3160,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xhost]
 # repository      = "extra"
@@ -2805,6 +3170,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xinit]
 # repository      = "extra"
@@ -2814,6 +3180,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xinput]
 # repository      = "extra"
@@ -2823,6 +3190,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xkbcomp]
 # repository      = "extra"
@@ -2832,6 +3200,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xkbevd]
 # repository      = "extra"
@@ -2841,6 +3210,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xkbutils]
 # repository      = "extra"
@@ -2850,6 +3220,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xkill]
 # repository      = "extra"
@@ -2859,6 +3230,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xlsatoms]
 # repository      = "extra"
@@ -2868,6 +3240,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xlsclients]
 # repository      = "extra"
@@ -2877,6 +3250,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xmodmap]
 # repository      = "extra"
@@ -2886,6 +3260,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xpr]
 # repository      = "extra"
@@ -2895,6 +3270,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xprop]
 # repository      = "extra"
@@ -2904,6 +3280,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xrandr]
 # repository      = "extra"
@@ -2913,6 +3290,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xrdb]
 # repository      = "extra"
@@ -2922,6 +3300,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xrefresh]
 # repository      = "extra"
@@ -2931,6 +3310,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xsetroot]
 # repository      = "extra"
@@ -2940,6 +3320,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xvinfo]
 # repository      = "extra"
@@ -2949,6 +3330,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xwd]
 # repository      = "extra"
@@ -2958,6 +3340,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xwininfo]
 # repository      = "extra"
@@ -2967,6 +3350,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xorg-xwud]
 # repository      = "extra"
@@ -2976,6 +3360,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [xterm]
 # repository      = "extra"
@@ -2985,6 +3370,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [youtube-dl]
 # repository      = "aur"
@@ -2994,6 +3380,7 @@ info            = ['help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 
 [yt-dlp]
 repository      = "extra"
@@ -3005,6 +3392,7 @@ parent          = []
 info            = ['yt-dlp --help',
                    'man 1 yt-dlp',
                   ]
+notes           = []
 
 # [zaproxy]
 # repository      = "extra"
@@ -3014,6 +3402,7 @@ info            = ['yt-dlp --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [zathura]
 # repository      = "extra"
@@ -3023,6 +3412,7 @@ info            = ['yt-dlp --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [zathura-pdf-mupdf]
 # repository      = "extra"
@@ -3032,6 +3422,7 @@ info            = ['yt-dlp --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []
 # 
 # [zbar]
 # repository      = "extra"
@@ -3041,3 +3432,4 @@ info            = ['yt-dlp --help',
 # ael_scripts     = []
 # parent          = []
 # info            = []
+# notes           = []

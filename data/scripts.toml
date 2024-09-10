@@ -2,7 +2,7 @@
 # :[ael-architect/data/scripts.toml]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2024-08-29 14:11:18 UTC
-# :updated       : 2024-09-05 11:14:35 UTC
+# :updated       : 2024-09-08 13:47:43 UTC
 # :description   : scripts file.
 
 [busy]
@@ -19,7 +19,7 @@ mode            = []
 
 [deep-nmap]
 filename        = ".ael/scripts/deep-nmap"
-url             = ""
+url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/scripts/busy"
 description     = "Complete Nmap scan."
 mode            = ['network']
 
@@ -63,6 +63,12 @@ mode            = []
 filename        = ".ael/scripts/history-cleaner"
 url             = ""
 description     = "Cleans bash history."
+mode            = []
+
+[ispeed]
+filename        = ".ael/scripts/ispeed"
+url             = ""
+description     = "Internet connection speed meter."
 mode            = []
 
 [ports]
@@ -131,14 +137,14 @@ url             = ""
 description     = "Netcat-based command-line pastebin."
 mode            = []
 
-[tunnel-info]
-filename        = ".ael/scripts/tunnel-info"
-url             = ""
-description     = "Displays tunnels/vpn info."
-mode            = ['network']
-
 [translate]
 filename        = ".ael/scripts/translate"
 url             = ""
 description     = "Translate using Google translate."
 mode            = []
+
+[tunnel-info]
+filename        = ".ael/scripts/tunnel-info"
+url             = ""
+description     = "Displays tunnels/vpn info."
+mode            = ['network']
