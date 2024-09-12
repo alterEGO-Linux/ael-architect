@@ -12,7 +12,7 @@ import sqlite3
 from config import AEL_DB
 from database import table_shell_utils
 
-def install_shell_util(shell_util_id):
+def install_shell_util(shell_util_id: str) -> None:
 
     table_shell_utils()
     with sqlite3.connect(AEL_DB) as conn:
@@ -43,17 +43,5 @@ def install_shell_util(shell_util_id):
                     with open(aelcore, mode='a') as OUTPUT:
                         OUTPUT.write(f"[ -f ${{HOME}}/{util['filename']} ] && . ${{HOME}}/{util['filename']}\n")
 
-                #[ -f ${HOME}/.ael/scripts/busy ] && . ${HOME}/.ael/scripts/busy
-                # if util['is_active']:
-                    # print(f'{util['name']} is active')
-                    # pattern = rf"\[ -f.*{util['filename']}.*{util['filename']}\n"
-                    # match = re.search(pattern, data)
-                    # if match:
-                        # print(match[0])
-                # else:
-                    # print(f'{util['name']} is NOT active')
-
-
 if __name__ == "__main__":
-    for x in range(0, 100):
-        install_shell_util(x)
+    pass

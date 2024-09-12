@@ -2,7 +2,7 @@
 # :[ael-architect/data/packages.toml]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2024-08-29 10:04:28 UTC
-# :updated       : 2024-08-29 16:58:13 UTC
+# :updated       : 2024-09-12 18:36:47 UTC
 # :description   : Packages file.
 
 # [adobe-source-code-pro-fonts]
@@ -14,19 +14,21 @@
 # parent          = []
 # info            = []
 # notes           = []
-# notes           = []
-# 
-# [alacritty]
-# repository      = "extra"
-# url             = "https://github.com/alacritty/alacritty"
-# description     = "A cross-platform, GPU-accelerated terminal emulator."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# ael_scripts     = []
-# parent          = []
-# info            = []
-# notes           = []
-# notes           = []
-# 
+
+[alacritty]
+repository      = "extra"
+url             = "https://github.com/alacritty/alacritty"
+description     = "A cross-platform, GPU-accelerated terminal emulator."
+mode            = ['base', 'Hyprland', 'i3wm']
+ael_scripts     = []
+parent          = []
+info            = ['alacritty --help',
+                   'man alacritty(1)',
+                   'man alacritty(5)',
+                   'man alacritty-bindings(5)',
+                   'man alacritty-msg(1)']
+notes           = []
+
 # [alsa-utils]
 # repository      = "extra"
 # url             = "https://www.alsa-project.org"
@@ -438,12 +440,20 @@ repository      = "core"
 url             = "https://www.gnu.org/software/coreutils/"
 description     = "The basic file, shell and text manipulation utilities of the GNU operating system."
 mode            = ['base']
-ael_scripts     = ['systeminfo']
+ael_scripts     = ['cyberchef',
+                   'pacman-reset',
+                   'systeminfo',
+                  ]
 parent          = []
 info            = ['cut --help',
+                   'rm --help',
                    'info cut',
+                   'info rm',
                    'man cut(1)',
-                   'man cut(1p)']
+                   'man cut(1p)',
+                   'man rm(1)',
+                   'man rm(1p)',
+                  ]
 notes           = ['Arch Linux base package.']
 
 # [cronie]
@@ -473,11 +483,13 @@ repository      = "core"
 url             = "https://curl.se/"
 description     = "command line tool and library for transferring data with URLs."
 mode            = ['base']
-ael_scripts     = ['cheat']
+ael_scripts     = ['cheat',
+                   'pacman-reset',
+                   'whoisweb']
 parent          = []
 info            = ['curl --help',
-                   'man curl (1)',
-                    ]
+                   'man curl(1)',
+                  ]
 notes           = []
 
 # [curlftpfs]
@@ -534,18 +546,20 @@ notes           = []
 # info            = []
 # notes           = []
 # notes           = []
-# 
-# [docker]
-# repository      = "extra"
-# url             = "https://www.docker.com/"
-# description     = "Pack, ship and run any application as a lightweight container."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# ael_scripts     = []
-# parent          = []
-# info            = []
-# notes           = []
-# notes           = []
-# 
+
+[docker]
+repository      = "extra"
+url             = "https://www.docker.com/"
+description     = "Pack, ship and run any application as a lightweight container."
+mode            = []
+ael_scripts     = ['cyberchef']
+parent          = []
+info            = ['docker --help',
+                   'man docker(1)',
+                   'man dockerd(8)',
+                   'man Dockerfile(5)']
+notes           = []
+
 # [domination]
 # repository      = "aur"
 # url             = "http://domination.sourceforge.net/"
@@ -805,6 +819,7 @@ ael_scripts     = ['history-cleaner',
                    'systeminfo']
 parent          = []
 info            = ['awk --help',
+                   'info awk',
                    'man awk(1p)']
 notes           = ['Arch Linux base package.']
 
@@ -921,7 +936,9 @@ repository      = "core"
 url             = "https://www.gnu.org/software/grep/"
 description     = "A string search utility."
 mode            = []
-ael_scripts     = ['systeminfo']
+ael_scripts     = ['cyberchef',
+                   'py-server',
+                   'systeminfo']
 parent          = []
 info            = ['grep --help',
                    'info grep',
@@ -1220,17 +1237,19 @@ notes           = []
 # parent          = []
 # info            = []
 # notes           = []
-# 
-# [jq]
-# repository      = "extra"
-# url             = "https://jqlang.github.io/jq/"
-# description     = "Command-line JSON processor."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# ael_scripts     = []
-# parent          = []
-# info            = []
-# notes           = []
-# 
+
+[jq]
+repository      = "extra"
+url             = "https://jqlang.github.io/jq/"
+description     = "Command-line JSON processor."
+mode            = []
+ael_scripts     = ['systeminfo',
+                   'whoisweb']
+parent          = []
+info            = ['jq --help',
+                   'man jq(1)']
+notes           = []
+
 # [jupyter-notebook]
 # repository      = "extra"
 # url             = "https://github.com/jupyter/notebook"
@@ -1578,7 +1597,8 @@ repository      = "core"
 url             = "http://net-tools.sourceforge.net/"
 description     = "Configuration tools for Linux networking. Includes arp, ifconfig, netstat, route."
 mode            = ['network']
-ael_scripts     = ['ports']
+ael_scripts     = ['ports',
+                   'py-server']
 parent          = []
 info            = ['man:netstat(8)']
 notes           = []
@@ -1766,17 +1786,18 @@ notes           = []
 # parent          = []
 # info            = []
 # notes           = []
-# 
-# [pacman]
-# repository      = "core"
-# url             = "https://www.archlinux.org/pacman/"
-# description     = "A library-based package manager with dependency support."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# ael_scripts     = []
-# parent          = []
-# info            = []
-# notes           = []
-# 
+
+[pacman]
+repository      = "core"
+url             = "https://www.archlinux.org/pacman/"
+description     = "A library-based package manager with dependency support."
+mode            = ['base', 'Hyprland', 'i3wm']
+ael_scripts     = ['pacman-reset']
+parent          = []
+info            = ['pacman --help',
+                   'man pacman(8)']
+notes           = ['Part of Arch Linux base package.']
+
 # [pacman-contrib]
 # repository      = "extra"
 # url             = "https://gitlab.archlinux.org/pacman/pacman-contrib"
@@ -2006,7 +2027,18 @@ notes           = []
 # parent          = []
 # info            = []
 # notes           = []
-# 
+
+[python]
+repository      = "core"
+url             = "https://www.python.org/"
+description     = "The Python programming language."
+mode            = ['base']
+ael_scripts     = ['py-server']
+parent          = []
+info            = ['python --help',
+                   'man python(1)']
+notes           = []
+
 # [python-bcrypt]
 # repository      = "extra"
 # url             = "https://github.com/pyca/bcrypt"
@@ -2303,12 +2335,13 @@ repository      = "core"
 url             = "https://www.gnu.org/software/sed/"
 description     = "GNU stream editor."
 mode            = []
-ael_scripts     = ['history-cleaner']
+ael_scripts     = ['history-cleaner',
+                   'pacman-reset',
+                   'whoisweb']
 parent          = []
 info            = ['sed --help',
                    'info sed',
-                   'man 1 sed',
-                  ]
+                   'man sed(1)']
 notes           = ['Part of Arch Linux base package.']
 
 # [sendmail]
@@ -2416,10 +2449,12 @@ repository      = "core"
 url             = "https://www.sudo.ws/sudo/"
 description     = "Give certain users the ability to run some commands as root."
 mode            = ['base', 'Hyprland', 'i3wm']
-ael_scripts     = ['deep-nmap',
+ael_scripts     = ['cyberchef',
+                   'deep-nmap',
                    'deep-scan',
                    'fuck',
                    'ports',
+                   'py-server',
                    'tunnel-info',
                   ]
 parent          = []
@@ -2467,7 +2502,18 @@ notes           = []
 # parent          = []
 # info            = []
 # notes           = []
-# 
+ 
+[systemd]
+repository      = "core"
+url             = "https://www.github.com/systemd/systemd"
+description     = "System and service manager."
+mode            = ['base']
+ael_scripts     = ['cyberchef']
+parent          = []
+info            = ['systemctl --help',
+                   'man systemctl(1)']
+notes           = []
+
 # [tcpdump]
 # repository      = "extra"
 # url             = "https://www.tcpdump.org/"

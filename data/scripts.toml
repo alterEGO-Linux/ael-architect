@@ -17,6 +17,12 @@ url             = ""
 description     = "Query https://cheat.sh."
 mode            = []
 
+[cyberchef]
+filename        = ".ael/scripts/cyberchef"
+url             = ""
+description     = "A simple, intuitive web app for analysing and decoding data without having to deal with complex tools or programming languages. CyberChef encourages both technical and non-technical people to explore data formats, encryption and compression."
+mode            = ['hacker']
+
 [deep-nmap]
 filename        = ".ael/scripts/deep-nmap"
 url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/scripts/busy"
@@ -39,6 +45,12 @@ mode            = []
 filename        = ".ael/scripts/directory-size"
 url             = ""
 description     = "Check size of biggest directories."
+mode            = []
+
+[dvwa]
+filename        = ".ael/scripts/dvwa"
+url             = ""
+description     = ""
 mode            = []
 
 [fixout]
@@ -71,6 +83,12 @@ url             = ""
 description     = "Internet connection speed meter."
 mode            = []
 
+[pacman-reset]
+filename        = ".ael/scripts/pacman-reset"
+url             = ""
+description     = "Re-initialize pacman sync, mirrorlist and keyring."
+mode            = []
+
 [ports]
 filename        = ".ael/scripts/ports"
 url             = ""
@@ -93,6 +111,12 @@ mode            = []
 filename        = ".ael/scripts/py-cleaner"
 url             = ""
 description     = "Clean python current directory."
+mode            = []
+
+[py-server]
+filename        = ".ael/scripts/py-server"
+url             = ""
+description     = "Create a Python HTTP server."
 mode            = []
 
 [reset-time]
@@ -148,3 +172,9 @@ filename        = ".ael/scripts/tunnel-info"
 url             = ""
 description     = "Displays tunnels/vpn info."
 mode            = ['network']
+
+[whoisweb]
+filename        = ".ael/scripts/whoisweb"
+url             = ""
+description     = "Query WHOIS web if `whois` port 43 is blocked on your network."
+mode            = []

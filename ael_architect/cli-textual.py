@@ -1,3 +1,10 @@
+# :----------------------------------------------------------------------- INFO
+# :[ael-architect/ael_architect/cli.py]
+# :author        : fantomH
+# :created       : 2024-09-06 15:27:10 UTC
+# :updated       : 2024-09-10 11:54:26 UTC
+# :description   : cli.
+
 from textual.app import App, ComposeResult
 from textual.widgets import Footer, Label, Markdown, TabbedContent, TabPane
 from textual.containers import Horizontal
@@ -6,7 +13,7 @@ from textual.widgets import Static, Switch
 from database import shell_utils_to_dictionaries
 from database import shell_utils_toggle
 from database import shell_utils_requirements
-
+from shell_utils import install_shell_util
 
 SHELL_UTILS = shell_utils_to_dictionaries()
 
@@ -77,6 +84,7 @@ class TabbedApp(App):
             shell_util_id = switch_id.replace('shell_util-', '')
             shell_utils_toggle(shell_util_id)
             shell_utils_requirements(shell_util_id)
+            install_shell_util(shell_util_id)
 
 if __name__ == "__main__":
     app = TabbedApp()
