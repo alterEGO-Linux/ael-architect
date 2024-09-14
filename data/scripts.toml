@@ -1,21 +1,28 @@
 # :----------------------------------------------------------------------- INFO
-# :[ael-architect/data/scripts.toml]
+# :[ael-architect/data/shellutils.toml]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2024-08-29 14:11:18 UTC
 # :updated       : 2024-09-08 13:47:43 UTC
-# :description   : scripts file.
+# :description   : Shell Utils config file.
 
 [busy]
 filename        = ".ael/scripts/busy"
 url             = ""
 description     = "When the boss comes around to look busy."
 mode            = []
+#dependencies    = ['pkg/base(coreutils/cat)',
+#                   'pkg/base(grep)',
+#                   'pkg/base(util-linux/hexdump)']
 
 [cheat]
 filename        = ".ael/scripts/cheat"
 url             = ""
 description     = "Query https://cheat.sh."
 mode            = []
+#dependencies    = ['pkg/base(coreutils/cat)',
+#                   'pkg/curl',
+#                   'pkg/fzf',
+#                   'pkg/less']
 
 [cyberchef]
 filename        = ".ael/scripts/cyberchef"
