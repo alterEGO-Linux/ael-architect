@@ -29,12 +29,21 @@ filename        = ".ael/scripts/cyberchef"
 url             = ""
 description     = "A simple, intuitive web app for analysing and decoding data without having to deal with complex tools or programming languages. CyberChef encourages both technical and non-technical people to explore data formats, encryption and compression."
 mode            = ['hacker']
+#dependencies    = ['pkg/base(coreutils/cut)',
+#                   'pkg/base(grep)',
+#                   'pkg/base(systemd/systemctl)',
+#                   'pkg/base-devel(sudo)',
+#                   'pkg/docker',
+#                   'pkg/less']
 
 [deep-nmap]
 filename        = ".ael/scripts/deep-nmap"
 url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/scripts/busy"
 description     = "Complete Nmap scan."
 mode            = ['network']
+#dependencies    = ['pkg/base-devel(sudo)',
+#                   'pkg/grc',
+#                   'pkg/nmap']
 
 [deep-scan]
 filename        = ".ael/scripts/deep-scan"
