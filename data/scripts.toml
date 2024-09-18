@@ -50,147 +50,256 @@ filename        = ".ael/scripts/deep-scan"
 url             = ""
 description     = "Scans IP with rustscan and nmap."
 mode            = ['network']
+#dependencies    = ['pkg/base-devel(sudo)',
+#                   'pkg/nmap',
+#                   'pkg/rustscan']
 
 [delete]
 filename        = ".ael/scripts/delete"
 url             = ""
 description     = "Delete directory."
 mode            = []
+#dependencies    = ['pkg/base(coreutils/rm)']
 
 [directory-size]
 filename        = ".ael/scripts/directory-size"
 url             = ""
 description     = "Check size of biggest directories."
 mode            = []
+#dependencies    = ['pkg/base(coreutils/du)',
+#                   'pkg/base(coreutils/head)',
+#                   'pkg/base(coreutils/sort)']
 
 [dvwa]
 filename        = ".ael/scripts/dvwa"
 url             = ""
-description     = ""
+description     = "Damn Vulnerable Web Application (DVWA) is a PHP/MySQL web application that is damn vulnerable."
 mode            = []
+#dependencies    = ['pkg/base(coreutils/cut)',
+#                   'pkg/base(grep)',
+#                   'pkg/base(systemd/systemctl)',
+#                   'pkg/base-devel(sudo)',
+#                   'pkg/docker',]
 
 [fixout]
 filename        = ".ael/scripts/fixout"
 url             = ""
 description     = "Fix bash history and exit."
 mode            = []
+#dependencies    = ['pkg/base(coreutils/cut)',
+#                   'pkg/base(coreutils/rm)',
+#                   'pkg/base(coreutils/sort)',
+#                   'pkg/base(coreutils/uniq)']
 
 [fuck]
 filename        = ".ael/scripts/fuck"
 url             = ""
 description     = "Repeats last cmd with sudo if forgotten."
 mode            = []
+#dependencies    = ['pkg/base-devel(sudo)']
 
 [getmp3]
 filename        = ".ael/scripts/getmp3"
 url             = ""
 description     = "Extract video audio to .mp3."
 mode            = []
+#dependencies    = ['pkg/yt-dlp']
+
+[goto]
+filename        = ".ael/scripts/goto"
+url             = ""
+description     = "Simple directory bookmarks system."
+mode            = []
+#dependencies    = ['pkg/base(coreutils/basename)',
+#                   'pkg/base(coreutils/ln)',
+#                   'pkg/base(coreutils/ls)',
+#                   'pkg/base(coreutils/mkdir)',
+#                   'pkg/base(coreutils/printf)',
+#                   'pkg/base(coreutils/readlink)',
+#                   'pkg/base(coreutils/readpath)',
+#                   'pkg/base(findutils/find)']
 
 [history-cleaner]
 filename        = ".ael/scripts/history-cleaner"
 url             = ""
 description     = "Cleans bash history."
 mode            = []
+#dependencies    = ['pkg/base(coreutils/cp)',
+#                   'pkg/base(coreutils/rm)',
+#                   'pkg/base(coreutils/sort)',
+#                   'pkg/base(gawk/awk)',
+#                   'pkg/base(sed)',
+#                   'pkg/fzf']
 
 [ispeed]
 filename        = ".ael/scripts/ispeed"
 url             = ""
 description     = "Internet connection speed meter."
 mode            = []
+#dependencies    = ['pkg/base(coreutils/printf)',
+#                   'pkg/curl',
+#                   'pkg/fzf',
+#                   'pkg/python',
+#                   'pkg/speedtest-cli']
+
+[juice-shop]
+filename        = ".ael/scripts/juice-shop"
+url             = ""
+description     = "OWASP Juice Shop is a vulnerable web application that can be used for security trainings, demos, CTFs and testing tools. It contains various OWASP Top Ten and other security flaws and can be installed from sources, packages, Docker or Vagrant."
+mode            = []
+#dependencies    = ['pkg/base(coreutils/cut)',
+#                   'pkg/base(grep)',
+#                   'pkg/base(systemd/systemctl)',
+#                   'pkg/base-devel(sudo)',
+#                   'pkg/docker',]
+
+[kali]
+filename        = ".ael/scripts/kali"
+url             = ""
+description     = "Kali Linux Docker container."
+mode            = []
+#dependencies    = ['pkg/base(coreutils/cut)',
+#                   'pkg/base(grep)',
+#                   'pkg/base(systemd/systemctl)',
+#                   'pkg/base-devel(sudo)',
+#                   'pkg/docker',]
 
 [pacman-reset]
 filename        = ".ael/scripts/pacman-reset"
 url             = ""
 description     = "Re-initialize pacman sync, mirrorlist and keyring."
 mode            = []
+#dependencies    = ['pkg/base(coreutils/rm)',
+#                   'pkg/base(pacman)',
+#                   'pkg/base(sed)',
+#                   'pkg/curl']
 
 [ports]
 filename        = ".ael/scripts/ports"
 url             = ""
 description     = "Displays open ports."
 mode            = ['network']
+#dependencies    = ['pkg/base-devel(sudo)',
+#                   'pkg/grc',
+#                   'pkg/net-tools(netstat)']
 
 [processes]
 filename        = ".ael/scripts/processes"
 url             = ""
 description     = "Show processes."
 mode            = []
+#dependencies    = ['pkg/base(procps-ng/ps)']
 
 [ps-grep]
 filename        = ".ael/scripts/ps-grep"
 url             = ""
 description     = "Show processes for a particular application."
 mode            = []
+#dependencies    = ['pkg/base(grep)',
+#                   'pkg/base(procps-ng/ps)']
 
 [py-cleaner]
 filename        = ".ael/scripts/py-cleaner"
 url             = ""
 description     = "Clean python current directory."
 mode            = []
+#dependencies    = ['pkg/base(findutils/find)']
 
 [py-server]
 filename        = ".ael/scripts/py-server"
 url             = ""
 description     = "Create a Python HTTP server."
 mode            = []
+#dependencies    = ['pkg/base(grep)',
+#                   'pkg/net-tools(netstat)',
+#                   'pkg/python']
 
 [reset-time]
 filename        = ".ael/scripts/reset-time"
 url             = ""
 description     = "Reset system time. Usefull when Windows boot screws time."
 mode            = []
+#dependencies    = ['pkg/base(coreutils/date)',
+#                   'pkg/base(systemd/timedatectl)',
+#                   'pkg/base(util-linux/hwclock)',
+#                   'pkg/base-devel(sudo)']
 
 [search-content]
 filename        = ".ael/scripts/search-content"
 url             = ""
 description     = "Search files for content."
 mode            = []
+#dependencies    = ['pkg/fzf',
+#                   'pkg/highlight',
+#                   'pkg/ripgrep']
 
 [shell-info]
 filename        = ".ael/scripts/shell-info"
 url             = ""
 description     = "Show shell info."
 mode            = []
+#dependencies    = []
 
 [show-utc]
 filename        = ".ael/scripts/show-utc"
 url             = ""
 description     = "Show UTC time."
 mode            = []
+#dependencies    = ['pkg/base(coreutils/date)']
 
 [systeminfo]
 filename        = ".ael/scripts/systeminfo"
 url             = ""
 description     = "Display system info."
 mode            = []
+#dependencies    = ['pkg/base(gawk/awk)',
+#                   'pkg/base(grep)',
+#                   'pkg/bind(host)',
+#                   'pkg/iproute2(ip)']
+#optional_dependencies = ['pkg/docker',
+#                   'pkg/jq']
 
 [tagalog]
 filename        = ".ael/scripts/tagalog"
 url             = ""
 description     = "Translate to Tagalog using Google translate."
 mode            = []
+#dependencies    = ['pkg/base(coreutils/head)',
+#                   'pkg/base(gwak/awk)',
+#                   'pkg/wget']
 
 [termbin]
 filename        = ".ael/scripts/termbin"
 url             = ""
 description     = "Netcat-based command-line pastebin."
 mode            = []
+#dependencies    = ['pkg/gnu-netcat(nc)']
 
 [translate]
 filename        = ".ael/scripts/translate"
 url             = ""
 description     = "Translate using Google translate."
 mode            = []
+#dependencies    = ['pkg/base(coreutils/head)',
+#                   'pkg/base(gwak/awk)',
+#                   'pkg/wget']
 
 [tunnel-info]
 filename        = ".ael/scripts/tunnel-info"
 url             = ""
 description     = "Displays tunnels/vpn info."
 mode            = ['network']
+#dependencies    = ['pkg/base(coreutils/printf)',
+#                   'pkg/base(gawk/awk)',
+#                   'pkg/base(grep)',
+#                   'pkg/base(procps-ng/ps)',
+#                   'pkg/iproute2(ip)']
 
 [whoisweb]
 filename        = ".ael/scripts/whoisweb"
 url             = ""
 description     = "Query WHOIS web if `whois` port 43 is blocked on your network."
 mode            = []
+#dependencies    = ['pkg/base(sed)',
+#                   'pkg/curl',
+#                   'pkg/jq']

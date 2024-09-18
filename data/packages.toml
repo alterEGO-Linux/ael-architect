@@ -1063,7 +1063,8 @@ description     = "Fast and flexible source code highlighter (CLI version)."
 mode            = []
 ael_scripts     = ['search-content']
 parent          = []
-info            = ['help']
+info            = ['man highlight(1)',
+                   'man filetypes.conf(5)']
 notes           = []
 
 # [htmlq-git]
@@ -1600,7 +1601,7 @@ mode            = ['network']
 ael_scripts     = ['ports',
                    'py-server']
 parent          = []
-info            = ['man:netstat(8)']
+info            = ['man netstat(8)']
 notes           = []
 
 # [network-manager-applet]
@@ -1997,7 +1998,18 @@ notes           = ['Part of Arch Linux base package.']
 # parent          = []
 # info            = []
 # notes           = []
-# 
+
+[procps-ng]
+repository      = "core"
+url             = "https://gitlab.com/procps-ng/procps"
+description     = "Utilities for monitoring your system and its processes."
+mode            = ['base']
+ael_scripts     = []
+parent          = []
+info            = ['man ps(1)',
+                   'man ps(1p)']
+notes           = []
+
 # [pulseaudio]
 # repository      = "extra"
 # url             = "https://www.freedesktop.org/wiki/Software/PulseAudio/"
@@ -2276,8 +2288,7 @@ description     = "A search tool that combines the usability of ag with the raw 
 mode            = []
 ael_scripts     = ['search-content']
 parent          = []
-info            = ['rg --help',
-                   'man rg(1)']
+info            = ['man rg(1)']
 notes           = []
 
 # [rsync]
@@ -2403,17 +2414,18 @@ notes           = ['Part of Arch Linux base package.']
 # parent          = []
 # info            = []
 # notes           = []
-# 
-# [speedtest-cli]
-# repository      = "extra"
-# url             = "https://github.com/sivel/speedtest-cli"
-# description     = "Command line interface for testing internet bandwidth using speedtest.net."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# ael_scripts     = []
-# parent          = []
-# info            = []
-# notes           = []
-# 
+
+[speedtest-cli]
+repository      = "extra"
+url             = "https://github.com/sivel/speedtest-cli"
+description     = "Command line interface for testing internet bandwidth using speedtest.net."
+mode            = []
+ael_scripts     = []
+parent          = []
+info            = ['speedtest --help',
+                   'man speedtest-cli(1)']
+notes           = []
+
 # [sqlitebrowser]
 # repository      = "extra"
 # url             = "https://sqlitebrowser.org/"
@@ -3417,16 +3429,6 @@ notes           = []
 # parent          = []
 # info            = []
 # notes           = []
-# 
-# [youtube-dl]
-# repository      = "aur"
-# url             = "https://ytdl-org.github.io/youtube-dl/"
-# description     = "A command-line program to download videos from YouTube.com and a few more sites."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# ael_scripts     = []
-# parent          = []
-# info            = []
-# notes           = []
 
 [yt-dlp]
 repository      = "extra"
@@ -3436,8 +3438,7 @@ mode            = []
 ael_scripts     = ['getmp3']
 parent          = []
 info            = ['yt-dlp --help',
-                   'man 1 yt-dlp',
-                  ]
+                   'man yt-dlp(1)']
 notes           = []
 
 # [zaproxy]
