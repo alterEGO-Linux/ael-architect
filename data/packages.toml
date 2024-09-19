@@ -3219,17 +3219,20 @@ notes           = []
 # parent          = []
 # info            = []
 # notes           = []
-# 
-# [xorg-xhost]
-# repository      = "extra"
-# url             = "https://xorg.freedesktop.org/"
-# description     = "Server access control program for X."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# ael_scripts     = []
-# parent          = []
-# info            = []
-# notes           = []
-# 
+
+[xorg-xhost]
+#[xhost]
+repository      = "extra"
+#repository      = "extra/xorg-xhost"
+url             = "https://xorg.freedesktop.org/"
+description     = "Server access control program for X."
+mode            = []
+#requires        = []
+ael_scripts     = []
+parent          = []
+info            = []
+notes           = []
+
 # [xorg-xinit]
 # repository      = "extra"
 # url             = "https://xorg.freedesktop.org/"
