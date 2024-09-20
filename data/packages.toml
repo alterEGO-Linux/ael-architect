@@ -853,17 +853,19 @@ notes           = ['Arch Linux base package.']
 # parent          = []
 # info            = []
 # notes           = []
-# 
-# [git]
-# repository      = "extra"
-# url             = "https://git-scm.com/"
-# description     = "the fast distributed version control system."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# ael_scripts     = []
-# parent          = []
-# info            = []
-# notes           = []
-# 
+
+[git]
+repository      = "extra"
+#repository      = "extra/git"
+url             = "https://git-scm.com/"
+description     = "the fast distributed version control system."
+mode            = ['base', 'Hyprland', 'i3wm']
+ael_scripts     = []
+parent          = []
+info            = ['man git(1)',
+                   'man gittutorial(7)']
+notes           = []
+
 # [glow]
 # repository      = "extra"
 # url             = "https://github.com/charmbracelet/glow"

@@ -166,6 +166,13 @@ mode            = []
 #                   'pkg/xorg-xhost',
 #                   'file/dockerfiles.Dockerfile-kali']
 
+[lazygit]
+filename        = ".ael/scripts/lazygit"
+url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/scripts/lazygit"
+description     = "Updating GIT repo when you are lazy."
+mode            = []
+#requires        = ['pkg/git']
+
 [pacman-reset]
 filename        = ".ael/scripts/pacman-reset"
 url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/scripts/pacman-reset"
