@@ -204,30 +204,7 @@ class Menu:
             return selection
 
 def main():
-
-    menu = Menu()
-
-    menu.main_menu()
-
-    t_menu = menu(['YES', 'NO'])
-
-    if t_menu == 'YES':
-        sys.exit()
-
+    pass
 
 if __name__ == '__main__':
     main()
-
-    # get_files()
-    # copy_files()
-
-    # s1 = menu(['1', '2', '3'])
-    # execute(f"echo 'hello'")
-    # print(s1 + "l")
-    # if s1 == '1':
-        # print(type(s1))
-        # s2 = menu(['yes', 'no'])
-        # print(s2)
-
-# vim: foldmethod=marker
-## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯

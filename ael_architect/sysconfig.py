@@ -1,5 +1,5 @@
 # :----------------------------------------------------------------------- INFO
-# :[ael-architect/ael_architect/cli.py]
+# :[ael-architect/ael_architect/sysconfig.py]
 # :author        : fantomH
 # :created       : 2024-09-06 15:27:10 UTC
 # :updated       : 2024-09-10 11:54:26 UTC
@@ -10,12 +10,13 @@ from textual.widgets import Footer, Label, Markdown, TabbedContent, TabPane
 from textual.containers import Horizontal
 from textual.widgets import Static, Switch
 
-from database import shell_utils_to_dictionaries
-from database import shell_utils_toggle
-from database import shell_utils_requirements
-from shell_utils import install_shell_util
+# from database import shell_utils_toggle
+# from database import shell_utils_requirements
+# from shellutils import install_shell_util
 
-SHELL_UTILS = shell_utils_to_dictionaries()
+from shellutils import shellutils_to_listdicts
+
+SHELLUTILS = shellutils_to_listdicts()
 
 JESSICA = """
 # Lady Jessica
@@ -55,10 +56,10 @@ class TabbedApp(App):
         with TabbedContent(initial="shell-utils") as tc:
             with TabPane("SHELL UTILS", id="shell-utils"):  # First tab
                 
-                for shell_util in SHELL_UTILS:
+                for shellutil in SHELLUTILS:
                     yield Horizontal(
-                            Switch(value=shell_util['is_active'], classes="shell-util", id=f"shell_util-{shell_util['id']}"),
-                            Markdown(f"__{shell_util['name']}__\n\n{shell_util['description']}"),
+                            Switch(value=shellutil['is_active'], classes="shell-util", id=f"shell_util-{shellutil['id']}"),
+                            Markdown(f"__{shellutil['name']}__\n\n{shellutil['description']}"),
                             classes="shell_util",
                                 )
             with TabPane("Jessica", id="jessica"):
@@ -74,18 +75,18 @@ class TabbedApp(App):
         """Switch to a new tab."""
         self.get_child_by_type(TabbedContent).active = tab
 
-    async def on_switch_changed(self, event: Switch.Changed) -> None:
-        """Handle switch state change."""
-        switch = event.switch
-        switch_id = switch.id
+    # async def on_switch_changed(self, event: Switch.Changed) -> None:
+        # """Handle switch state change."""
+        # switch = event.switch
+        # switch_id = switch.id
 
         # :SHELL UTILS
-        if switch_id.startswith('shell_util-'):
-            shell_util_id = switch_id.replace('shell_util-', '')
-            shell_utils_toggle(shell_util_id)
-            shell_utils_requirements(shell_util_id)
-            install_shell_util(shell_util_id)
+        # if switch_id.startswith('shell_util-'):
+            # shell_util_id = switch_id.replace('shell_util-', '')
+            # shell_utils_toggle(shell_util_id)
+            # shell_utils_requirements(shell_util_id)
+            # install_shell_util(shell_util_id)
 
-if __name__ == "__main__":
+def run_sysconfig():
     app = TabbedApp()
     app.run()

@@ -1,283 +1,149 @@
-#! /usr/bin/env python
 # :----------------------------------------------------------------------- INFO
 # :[ael-architect/ael_architect/packages.py]
-# :author        : fantomH @alterEGO Linux
-# :created       : 2023-12-08 11:12:16 UTC
-# :updated       : 2024-08-29 09:39:45 UTC
-# :description   : Generates packages lists and stuff.
+# :author        : fantomH
+# :created       : 2024-09-07 02:03:22 UTC
+# :updated       : 2024-09-25 11:00:13 UTC
+# :description   : Packages.
 
-from datetime import (datetime,
-                      timezone)
 import os
-import sqlite3 as sql
+import sqlite3
+import subprocess
 import tomllib
-import pprint
 
-from command import execute
+from config import AEL_DB
 
-DB = '/home/ghost/main/ael-files/usr/share/ael/dev/ael-dev.db'
+def packages_table():
 
-def packages_list(modes=['hyprland', 'i3wm', 'pip']):
+    packages_file = '/usr/share/ael-config/packages.toml'
 
-    '''
-    Generates a list of packages for a given installation mode.
-    If no "modes" are given, will give all packages for Hyprland, i3wm and pip.
-    '''
+    with open(packages_file, mode='rb') as INPUT:
+        data = tomllib.load(INPUT)
 
-    con = sql.connect(DB)
-    cur = con.cursor()
+    with sqlite3.connect(AEL_DB) as conn:
+        cursor = conn.cursor()
 
-    q = f"""SELECT package, mode FROM packages"""
-    cur.execute(q)
-    records = cur.fetchall()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS packages (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                repo_archlinux TEXT NOT NULL,
+                url TEXT,
+                description TEXT,
+                mode TEXT,
+                requires TEXT,
+                optional TEXT,
+                notes TEXT
+            )
+        ''')
 
-    records = [(p[0], p[1].split()) for p in records]
+        for name, details in data.items():
+            # :Check if the entry already exists.
+            cursor.execute('SELECT id FROM packages WHERE name = ?', (name,))
+            row = cursor.fetchone()
 
-    packages = []
-    for p in records:
-        if set(modes).intersection(p[1]):
-            packages.append(p[0])
+            if row:
+                cursor.execute('''
+                    UPDATE packages
+                    SET repo_archlinux = ?, url = ?, description = ?, mode = ?, requires = ?, optional = ?, notes = ?
+                    WHERE name = ?
+                ''',
+                (
+                 details['repo_archilinux'],
+                 details['url'],
+                 details['description'],
+                 ','.join(details['mode']) if details['mode'] else None,
+                 ','.join(details['requires']) if details['requires'] else None,
+                 ','.join(details['optional']) if details['optional'] else None,
+                 ','.join(details['notes']) if details['notes'] else None,
+                 name
+                ))
 
-    return packages
+            else:
+                cursor.execute('''
+                    INSERT INTO packages (name, repo_archlinux, url, description, mode, requires, optional, notes)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                ''', 
+                (
+                 name, 
+                 details['repo_archlinux'],
+                 details['url'],
+                 details['description'],
+                 ','.join(details['mode']) if details['mode'] else None,
+                 ','.join(details['requires']) if details['requires'] else None,
+                 ','.join(details['optional']) if details['optional'] else None,
+                 ','.join(details['notes']) if details['notes'] else None,
+                ))
 
-    con.close
+        conn.commit()
 
-def package_info(package):
+def shell_utils_toggle(shell_util_id: str) -> None:
 
-    package_info = {}
+    table_shell_utils()
+    with sqlite3.connect(AEL_DB) as conn:
+        cursor = conn.cursor()
 
-    pkg_Si = execute(f"paru -Si {package}", interact=False).stdout.decode("UTF-8").split("\n")
-    for line in pkg_Si:
+        cursor.execute('SELECT is_active FROM scripts WHERE id = ?', (shell_util_id,))
+        util = cursor.fetchone()
 
-        # :(* Package name *)
-        package_info["name"] = package
+        if util:
+            current_state = util[0]
+            new_state = 0 if current_state == 1 else 1
+            cursor.execute('''
+                UPDATE scripts
+                SET is_active = ?
+                WHERE id = ?
+            ''',
+            (new_state, shell_util_id))
 
-        # :(* Package repository *)
-        if line.startswith("Repository"):
-            package_info["repository"] = line.split(":")[1].strip()
+        conn.commit()
 
-        # :(* Package description *)
-        if line.startswith("Description"):
-            package_info["description"] = line.split(":")[1].strip() + "."
+def shell_utils_requirements(shell_util_id):
 
-        # :(* Package URL *)
-        if line.startswith("URL"):
-            package_info["url"] = line.split(": ")[1]
-        if line.startswith("AUR URL"):
-            package_info["aur_url"] = line.split(": ")[1]
+    table_shell_utils()
+    table_packages()
 
-    if package_info.get('repository') is None:
-        pass
-        # print(f"{package_info.get('package')}")
-    else:
-        pass
+    requirements = []
 
-    pkg_Ql = execute(f"paru -Qlq {package}", interact=False).stdout.decode("UTF-8").split("\n")
-    package_Ql_bin = []
-    package_Ql_desktop = []
-    package_Ql_man = []
-    package_Ql_info = []
-    for line in pkg_Ql:
+    with sqlite3.connect(AEL_DB) as conn:
+        cursor = conn.cursor()
 
-        # :(* Package executables *)
-        if "/usr/bin/" in line and not line.endswith("/"):
-            package_Ql_bin.append(line)
+        cursor.execute('SELECT name FROM scripts WHERE id = ?', (shell_util_id,))
+        util = cursor.fetchone()[0]
 
-        # :(* Package desktop *)
-        if line.endswith(".desktop"):
-            package_Ql_desktop.append(line)
+        # :---/ requirements /---:
 
-        # :(* Package man *)
-        if "/man/" in line and line.endswith(".gz"):
-            _man = line.split("/")[-1].split(".")
-            _man = f"{'.'.join(_man[0:-2])}({_man[-2]})"
-            package_Ql_man.append(_man)
+        query = """
+            SELECT *
+            FROM packages
+            WHERE ',' || ael_scripts || ',' LIKE ?
+            """
 
-        # :(* Info *)
-        if "/info/" in line and line.endswith(".gz"):
-            _info = line.split("/")[-1].split(".")
-            _info = f"{'.'.join(_info[0:-2])}"
-            package_Ql_info.append(_info)
+        cursor.execute(query, (f'%,{util},%',))
 
-        # :(* Is Python? *)
-        if "/usr/lib/python" in line:
-            package_info["is_python"] = True
-            break
-        else:
-            package_info["is_python"] = False
+        results = cursor.fetchall()
 
-        # :(* Documentation *)
-        if ("/doc/") in line:
-            package_info["has_docs"] = True
-        else:
-            package_info["has_docs"] = False
+        if results:
+            column_names = [description[0] for description in cursor.description]
+            results = [dict(zip(column_names, row)) for row in results]
 
-    package_info["bin"] = package_Ql_bin
-    package_info["Ql_desktop"] = package_Ql_desktop
-    package_info["Ql_man"] = package_Ql_man
-    package_info["Ql_info"] = package_Ql_info
+            for x in results:
+                requirements.append(x['name'])
 
-    # :(* modes *)
-    # con = sql.connect(DB)
-    # cur = con.cursor()
-    # q = f"""SELECT mode FROM packages WHERE package == '{package}'"""
-    # cur.execute(q)
-    # modes = cur.fetchone()
+            # return requirements
 
-    # package_info["modes"] = modes[0].split(', ')
-    # con.close
+            command = ['paru', '-S', '--noconfirm', '--needed'] + requirements
 
-    return package_info
-
-def generate_packagestoml(modes=['i3wm', 'hyprland', 'pip']):
-
-    pkgs = sorted(packages_list(modes=modes))
-
-    packagestoml = "/home/ghost/main/ael-files/usr/share/ael/packages.toml"
-
-    with open(packagestoml, mode='w') as file_out:
-        file_out.write(f"""\
-# :----------------------------------------------------------------------- INFO
-# :[/usr/share/ael/packages.toml]
-# :author        : fantomH @alterEGO Linux
-# :created       : 2023-10-22 15:06:13 UTC
-# :updated       : {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S %Z')}
-# :description   : Packages list (autogenerated by AEL achitect).
-
-# :Technical notes on packages can be found @/usr/share/ael/dev/packages.md
-
-""")
-
-        for pkg in pkgs:
-            pkg_info = package_info(pkg)
             try:
-                description = pkg_info.get('description').replace('"', f'{chr(92)}"')
-            except:
-                description = pkg_info.get('description')
-            file_out.write(f"""\
-[{pkg_info.get('name')}]
-repository      = "{pkg_info.get('repository')}"
-url             = "{pkg_info.get('url')}"
-description     = "{description}"
-modes           = {pkg_info.get('modes')}
+                result = subprocess.run(
+                            command,
+                            check=True,
+                            text=True,
+                            stdout=subprocess.DEVNULL,
+                            stderr=subprocess.DEVNULL,
+                            )
+                print("Packages installed successfully.")
+            except subprocess.CalledProcessError as e:
+                print(f"An error occurred while installing packages: {e}")
 
-""")
-
-        file_out.write(f"""\
-# :------------------------------------------------------------- FIN ¯\_(ツ)_/¯
-""")
-
-def generate_packages_toml():
-
-    f = '/tmp/packages.txt'
-
-    pkg_list = []
-    with open(f, mode='r') as INPUT:
-        data = INPUT.readlines()
-
-        for pkg in data:
-            pkg_list.append(pkg.replace('\n', ''))
-
-    with open('/home/ghost/main/ael-architect/data/packages.toml', mode='w') as OUTPUT:
-        OUTPUT.write(f"""\
-# :----------------------------------------------------------------------- INFO
-# :[ael-architect/data/packages.toml]
-# :author        : fantomH @alterEGO Linux
-# :created       : 2024-08-29 10:04:28 UTC
-# :updated       : {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S %Z')}
-# :description   : Packages file.
-
-""")
-
-        for pkg in pkg_list:
-            pkg_info = package_info(pkg)
-            try:
-                description = pkg_info.get('description').replace('"', f'{chr(92)}"')
-            except:
-                description = pkg_info.get('description')
-            OUTPUT.write(f"""\
-[{pkg_info.get('name')}]
-repository      = "{pkg_info.get('repository')}"
-url             = "{pkg_info.get('url')}"
-description     = "{description}"
-mode            = ['base', 'Hyprland', 'i3wm']
-required_by     = []
-parent          = []
-info            = []
-
-""")
-
-
-def packages_diff():
-
-    """
-    Checks packages.toml and give a list of packages not yet installed.
-    """
-
-    # :TODO Change to global.
-    PACKAGES = os.path.join('/', 'home', 'ghost', 'main', 'ael-files', 'usr', 'share', 'ael', 'packages.toml')
-
-    with open(PACKAGES, 'rb') as _input:
-        data = tomllib.load(_input)
-
-        from_PACKAGES = [x for x in data.keys()]
-    
-    locally = execute(f"paru -Qq", capture_output=True).stdout.decode("UTF-8").split("\n")
-
-    return set(from_PACKAGES).difference(locally)
-
-def pkg_manager(manager='paru', modes=['i3wm', 'hyprland']):
-
-    # :TODO Change to global.
-    PACKAGES = os.path.join('/', 'home', 'ghost', 'main', 'ael-files', 'usr', 'share', 'ael', 'packages.toml')
-
-    with open(PACKAGES, 'rb') as _input:
-        data = tomllib.load(_input)
-
-        pkgs = []
-        if manager == 'paru':
-            for pkg in data.keys():
-                # print('package:', pkg)
-                # print('mode:', modes)
-                # print(data.get(pkg))
-                # print(data.get(pkg)['modes'])
-                if set(modes).intersection(set(data.get(pkg)['modes'])):
-                    pkgs.append(pkg)
-            pkgs = " ".join(pkgs)
-            print(pkgs)
-            # execute(f"paru -S --noconfirm --needed {pkgs}")
-        
-
-def _test():
-
-    l1 = ['cat', 'dog', 'bird']
-    l2 = ['cat', 'cow', 'bird']
-
-    same = set(l1).intersection(l2)
-    print(same)
-
-def main():
-
-    # :packages_list()
-    # for p in packages_list():
-        # print(p)
-
-    # :package_info(package)
-    # for p in packages_list():
-        # print(package_info(p))
-
-    # :(* Generate packages.toml *)
-    # generate_packagestoml()
-
-    # :(* Packages diff *)
-    # print(packages_diff())
-
-    # (* Install *)
-    # pkg_manager()
-
-    generate_packages_toml()
-
-    # _test()
-
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    packages_table()

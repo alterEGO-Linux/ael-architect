@@ -1,5 +1,5 @@
 # :----------------------------------------------------------------------- INFO
-# :[ael-architect/ael_architect/database.py]
+# :[ael-architect/ael_architect/shellutils.py]
 # :author        : fantomH
 # :created       : 2024-09-07 02:03:22 UTC
 # :updated       : 2024-09-08 14:16:01 UTC
@@ -11,6 +11,84 @@ import subprocess
 import tomllib
 
 from config import AEL_DB
+
+def shellutils_table():
+
+    shellutils_file = '/usr/share/ael-config/shellutils.toml'
+
+    with open(shellutils_file, mode='rb') as INPUT:
+        data = tomllib.load(INPUT)
+
+    with sqlite3.connect(AEL_DB) as conn:
+        cursor = conn.cursor()
+
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS shell_utils (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                filename TEXT NOT NULL,
+                url TEXT,
+                description TEXT,
+                mode TEXT,
+                requires TEXT,
+                optional TEXT,
+                is_active BOOLEAN NOT NULL DEFAULT False
+            )
+        ''')
+
+        for name, details in data.items():
+            # :/Check if the entry already exists.
+            cursor.execute('SELECT id FROM shell_utils WHERE name = ?', (name,))
+            row = cursor.fetchone()
+
+            if row:
+                cursor.execute('''
+                    UPDATE shell_utils
+                    SET filename = ?, url = ?, description = ?, mode = ?, requires = ?, optional = ?
+                    WHERE name = ?
+                ''',
+                (details['filename'],
+                details['url'],
+                details['description'],
+                ','.join(details['mode']) if details['mode'] else None,
+                ','.join(details['requires']) if details['requires'] else None,
+                ','.join(details['optional']) if details['optional'] else None,
+                name))
+
+            else:
+                cursor.execute('''
+                    INSERT INTO shell_utils (name, filename, url, description, mode, requires, optional, is_active)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                ''', 
+                (name, 
+                details['filename'], 
+                details['url'], 
+                details['description'], 
+                ','.join(details['mode']) if details['mode'] else None,
+                ','.join(details['requires']) if details['requires'] else None,
+                ','.join(details['optional']) if details['optional'] else None,
+                False))
+
+        conn.commit()
+
+def shellutils_to_listdicts():
+
+    shellutils_table()
+    with sqlite3.connect(AEL_DB) as conn:
+        cursor = conn.cursor()
+
+        cursor.execute('SELECT * FROM shell_utils')
+        rows = cursor.fetchall()
+
+        column_names = [description[0] for description in cursor.description]
+
+        _shellutils = [dict(zip(column_names, row)) for row in rows]
+
+        _shellutils.sort(key=lambda x: x['name'])
+
+        return _shellutils
+
+
 
 # :-----/ Packages /-----:
 
@@ -80,75 +158,6 @@ def table_packages():
 
         conn.commit()
 
-# :-----/ Shell Utils /-----:
-
-def table_shell_utils():
-
-    with open('/home/ghost/main/ael-architect/data/scripts.toml', mode='rb') as INPUT:
-        data = tomllib.load(INPUT)
-
-    with sqlite3.connect(AEL_DB) as conn:
-        cursor = conn.cursor()
-
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS scripts (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name TEXT NOT NULL,
-                filename TEXT NOT NULL,
-                url TEXT,
-                description TEXT,
-                mode TEXT,
-                is_active BOOLEAN NOT NULL DEFAULT False
-            )
-        ''')
-
-        for name, details in data.items():
-            # :Check if the entry already exists.
-            cursor.execute('SELECT id FROM scripts WHERE name = ?', (name,))
-            row = cursor.fetchone()
-
-            if row:
-                cursor.execute('''
-                    UPDATE scripts
-                    SET filename = ?, url = ?, description = ?, mode = ?
-                    WHERE name = ?
-                ''',
-                (details['filename'],
-                details['url'],
-                details['description'],
-                ','.join(details['mode']) if details['mode'] else None,
-                name))
-
-            else:
-                cursor.execute('''
-                    INSERT INTO scripts (name, filename, url, description, mode, is_active)
-                    VALUES (?, ?, ?, ?, ?, ?)
-                ''', 
-                (name, 
-                details['filename'], 
-                details['url'], 
-                details['description'], 
-                ','.join(details['mode']) if details['mode'] else None,
-                False))
-
-        conn.commit()
-
-def shell_utils_to_dictionaries():
-
-    table_shell_utils()
-    with sqlite3.connect(AEL_DB) as conn:
-        cursor = conn.cursor()
-
-        cursor.execute('SELECT * FROM scripts')
-        rows = cursor.fetchall()
-
-        column_names = [description[0] for description in cursor.description]
-
-        scripts = [dict(zip(column_names, row)) for row in rows]
-
-        scripts.sort(key=lambda x: x['name'])
-
-        return scripts
 
 def shell_utils_toggle(shell_util_id: str) -> None:
 
@@ -220,4 +229,4 @@ def shell_utils_requirements(shell_util_id):
                 print(f"An error occurred while installing packages: {e}")
 
 if __name__ == '__main__':
-    shell_utils_requirements(3)
+    print(shellutils_to_listdicts())
