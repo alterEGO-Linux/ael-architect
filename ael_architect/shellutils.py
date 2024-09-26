@@ -14,7 +14,7 @@ from config import AEL_DB
 
 def shellutils_table():
 
-    shellutils_file = '/usr/share/ael-config/shellutils.toml'
+    shellutils_file = '/usr/share/ael/shellutils.toml'
 
     with open(shellutils_file, mode='rb') as INPUT:
         data = tomllib.load(INPUT)
@@ -23,7 +23,7 @@ def shellutils_table():
         cursor = conn.cursor()
 
         cursor.execute('''
-            CREATE TABLE IF NOT EXISTS shell_utils (
+            CREATE TABLE IF NOT EXISTS shellutils (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
                 filename TEXT NOT NULL,
@@ -38,12 +38,12 @@ def shellutils_table():
 
         for name, details in data.items():
             # :/Check if the entry already exists.
-            cursor.execute('SELECT id FROM shell_utils WHERE name = ?', (name,))
+            cursor.execute('SELECT id FROM shellutils WHERE name = ?', (name,))
             row = cursor.fetchone()
 
             if row:
                 cursor.execute('''
-                    UPDATE shell_utils
+                    UPDATE shellutils
                     SET filename = ?, url = ?, description = ?, mode = ?, requires = ?, optional = ?
                     WHERE name = ?
                 ''',
@@ -57,7 +57,7 @@ def shellutils_table():
 
             else:
                 cursor.execute('''
-                    INSERT INTO shell_utils (name, filename, url, description, mode, requires, optional, is_active)
+                    INSERT INTO shellutils (name, filename, url, description, mode, requires, optional, is_active)
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                 ''', 
                 (name, 
@@ -77,7 +77,7 @@ def shellutils_to_listdicts():
     with sqlite3.connect(AEL_DB) as conn:
         cursor = conn.cursor()
 
-        cursor.execute('SELECT * FROM shell_utils')
+        cursor.execute('SELECT * FROM shellutils')
         rows = cursor.fetchall()
 
         column_names = [description[0] for description in cursor.description]
@@ -88,95 +88,28 @@ def shellutils_to_listdicts():
 
         return _shellutils
 
+def shellutils_toggle(shellutil_id: str) -> None:
 
+    """
+    Used by sysconfig.py to activate/deactivate a Shell Util.
+    """
 
-# :-----/ Packages /-----:
-
-def table_packages():
-
-
-    with open('/home/ghost/main/ael-architect/data/packages.toml', mode='rb') as INPUT:
-        data = tomllib.load(INPUT)
-
+    shellutils_table()
     with sqlite3.connect(AEL_DB) as conn:
         cursor = conn.cursor()
 
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS packages (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name TEXT NOT NULL,
-                repository TEXT NOT NULL,
-                url TEXT,
-                description TEXT,
-                mode TEXT,
-                ael_scripts TEXT,
-                parent TEXT,
-                info TEXT,
-                notes TEXT
-            )
-        ''')
-
-        for name, details in data.items():
-            # :Check if the entry already exists.
-            cursor.execute('SELECT id FROM packages WHERE name = ?', (name,))
-            row = cursor.fetchone()
-
-            if row:
-                cursor.execute('''
-                    UPDATE packages
-                    SET repository = ?, url = ?, description = ?, mode = ?, ael_scripts = ?, parent = ?, info = ?, notes = ?
-                    WHERE name = ?
-                ''',
-                (
-                 details['repository'],
-                 details['url'],
-                 details['description'],
-                 ','.join(details['mode']) if details['mode'] else None,
-                 ','.join(details['ael_scripts']) if details['ael_scripts'] else None,
-                 ','.join(details['parent']) if details['parent'] else None,
-                 ','.join(details['info']) if details['info'] else None,
-                 ','.join(details['notes']) if details['notes'] else None,
-                 name
-                ))
-
-            else:
-                cursor.execute('''
-                    INSERT INTO packages (name, repository, url, description, mode, ael_scripts, parent, info, notes)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-                ''', 
-                (
-                 name, 
-                 details['repository'],
-                 details['url'],
-                 details['description'],
-                 ','.join(details['mode']) if details['mode'] else None,
-                 ','.join(details['ael_scripts']) if details['ael_scripts'] else None,
-                 ','.join(details['parent']) if details['parent'] else None,
-                 ','.join(details['info']) if details['info'] else None,
-                 ','.join(details['notes']) if details['notes'] else None,
-                ))
-
-        conn.commit()
-
-
-def shell_utils_toggle(shell_util_id: str) -> None:
-
-    table_shell_utils()
-    with sqlite3.connect(AEL_DB) as conn:
-        cursor = conn.cursor()
-
-        cursor.execute('SELECT is_active FROM scripts WHERE id = ?', (shell_util_id,))
+        cursor.execute('SELECT is_active FROM shellutils WHERE id = ?', (shellutil_id,))
         util = cursor.fetchone()
 
         if util:
             current_state = util[0]
             new_state = 0 if current_state == 1 else 1
             cursor.execute('''
-                UPDATE scripts
+                UPDATE shellutils
                 SET is_active = ?
                 WHERE id = ?
             ''',
-            (new_state, shell_util_id))
+            (new_state, shellutil_id))
 
         conn.commit()
 

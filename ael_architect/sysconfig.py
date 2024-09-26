@@ -15,6 +15,7 @@ from textual.widgets import Static, Switch
 # from shellutils import install_shell_util
 
 from shellutils import shellutils_to_listdicts
+from shellutils import shellutils_toggle
 
 SHELLUTILS = shellutils_to_listdicts()
 
@@ -58,7 +59,7 @@ class TabbedApp(App):
                 
                 for shellutil in SHELLUTILS:
                     yield Horizontal(
-                            Switch(value=shellutil['is_active'], classes="shell-util", id=f"shell_util-{shellutil['id']}"),
+                            Switch(value=shellutil['is_active'], classes="shell-util", id=f"shellutil-{shellutil['id']}"),
                             Markdown(f"__{shellutil['name']}__\n\n{shellutil['description']}"),
                             classes="shell_util",
                                 )
@@ -75,15 +76,15 @@ class TabbedApp(App):
         """Switch to a new tab."""
         self.get_child_by_type(TabbedContent).active = tab
 
-    # async def on_switch_changed(self, event: Switch.Changed) -> None:
-        # """Handle switch state change."""
-        # switch = event.switch
-        # switch_id = switch.id
+    async def on_switch_changed(self, event: Switch.Changed) -> None:
+        """Handle switch state change."""
+        switch = event.switch
+        switch_id = switch.id
 
-        # :SHELL UTILS
-        # if switch_id.startswith('shell_util-'):
-            # shell_util_id = switch_id.replace('shell_util-', '')
-            # shell_utils_toggle(shell_util_id)
+        # :/SHELL UTILS
+        if switch_id.startswith('shellutil-'):
+            shellutil_id = switch_id.replace('shellutil-', '')
+            shellutils_toggle(shellutil_id)
             # shell_utils_requirements(shell_util_id)
             # install_shell_util(shell_util_id)
 
