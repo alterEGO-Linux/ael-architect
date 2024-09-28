@@ -14,7 +14,7 @@ from config import AEL_DB
 
 def packages_table():
 
-    packages_file = '/usr/share/ael-config/packages.toml'
+    packages_file = '/usr/share/ael/packages.toml'
 
     with open(packages_file, mode='rb') as INPUT:
         data = tomllib.load(INPUT)
@@ -26,7 +26,7 @@ def packages_table():
             CREATE TABLE IF NOT EXISTS packages (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
-                repo_archlinux TEXT NOT NULL,
+                archlinux TEXT NOT NULL,
                 url TEXT,
                 description TEXT,
                 mode TEXT,
@@ -44,11 +44,11 @@ def packages_table():
             if row:
                 cursor.execute('''
                     UPDATE packages
-                    SET repo_archlinux = ?, url = ?, description = ?, mode = ?, requires = ?, optional = ?, notes = ?
+                    SET archlinux = ?, url = ?, description = ?, mode = ?, requires = ?, optional = ?, notes = ?
                     WHERE name = ?
                 ''',
                 (
-                 details['repo_archilinux'],
+                 details['archlinux'],
                  details['url'],
                  details['description'],
                  ','.join(details['mode']) if details['mode'] else None,
@@ -60,12 +60,12 @@ def packages_table():
 
             else:
                 cursor.execute('''
-                    INSERT INTO packages (name, repo_archlinux, url, description, mode, requires, optional, notes)
+                    INSERT INTO packages (name, archlinux, url, description, mode, requires, optional, notes)
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                 ''', 
                 (
                  name, 
-                 details['repo_archlinux'],
+                 details['archlinux'],
                  details['url'],
                  details['description'],
                  ','.join(details['mode']) if details['mode'] else None,

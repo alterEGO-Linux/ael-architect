@@ -5,12 +5,14 @@
 # :updated       : 2024-09-08 14:16:01 UTC
 # :description   : database.
 
+import re
 import os
 import sqlite3
 import subprocess
 import tomllib
 
 from config import AEL_DB
+from packages import packages_table
 
 def shellutils_table():
 
@@ -113,6 +115,34 @@ def shellutils_toggle(shellutil_id: str) -> None:
 
         conn.commit()
 
+def shellutil_update(shellutil_id):
+    shellutils_table()
+    packages_table()
+
+    with sqlite3.connect(AEL_DB) as conn:
+        cursor = conn.cursor()
+
+        cursor.execute('SELECT * FROM shellutils WHERE id = ?', (shellutil_id,))
+        row = cursor.fetchone()
+
+        if row:
+            column_names = [description[0] for description in cursor.description]
+
+            util = dict(zip(column_names, row))
+
+        if util['is_active']:
+            requirements = util['requires'].split(',')
+            requirements = [re.sub(r'\(.*?\)', '', item) for item in requirements]
+            print(requirements)
+            # :/Required packages.
+            required_packages = [pkg.split('/')[1] for pkg in requirements if pkg.startswith('pkg')]
+            print(required_packages)
+            required_files = [file.split('/')[1] for file in requirements if file.startswith('file')]
+            print(required_files)
+
+        else:
+            print(f"{util['name']} is not active")
+
 def shell_utils_requirements(shell_util_id):
 
     table_shell_utils()
@@ -162,4 +192,4 @@ def shell_utils_requirements(shell_util_id):
                 print(f"An error occurred while installing packages: {e}")
 
 if __name__ == '__main__':
-    print(shellutils_to_listdicts())
+    shellutil_update('17')
