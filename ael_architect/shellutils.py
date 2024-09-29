@@ -12,6 +12,7 @@ import subprocess
 import tomllib
 
 from config import AEL_DB
+from deploy import install_packages
 from packages import packages_table
 
 def shellutils_table():
@@ -133,12 +134,13 @@ def shellutil_update(shellutil_id):
         if util['is_active']:
             requirements = util['requires'].split(',')
             requirements = [re.sub(r'\(.*?\)', '', item) for item in requirements]
-            print(requirements)
+
             # :/Required packages.
             required_packages = [pkg.split('/')[1] for pkg in requirements if pkg.startswith('pkg')]
-            print(required_packages)
+            install_packages(required_packages)
+
+            # :/Required files
             required_files = [file.split('/')[1] for file in requirements if file.startswith('file')]
-            print(required_files)
 
         else:
             print(f"{util['name']} is not active")
