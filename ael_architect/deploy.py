@@ -6,7 +6,7 @@
 # :description   : Deploy.
 
 import re
-# import os
+import os
 import sqlite3
 import subprocess
 # import tomllib
@@ -58,6 +58,23 @@ def install_packages(packages: list) -> None:
                     command = ['paru', '-S', '--noconfirm', '--needed', package]
                     install(command)
 
+def install_files(files: list) -> None:
+
+    for file in files:
+        with sqlite3.connect(AEL_DB) as conn:
+            cursor = conn.cursor()
+
+            cursor.execute('SELECT * FROM files WHERE name = ?', (file,))
+            file = cursor.fetchone()
+
+            print(file)
+
+            # :/Check if source exists.
+            # if os.path.exists(file['src']):
+                # print(file['name'], 'yes')
+            # else:
+                # print(file['name'], 'no')
+            
 
 if __name__ == '__main__':
-    install_packages(['coreutils', 'nano'])
+    install_files(['dockerfiles--Dockerfile-kali'])

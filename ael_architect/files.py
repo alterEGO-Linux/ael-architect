@@ -36,9 +36,9 @@ def files_table():
             )
         ''')
 
-        for section_name, details in data.items():
+        for name, details in data.items():
             # :Check if the entry already exists.
-            cursor.execute('SELECT id FROM files WHERE name = ?', (section_name,))
+            cursor.execute('SELECT id FROM files WHERE name = ?', (name,))
             row = cursor.fetchone()
 
             if row:
@@ -55,7 +55,7 @@ def files_table():
                  details['is_symlink'],
                  details['create_bkp'],
                  ','.join(details['notes']) if details['notes'] else None,
-                 section_name
+                 name
                 ))
 
             else:
@@ -64,7 +64,7 @@ def files_table():
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                 ''', 
                 (
-                 section_name, 
+                 name, 
                  details['url'],
                  details['dst'],
                  details['description'],
