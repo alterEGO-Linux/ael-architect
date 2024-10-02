@@ -13,6 +13,7 @@ import subprocess
 
 from config import AEL_DB
 from packages import packages_table
+from files import files_table
 from utils import get_linux_id
 
 def install_packages(packages: list) -> None:
@@ -59,21 +60,25 @@ def install_packages(packages: list) -> None:
                     install(command)
 
 def install_files(files: list) -> None:
+    files_table()
 
     for file in files:
         with sqlite3.connect(AEL_DB) as conn:
             cursor = conn.cursor()
 
             cursor.execute('SELECT * FROM files WHERE name = ?', (file,))
-            file = cursor.fetchone()
+            row = cursor.fetchone()
 
-            print(file)
+            if row:
+                column_names = [description[0] for description in cursor.description]
 
-            # :/Check if source exists.
-            # if os.path.exists(file['src']):
-                # print(file['name'], 'yes')
-            # else:
-                # print(file['name'], 'no')
+                file = dict(zip(column_names, row))
+
+                # :/Check if source exists.
+                if os.path.exists(file['src']):
+                    print(file['name'], 'yes')
+                else:
+                    print(file['name'], 'no')
             
 
 if __name__ == '__main__':

@@ -14,9 +14,9 @@ from config import AEL_DB
 
 def files_table():
 
-    files_file = '/usr/share/ael/files.toml'
+    SRC = '/usr/share/ael/files.toml'
 
-    with open(files_file, mode='rb') as INPUT:
+    with open(SRC, mode='rb') as INPUT:
         data = tomllib.load(INPUT)
 
     with sqlite3.connect(AEL_DB) as conn:
@@ -27,6 +27,7 @@ def files_table():
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
                 url TEXT,
+                src TEXT,
                 dst TEXT,
                 description TEXT,
                 modes TEXT,
@@ -44,11 +45,12 @@ def files_table():
             if row:
                 cursor.execute('''
                     UPDATE files
-                    SET url = ?, dst = ?, description = ?, modes = ?, is_symlink = ?, create_bkp = ?, notes = ?
+                    SET url = ?, src = ?, dst = ?, description = ?, modes = ?, is_symlink = ?, create_bkp = ?, notes = ?
                     WHERE name = ?
                 ''',
                 (
                  details['url'],
+                 details['src'],
                  details['dst'],
                  details['description'],
                  ','.join(details['modes']) if details['modes'] else None,
@@ -60,12 +62,13 @@ def files_table():
 
             else:
                 cursor.execute('''
-                    INSERT INTO files (name, url, dst, description, modes, is_symlink, create_bkp, notes)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                    INSERT INTO files (name, url, src, dst, description, modes, is_symlink, create_bkp, notes)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ''', 
                 (
                  name, 
                  details['url'],
+                 details['src'],
                  details['dst'],
                  details['description'],
                  ','.join(details['modes']) if details['modes'] else None,
