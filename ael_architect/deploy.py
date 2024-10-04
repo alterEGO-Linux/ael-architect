@@ -65,30 +65,36 @@ def install_files(files: list) -> None:
     files_table()
 
     for file in files:
+
         with sqlite3.connect(AEL_DB) as conn:
             cursor = conn.cursor()
-
             cursor.execute('SELECT * FROM files WHERE name = ?', (file,))
             row = cursor.fetchone()
-
             if row:
                 column_names = [description[0] for description in cursor.description]
-
                 file = dict(zip(column_names, row))
 
-                if os.path.exists(file['dst']):
-                    if file['dst'] != file['src']:
-                        if md5sum(file['dst']) != md5sum(file['src']):
-                            if file['is_symlink']:
-                                subprocess.run(['sudo', 'ln', '-sf', file['src'], file['dst']], check=True)
-                            else:
-                                if file['create_bkp']:
-                                    if not os.path.islink(file['dst']):
-                                        shutil.copy2(file[dst], file[dst] + ".aelbkp")
-                                subprocess.run(['sudo', 'cp', file['src'], file['dst']], check=True)
+        # :/Making sure directories exists.
+        directory = os.path.dirname(file['dst'])
+        if not os.path.exists(directory):
+            os.makedirs(directory, exist_ok=True)
 
-                    
-            
+        # :/Update file if necessary
+        if os.path.exists(file['dst']):
+            if file['dst'] != file['src'] and md5sum(file['dst']) != md5sum(file['src']):
+                if file['is_symlink']:
+                    subprocess.run(['sudo', 'ln', '-sf', file['src'], file['dst']], check=True)
+                else:
+                    if file['create_bkp']:
+                        if not os.path.islink(file['dst']):
+                            shutil.copy2(file[dst], file[dst] + ".aelbkp")
+                    subprocess.run(['sudo', 'cp', file['src'], file['dst']], check=True)
+        # :/Create file.
+        else:
+            if file['is_symlink']:
+                subprocess.run(['sudo', 'ln', '-sf', file['src'], file['dst']], check=True)
+            else:
+                subprocess.run(['sudo', 'cp', file['src'], file['dst']], check=True)
 
 if __name__ == '__main__':
-    install_files(['dockerfiles--Dockerfile-kali', 'shellutils--busy'])
+    install_files(['shellutils--cheat'])
