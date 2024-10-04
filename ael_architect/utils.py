@@ -5,6 +5,7 @@
 # :updated       : 2024-09-28 18:49:31 UTC
 # :description   : Utils.
 
+import hashlib
 # import re
 # import os
 # import sqlite3
@@ -19,6 +20,15 @@ def get_linux_id() -> str:
         for line in file:
             if line.startswith("ID="):
                 return line.strip().split('=')[1]
+
+def md5sum(filepath):
+    md5_hash = hashlib.md5()
+
+    with open(filepath, "rb") as INPUT:
+        for chunk in iter(lambda: INPUT.read(4096), b""):
+            md5_hash.update(chunk)
+
+    return md5_hash.hexdigest()
 
 if __name__ == '__main__':
     l = get_linux_id()

@@ -7,6 +7,7 @@
 
 import re
 import os
+import shutil
 import sqlite3
 import subprocess
 # import tomllib
@@ -15,6 +16,7 @@ from config import AEL_DB
 from packages import packages_table
 from files import files_table
 from utils import get_linux_id
+from utils import md5sum
 
 def install_packages(packages: list) -> None:
 
@@ -74,12 +76,19 @@ def install_files(files: list) -> None:
 
                 file = dict(zip(column_names, row))
 
-                # :/Check if source exists.
-                if os.path.exists(file['src']):
-                    print(file['name'], 'yes')
-                else:
-                    print(file['name'], 'no')
+                if os.path.exists(file['dst']):
+                    if file['dst'] != file['src']:
+                        if md5sum(file['dst']) != md5sum(file['src']):
+                            if file['is_symlink']:
+                                subprocess.run(['sudo', 'ln', '-sf', file['src'], file['dst']], check=True)
+                            else:
+                                if file['create_bkp']:
+                                    if not os.path.islink(file['dst']):
+                                        shutil.copy2(file[dst], file[dst] + ".aelbkp")
+                                subprocess.run(['sudo', 'cp', file['src'], file['dst']], check=True)
+
+                    
             
 
 if __name__ == '__main__':
-    install_files(['dockerfiles--Dockerfile-kali'])
+    install_files(['dockerfiles--Dockerfile-kali', 'shellutils--busy'])
