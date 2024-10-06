@@ -8,88 +8,33 @@
 import re
 import os
 import sqlite3
-import subprocess
-import tomllib
 
 from config import AEL_DB
+from deploy import install_files
 from deploy import install_packages
+from files import files_table
 from packages import packages_table
 
-def shellutils_table():
-
-    shellutils_file = '/usr/share/ael/shellutils.toml'
-
-    with open(shellutils_file, mode='rb') as INPUT:
-        data = tomllib.load(INPUT)
-
-    with sqlite3.connect(AEL_DB) as conn:
-        cursor = conn.cursor()
-
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS shellutils (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name TEXT NOT NULL,
-                filename TEXT NOT NULL,
-                url TEXT,
-                description TEXT,
-                mode TEXT,
-                requires TEXT,
-                optional TEXT,
-                is_active BOOLEAN NOT NULL DEFAULT False
-            )
-        ''')
-
-        for name, details in data.items():
-            # :/Check if the entry already exists.
-            cursor.execute('SELECT id FROM shellutils WHERE name = ?', (name,))
-            row = cursor.fetchone()
-
-            if row:
-                cursor.execute('''
-                    UPDATE shellutils
-                    SET filename = ?, url = ?, description = ?, mode = ?, requires = ?, optional = ?
-                    WHERE name = ?
-                ''',
-                (details['filename'],
-                details['url'],
-                details['description'],
-                ','.join(details['mode']) if details['mode'] else None,
-                ','.join(details['requires']) if details['requires'] else None,
-                ','.join(details['optional']) if details['optional'] else None,
-                name))
-
-            else:
-                cursor.execute('''
-                    INSERT INTO shellutils (name, filename, url, description, mode, requires, optional, is_active)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                ''', 
-                (name, 
-                details['filename'], 
-                details['url'], 
-                details['description'], 
-                ','.join(details['mode']) if details['mode'] else None,
-                ','.join(details['requires']) if details['requires'] else None,
-                ','.join(details['optional']) if details['optional'] else None,
-                False))
-
-        conn.commit()
 
 def shellutils_to_listdicts():
 
-    shellutils_table()
     with sqlite3.connect(AEL_DB) as conn:
         cursor = conn.cursor()
 
-        cursor.execute('SELECT * FROM shellutils')
+        cursor.execute("SELECT * FROM files WHERE name LIKE 'shellutils%'")
         rows = cursor.fetchall()
 
         column_names = [description[0] for description in cursor.description]
 
-        _shellutils = [dict(zip(column_names, row)) for row in rows]
+        SHELLUTILS = []
+        for row in rows:
+            row_dict = dict(zip(column_names, row))
+            row_dict['name'] = row_dict['name'].replace('shellutils--', '', 1)
+            SHELLUTILS.append(row_dict)
 
-        _shellutils.sort(key=lambda x: x['name'])
+        SHELLUTILS.sort(key=lambda x: x['name'])
 
-        return _shellutils
+        return SHELLUTILS
 
 def shellutils_toggle(shellutil_id: str) -> None:
 
@@ -97,18 +42,17 @@ def shellutils_toggle(shellutil_id: str) -> None:
     Used by sysconfig.py to activate/deactivate a Shell Util.
     """
 
-    shellutils_table()
     with sqlite3.connect(AEL_DB) as conn:
         cursor = conn.cursor()
 
-        cursor.execute('SELECT is_active FROM shellutils WHERE id = ?', (shellutil_id,))
-        util = cursor.fetchone()
+        cursor.execute('SELECT is_active FROM files WHERE id = ?', (shellutil_id,))
+        SHELLUTIL = cursor.fetchone()
 
-        if util:
-            current_state = util[0]
+        if SHELLUTIL:
+            current_state = SHELLUTIL[0]
             new_state = 0 if current_state == 1 else 1
             cursor.execute('''
-                UPDATE shellutils
+                UPDATE files
                 SET is_active = ?
                 WHERE id = ?
             ''',
@@ -116,82 +60,75 @@ def shellutils_toggle(shellutil_id: str) -> None:
 
         conn.commit()
 
-def shellutil_update(shellutil_id):
-    shellutils_table()
-    packages_table()
+        shellutil_update(shellutil_id)
+
+        # :/Write to .aelcore.
+        shellutil_to_aelcore(shellutil_id)
+
+def shellutil_to_aelcore(shellutil_id: str) -> None:
 
     with sqlite3.connect(AEL_DB) as conn:
         cursor = conn.cursor()
 
-        cursor.execute('SELECT * FROM shellutils WHERE id = ?', (shellutil_id,))
+        cursor.execute('SELECT * FROM files WHERE id = ?', (shellutil_id,))
         row = cursor.fetchone()
 
         if row:
             column_names = [description[0] for description in cursor.description]
 
-            util = dict(zip(column_names, row))
+            SHELLUTIL = dict(zip(column_names, row))
 
-        if util['is_active']:
-            requirements = util['requires'].split(',')
-            requirements = [re.sub(r'\(.*?\)', '', item) for item in requirements]
+            AELCORE = os.path.join(os.path.expanduser('~'), '.ael', '.aelcore')
 
-            # :/Required packages.
-            required_packages = [pkg.split('/')[1] for pkg in requirements if pkg.startswith('pkg')]
-            install_packages(required_packages)
+            with open(AELCORE, mode='r') as INPUT:
+                data = INPUT.read()
 
-            # :/Required files
-            required_files = [file.split('/')[1] for file in requirements if file.startswith('file')]
+                pattern = rf"\[ -f.*{SHELLUTIL['dst']}.*{SHELLUTIL['dst']}\n"
+                match = re.search(pattern, data)
+                if match and SHELLUTIL['is_active']:
+                    pass
+                elif match and not SHELLUTIL['is_active']:
+                    new_data = re.sub(rf"{re.escape(match[0])}", '', data)
+                    with open(AELCORE, mode='w') as OUTPUT:
+                        OUTPUT.write(new_data)
+                elif not match and SHELLUTIL['is_active']:
+                    with open(AELCORE, mode='a') as OUTPUT:
+                        OUTPUT.write(f"[ -f {SHELLUTIL['dst']} ] && . {SHELLUTIL['dst']}\n")
 
-        else:
-            print(f"{util['name']} is not active")
-
-def shell_utils_requirements(shell_util_id):
-
-    table_shell_utils()
-    table_packages()
-
-    requirements = []
+def shellutil_update(shellutil_id):
 
     with sqlite3.connect(AEL_DB) as conn:
         cursor = conn.cursor()
 
-        cursor.execute('SELECT name FROM scripts WHERE id = ?', (shell_util_id,))
-        util = cursor.fetchone()[0]
+        cursor.execute('SELECT * FROM files WHERE id = ?', (shellutil_id,))
+        row = cursor.fetchone()
 
-        # :---/ requirements /---:
-
-        query = """
-            SELECT *
-            FROM packages
-            WHERE ',' || ael_scripts || ',' LIKE ?
-            """
-
-        cursor.execute(query, (f'%,{util},%',))
-
-        results = cursor.fetchall()
-
-        if results:
+        if row:
             column_names = [description[0] for description in cursor.description]
-            results = [dict(zip(column_names, row)) for row in results]
 
-            for x in results:
-                requirements.append(x['name'])
+            SHELLUTIL = dict(zip(column_names, row))
 
-            # return requirements
+            if SHELLUTIL['is_active']:
 
-            command = ['paru', '-S', '--noconfirm', '--needed'] + requirements
+                if not os.path.exists(SHELLUTIL['dst']):
+                    install_files([SHELLUTIL['name']])
 
-            try:
-                result = subprocess.run(
-                            command,
-                            check=True,
-                            text=True,
-                            stdout=subprocess.DEVNULL,
-                            stderr=subprocess.DEVNULL,
-                            )
-                print("Packages installed successfully.")
-            except subprocess.CalledProcessError as e:
-                print(f"An error occurred while installing packages: {e}")
+                if SHELLUTIL['requires']:
+                    requirements = SHELLUTIL['requires'].split(',')
+                    requirements = [re.sub(r'\(.*?\)', '', item) for item in requirements]
+
+                    # :/Required packages.
+                    required_packages = [pkg.split('/')[1] for pkg in requirements if pkg.startswith('pkg')]
+                    if required_packages:
+                        install_packages(required_packages)
+
+                    # :/Required files
+                    required_files = [file.split('/')[1] for file in requirements if file.startswith('file')]
+                    if required_files:
+                        install_files(required_files)
+
+            else:
+                print(f"{SHELLUTIL['name']} is not active")
 
 if __name__ == '__main__':
-    shellutil_update('17')
+    shellutils_toggle('8')

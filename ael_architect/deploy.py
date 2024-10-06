@@ -20,7 +20,7 @@ from utils import md5sum
 
 def install_packages(packages: list) -> None:
 
-    def install(command):
+    def install(command: list) -> None:
 
         try:
             result = subprocess.run(
@@ -34,8 +34,7 @@ def install_packages(packages: list) -> None:
         except subprocess.CalledProcessError as e:
             print(f"An error occurred while installing packages: {e}")
 
-    packages_table()
-
+    # :/Verify which linux flavor.
     linux_id = get_linux_id()
 
     # :/Distro -> Arch Linux    
@@ -62,7 +61,6 @@ def install_packages(packages: list) -> None:
                     install(command)
 
 def install_files(files: list) -> None:
-    files_table()
 
     for file in files:
 

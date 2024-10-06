@@ -7,6 +7,8 @@
 
 import argparse
 from sysconfig import run_sysconfig
+from files import files_table
+from packages import packages_table
 
 def start_gui_app():
     print("Starting GUI app...")
@@ -21,6 +23,8 @@ def main():
     if args.gui:
         start_gui_app()
     else:
+        files_table()
+        packages_table()
         run_sysconfig()
 
 if __name__ == "__main__":
