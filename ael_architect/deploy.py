@@ -20,6 +20,11 @@ from utils import md5sum
 
 def install_packages(packages: list) -> None:
 
+    def clean_pkg_repo(repo: str) -> str:
+        package = repo[0].split('/')[1]
+        package = re.sub(r'\(.*?\)', '', package)
+        return package
+
     def install(command: list) -> None:
 
         try:
@@ -39,26 +44,32 @@ def install_packages(packages: list) -> None:
 
     # :/Distro -> Arch Linux    
     if linux_id in ['arch', 'ael', 'manjaro']:
-        for package in packages:
-            with sqlite3.connect(AEL_DB) as conn:
-                cursor = conn.cursor()
 
-                cursor.execute('SELECT archlinux FROM packages WHERE name = ?', (package,))
-                repo = cursor.fetchone()
+        PACMAN = set()
+        AUR = set()
 
-                # :/pacman
-                if repo[0].startswith(('core', 'extra')):
-                    package = repo[0].split('/')[1]
-                    package = re.sub(r'\(.*?\)', '', package)
-                    command = ['sudo', 'pacman', '-S', '--noconfirm', '--needed', package]
-                    install(command)
+        if packages:
+            for package in packages:
+                with sqlite3.connect(AEL_DB) as conn:
+                    cursor = conn.cursor()
 
-                # :/paru
-                if repo[0].startswith(('aur')):
-                    package = repo[0].split('/')[1]
-                    package = re.sub(r'\(.*?\)', '', package)
-                    command = ['paru', '-S', '--noconfirm', '--needed', package]
-                    install(command)
+                    cursor.execute('SELECT archlinux FROM packages WHERE name = ?', (package,))
+                    repo = cursor.fetchone()
+
+                    # :/pacman
+                    if repo[0].startswith(('core', 'extra')):
+                        PACMAN.add(clean_pkg_repo(repo))
+
+                    # :/paru
+                    if repo[0].startswith(('aur')):
+                        AUR.add(clean_pkg_repo(repo))
+
+        if PACMAN:
+            command = ['sudo', 'pacman', '-S', '--noconfirm', '--needed'] + list(PACMAN)
+            install(command)
+        if AUR:
+            command = ['paru', '-S', '--noconfirm', '--needed'] + list(AUR)
+            install(command)
 
 def install_files(files: list) -> None:
 

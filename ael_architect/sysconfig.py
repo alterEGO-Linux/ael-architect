@@ -5,14 +5,19 @@
 # :updated       : 2024-09-10 11:54:26 UTC
 # :description   : cli.
 
-from textual.app import App, ComposeResult
-from textual.widgets import Footer, Label, Markdown, TabbedContent, TabPane
-from textual.containers import Horizontal
-from textual.widgets import Static, Switch
+import asyncio
 
-# from database import shell_utils_toggle
-# from database import shell_utils_requirements
-# from shellutils import install_shell_util
+from textual.app import App, ComposeResult
+from textual.containers import Horizontal
+from textual.containers import Vertical
+from textual.widgets import Footer
+from textual.widgets import Label
+from textual.widgets import Markdown
+from textual.widgets import ProgressBar
+from textual.widgets import TabbedContent
+from textual.widgets import TabPane
+from textual.widgets import Static
+from textual.widgets import Switch
 
 from shellutils import shellutils_to_listdicts
 from shellutils import shellutils_toggle
@@ -46,12 +51,19 @@ class TabbedApp(App):
         .shell_util {
             min-height: 5;
         }
+
+        #progress-bar {
+
+            dock: bottom;
+            margin: 1;
+            background: dodgerblue;
+
+        }
     """
 
     def compose(self) -> ComposeResult:
         """Compose app with tabbed content."""
-        # Footer to show keys
-        yield Footer()
+
 
         # Add the TabbedContent widget
         with TabbedContent(initial="shell-utils") as tc:
@@ -72,6 +84,12 @@ class TabbedApp(App):
             with TabPane("Paul", id="paul"):
                 yield Markdown(PAUL)
 
+        self.progress_bar = ProgressBar(total=100, id="progress-bar")
+        yield self.progress_bar
+
+        # Footer to show keys
+        yield Footer()
+
     def action_show_tab(self, tab: str) -> None:
         """Switch to a new tab."""
         self.get_child_by_type(TabbedContent).active = tab
@@ -84,9 +102,18 @@ class TabbedApp(App):
         # :/SHELL UTILS
         if switch_id.startswith('shellutil-'):
             shellutil_id = switch_id.replace('shellutil-', '')
+            self.update_progress(0)
             shellutils_toggle(shellutil_id)
-            # shell_utils_requirements(shell_util_id)
-            # install_shell_util(shell_util_id)
+
+            for i in range(1, 101, 10):
+                self.update_progress(1)
+                await asyncio.sleep(0.1)
+
+            self.update_progress(100)
+
+    def update_progress(self, value: int) -> None:
+        self.progress_bar.progress = value
+        self.progress_bar.refresh()
 
 def run_sysconfig():
     app = TabbedApp()
