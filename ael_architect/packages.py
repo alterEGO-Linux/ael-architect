@@ -11,6 +11,7 @@ import subprocess
 import tomllib
 
 from config import AEL_DB
+from utils import get_linux_id
 
 def packages_table():
 
@@ -29,9 +30,10 @@ def packages_table():
                 archlinux TEXT NOT NULL,
                 url TEXT,
                 description TEXT,
-                mode TEXT,
+                modes TEXT,
                 requires TEXT,
                 optional TEXT,
+                is_installed BOOLEAN NOT NULL DEFAULT False,
                 notes TEXT
             )
         ''')
@@ -44,14 +46,20 @@ def packages_table():
             if row:
                 cursor.execute('''
                     UPDATE packages
-                    SET archlinux = ?, url = ?, description = ?, mode = ?, requires = ?, optional = ?, notes = ?
+                    SET archlinux = ?,
+                        url = ?,
+                        description = ?,
+                        modes = ?,
+                        requires = ?,
+                        optional = ?,
+                        notes = ?
                     WHERE name = ?
                 ''',
                 (
                  details['archlinux'],
                  details['url'],
                  details['description'],
-                 ','.join(details['mode']) if details['mode'] else None,
+                 ','.join(details['modes']) if details['modes'] else None,
                  ','.join(details['requires']) if details['requires'] else None,
                  ','.join(details['optional']) if details['optional'] else None,
                  ','.join(details['notes']) if details['notes'] else None,
@@ -60,7 +68,14 @@ def packages_table():
 
             else:
                 cursor.execute('''
-                    INSERT INTO packages (name, archlinux, url, description, mode, requires, optional, notes)
+                    INSERT INTO packages (name, 
+                                          archlinux, 
+                                          url, 
+                                          description,
+                                          modes,
+                                          requires,
+                                          optional,
+                                          notes)
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                 ''', 
                 (
@@ -68,7 +83,7 @@ def packages_table():
                  details['archlinux'],
                  details['url'],
                  details['description'],
-                 ','.join(details['mode']) if details['mode'] else None,
+                 ','.join(details['modes']) if details['modes'] else None,
                  ','.join(details['requires']) if details['requires'] else None,
                  ','.join(details['optional']) if details['optional'] else None,
                  ','.join(details['notes']) if details['notes'] else None,
@@ -76,5 +91,60 @@ def packages_table():
 
         conn.commit()
 
+    packages_installed()
+
+def packages_to_listdicts():
+
+    with sqlite3.connect(AEL_DB) as conn:
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT * FROM packages")
+        rows = cursor.fetchall()
+
+        column_names = [description[0] for description in cursor.description]
+
+        PACKAGES = []
+        for row in rows:
+            row_dict = dict(zip(column_names, row))
+            PACKAGES.append(row_dict)
+
+        PACKAGES.sort(key=lambda x: x['name'])
+
+        return PACKAGES
+
+def packages_installed():
+
+    linux_id = get_linux_id()
+
+    with sqlite3.connect(AEL_DB) as conn:
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT * FROM packages")
+        rows = cursor.fetchall()
+
+        column_names = [description[0] for description in cursor.description]
+
+        for row in rows:
+            PACKAGE = dict(zip(column_names, row))
+
+            if linux_id in ['arch', 'ael', 'manjaro']:
+                PKG = PACKAGE['archlinux'].split('/')[1].replace('base(', '').replace('base-devel(', '').replace(')', '')
+                result = subprocess.run(['pacman', '-Qq', PKG], capture_output=True, text=True)
+
+                if result.stdout.strip():
+                    PACKAGE['is_installed'] = True
+                else:
+                    PACKAGE['is_installed'] = False
+
+            cursor.execute('''
+                UPDATE packages
+                SET is_installed = ?
+                WHERE name = ?
+            ''',
+            (
+                PACKAGE['is_installed'],
+                PACKAGE['name']
+            ))
+
 if __name__ == '__main__':
-    packages_table()
+    packages_installed()

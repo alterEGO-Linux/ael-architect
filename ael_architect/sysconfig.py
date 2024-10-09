@@ -19,10 +19,17 @@ from textual.widgets import TabPane
 from textual.widgets import Static
 from textual.widgets import Switch
 
+from files import files_table
+from packages import packages_table
+from packages import packages_to_listdicts
 from shellutils import shellutils_to_listdicts
 from shellutils import shellutils_toggle
 
+files_table()
+packages_table()
+
 SHELLUTILS = shellutils_to_listdicts()
+PACKAGES = packages_to_listdicts()
 
 JESSICA = """
 # Lady Jessica
@@ -64,7 +71,6 @@ class TabbedApp(App):
     def compose(self) -> ComposeResult:
         """Compose app with tabbed content."""
 
-
         # Add the TabbedContent widget
         with TabbedContent(initial="shell-utils") as tc:
             with TabPane("SHELL UTILS", id="shell-utils"):  # First tab
@@ -75,6 +81,14 @@ class TabbedApp(App):
                             Markdown(f"__{shellutil['name']}__\n\n{shellutil['description']}"),
                             classes="shell_util",
                                 )
+            with TabPane("PACKAGES", id="packages"):
+                
+                for package in PACKAGES:
+                    yield Horizontal(
+                            Switch(value=package['is_installed'], classes="packages", id=f"package-{package['id']}"),
+                            Markdown(f"__{package['name']}__\n\n{package['description']}"),
+                            classes="shell_util",
+                                )
             with TabPane("Jessica", id="jessica"):
                 yield Markdown(JESSICA)
                 with TabbedContent("Paul", "Alia"):
@@ -83,9 +97,6 @@ class TabbedApp(App):
 
             with TabPane("Paul", id="paul"):
                 yield Markdown(PAUL)
-
-        self.progress_bar = ProgressBar(total=100, id="progress-bar")
-        yield self.progress_bar
 
         # Footer to show keys
         yield Footer()
@@ -102,18 +113,7 @@ class TabbedApp(App):
         # :/SHELL UTILS
         if switch_id.startswith('shellutil-'):
             shellutil_id = switch_id.replace('shellutil-', '')
-            self.update_progress(0)
             shellutils_toggle(shellutil_id)
-
-            for i in range(1, 101, 10):
-                self.update_progress(1)
-                await asyncio.sleep(0.1)
-
-            self.update_progress(100)
-
-    def update_progress(self, value: int) -> None:
-        self.progress_bar.progress = value
-        self.progress_bar.refresh()
 
 def run_sysconfig():
     app = TabbedApp()
