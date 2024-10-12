@@ -57,7 +57,7 @@ def install_packages(packages: list) -> None:
                     repo = cursor.fetchone()
 
                     # :/pacman
-                    if repo[0].startswith(('core', 'extra')):
+                    if repo[0].startswith(('core', 'extra', 'multilib')):
                         PACMAN.add(clean_pkg_repo(repo))
 
                     # :/paru
