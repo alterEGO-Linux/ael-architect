@@ -21,7 +21,7 @@ from archinstall import interactions
 # we're creating a new ext4 filesystem installation
 fs_type = disk.FilesystemType('ext4')
 
-device_path = interactions.disk_config.select_disk_config()
+device_path = interactions.disk_conf.select_devices()[0].device_info.path
 
 # get the physical disk device
 device = disk.device_handler.get_device(device_path)
