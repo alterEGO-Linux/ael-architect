@@ -23,7 +23,7 @@ classifiers = [
     "Operating System :: POSIX :: Linux"
 ]
 dependencies = [
-    "python-magic"
+    "textual"
 ]
 
 [project.urls]
@@ -35,7 +35,7 @@ include-package-data = true
 zip-safe = false
 
 [tool.setuptools.package-data]
-"ael_architect" = ["data/*"]
+"ael_architect" = ["scripts/*"]
 
 [project.scripts]
-ael-architect = "ael_architect:main"
+ael-architect = "architect:main"

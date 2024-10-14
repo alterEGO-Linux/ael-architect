@@ -10,6 +10,7 @@ import os
 # :---/ architect.db /---:
 
 AEL_DB = os.path.join(os.path.expanduser('~'), '.ael', 'ael.db')
+AEL_BUILD_DIRECTORY = os.path.join(os.path.expanduser('~'), '.build')
 
 ## PATHS
 AELFILES_GIT = 'https://github.com/alterEGO-Linux/ael-files.git'

@@ -19,14 +19,9 @@ from textual.widgets import TabPane
 from textual.widgets import Static
 from textual.widgets import Switch
 
-from files import files_table
-from packages import packages_table
 from packages import packages_to_listdicts
 from shellutils import shellutils_to_listdicts
 from shellutils import shellutils_toggle
-
-files_table()
-packages_table()
 
 SHELLUTILS = shellutils_to_listdicts()
 PACKAGES = packages_to_listdicts()
@@ -42,7 +37,6 @@ PAUL = """
 
 Son of Leto and Jessica.
 """
-
 
 class TabbedApp(App):
     """An example of tabbed content."""

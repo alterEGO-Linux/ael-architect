@@ -1,210 +1,72 @@
-## ----------------------------------------------------------------------- INFO
-## [AELarchitect/architect.py]
-## author        : fantomH @alerEGO Linux
-## created       : 2023-11-20 00:23:25 UTC
-## updated       : 2024-02-15 15:24:29 UTC
-## description   : Installer and Updater.
+# :----------------------------------------------------------------------- INFO
+# :[ael-architect/ael_architect/architect.py]
+# :author        : fantomH
+# :created       : 2024-09-06 15:17:01 UTC
+# :updated       : 2024-09-25 12:09:40 UTC
+# :description   : Main.
 
 import argparse
-from collections import namedtuple
+import importlib.util
 import os
-import shlex
-import shutil
 import subprocess
-import sys
-import time
-import tomllib
 
-import config
-from config import (AELFILES_GIT,
-                    AELFILES_LOCAL,
-                    AELFILES_CONFIG,
-                    ARCHITECT_CONFIG,
-                    USER)
+from config import AEL_BUILD_DIRECTORY as default_build_dir
+from files import files_table
+from packages import packages_table
+from sysconfig import run_sysconfig
 
-## Checking privileges.
-if os.getenv('USER') == 'root':
-    _user = 'root_user'
-else:
-    _user = 'normal_user'
+def load_config(config_path):
+    """Dynamically load a config file."""
+    spec = importlib.util.spec_from_file_location("config", config_path)
+    config = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(config)
+    return config
 
-## -------------------- [ UTILS ] 
+def create_virtualbox_archlinux(build_dir, vm_name):
+    # Get the absolute path of the shell script in the 'scripts' directory
+    script_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'scripts', 'virtualbox_archlinux.sh')
 
-# def menu(opt):
+    if not os.path.exists(script_path):
+        print(f"Error: {script_path} does not exist.")
+        return
 
-    # opt = ''.join([f"{o}\n" for o in opt]).encode('UTF-8')
-
-    # menu = subprocess.run(['fzf', 
-                           # "--prompt=AEL Architect ❯ ",
-                           # "--header= ",
-                           # "--no-hscroll",
-                           # "--reverse",
-                           # "-i",
-                           # "--exact",
-                           # "--tiebreak=begin",
-                           # "--no-info",
-                           # "--pointer=•",
-                           # ], input=opt, stdout=subprocess.PIPE)
-
-    # selection = menu.stdout.decode('UTF-8')
-
-    # return selection.strip()
-
-## ---------- (* messages *) 
-def message(msg_type, msg, wait=0):
-
-    foreground_blue = '\033[34m'
-    foreground_green = '\033[32m'
-    foreground_red = '\033[31m'
-    format_bold = '\033[1m'
-    format_reset = '\033[00m'
-
-    if msg_type == "action":
-        print(f"{foreground_green}[*]{format_reset} {format_bold}{msg}{format_reset}")
-    elif msg_type == "result":
-        print(f"{foreground_blue}[-]{format_reset} {format_bold}{msg}{format_reset}")
-    elif msg_type in ["warning", "error"]:
-        print(f"{foreground_red}[!]{format_reset} {format_bold}{msg}{format_reset}")
+    print(f"Running {script_path} with VM name: {vm_name}")
+    result = subprocess.run([script_path], env={"BUILD_DIR": build_dir, "VM_NAME": vm_name}, check=True)
+    
+    if result.returncode == 0:
+        print(f"VM {vm_name} creation succeeded.")
     else:
-        print(f"    {format_bold}{msg}{format_reset}")
-
-    time.sleep(wait)
-
-## ---------- (* execute *)
-def execute(cmd, cwd=None, shell=False, text=True, input=None):
-
-    if shell == True:
-        cmd_list = cmd
-    else:
-        cmd_list = shlex.split(cmd)
-    if input:
-        input = input.encode()
-        
-    cmd_run = subprocess.run(cmd_list, cwd=cwd, shell=shell, input=input)
-
-    CommandResults = namedtuple('CommandResults', ['returncode'])
-    return CommandResults(cmd_run.returncode)
-
-## -------------------- [ GIT ]
-
-def get_files():
-    if os.path.isdir(AELFILES_LOCAL):
-        message('action', f'Found {AELFILES_LOCAL}')
-        message('results', f'Updating AEL files...')
-        execute(f"git pull", cwd=AELFILES_LOCAL)
-    else:
-        message('action', f"Downloading AEL files...")
-        execute(f"git clone {AELFILES_GIT} {AELFILES_LOCAL}")
-
-## -------------------- [ FILES ] 
-
-def copy_files():
-
-    with open(AELFILES_CONFIG, 'rb') as _input:
-        data = tomllib.load(_input)
-
-        ## Convert dict of dict to namedtuple
-        AELFiles = namedtuple('AELFiles', ['filename', 'category', 'src', 'dst', 'description', 'modes', 'is_symlink', 'create_bkp'])
-        files = [AELFiles(**values) for values in data['file'].values()]
-
-        for f in files:
-            if f.src.startswith('AELFILES_LOCAL'):
-                src = os.path.join(AELFILES_LOCAL,  f.src.replace('AELFILES_LOCAL/', ''), f.filename)
-            else:
-                src = os.path.join(f.src, f.filename)
-
-            ## Checks if dst directory exists.
-            dst_directory = os.path.dirname(f.dst)
-            if not os.path.exists(dst_directory):
-                os.makedirs(dst_directory)
-
-            ## Checks if exists.
-            if os.path.exists(f.dst):
-                ## (* BACKUP *)
-                if f.create_bkp == True:
-                    os.rename(f.dst, f.dst + ".aelbkup")
-                else:
-                    os.remove(f.dst)
-            else:
-                ## Remove broken symlinks.
-                if os.path.islink(f.dst):
-                    os.remove(f.dst)
-
-            ## (* SYMLINK *)
-            if f.is_symlink == True:
-                message('results', f'Symlink {f.dst}')
-                os.symlink(src, f.dst)
-            ## (* COPY *)
-            else:
-                message('results', f'Copying {f.dst}')
-                shutil.copy2(src, f.dst)
-
-            ## (* HOME *)
-            if "/skel/" in f.dst:
-                dst = f.dst.replace('/etc/skel', '/home/' + USER)
-
-                ## Checks if dst directory exists.
-                dst_directory = os.path.dirname(dst)
-                if not os.path.exists(dst_directory):
-                    os.makedirs(dst_directory)
-                    shutil.chown(dst_directory, USER, 'users')
-
-                ## (* BACKUP *)
-                if os.path.exists(dst):
-                    os.rename(dst, dst + ".aelbkup")
-                else:
-                    ## Remove broken symlinks.
-                    if os.path.islink(dst):
-                        os.remove(dst)
-
-                message('results', f'Copying {dst}')
-                shutil.copy2(src, dst)
-                shutil.chown(dst, USER, 'users')
-class Menu:
-
-    def fzf(self, opt):
-
-        opt = ''.join([f"{o}\n" for o in opt]).encode('UTF-8')
-
-        menu = subprocess.run(['fzf', 
-                            "--prompt=AEL Architect ❯ ",
-                            "--header= ",
-                            "--no-hscroll",
-                            "--reverse",
-                            "-i",
-                            "--exact",
-                            "--tiebreak=begin",
-                            "--no-info",
-                            "--pointer=•",
-                            ], input=opt, stdout=subprocess.PIPE)
-
-        selection = menu.stdout.decode('UTF-8')
-
-        return selection.strip()
-
-    def main_menu(self):
-        main_items = ["Review installation config",
-                      "Update system",
-                      "Exit"]
-
-        selection = self.fzf(main_items)
-
-        if selection == "Review installation config":
-            execute(f"vim {ARCHITECT_CONFIG}")
-            self.main_menu()
-
-        elif selection == "Update system":
-            get_files()
-            copy_files()
-            self.main_menu()
-            
-        elif selection == 'Exit':
-            sys.exit(0)
-        else:
-            return selection
+        print(f"VM {vm_name} creation failed.")
 
 def main():
-    pass
+    parser = argparse.ArgumentParser(description="AEL Architect.")
 
-if __name__ == '__main__':
+    parser.add_argument('--config', help="Path to custom config.py.")
+
+    parser.add_argument('--virtualbox', 
+                        choices=['archlinux'],
+                        help="Specify Linux distro to install (e.g., archlinux)")
+    parser.add_argument('--name',
+                        help="Name of the Virtual Machine (required with --virtualbox)")
+    args = parser.parse_args()
+
+    if args.virtualbox:
+        if not args.name:
+            parser.error("--name is required when --virtualbox is specified")
+        else:
+            if args.config:
+                config = load_config(args.config)
+                build_dir = getattr(config, 'AEL_BUILD_DIRECTORY', default_build_dir)
+                create_virtualbox_archlinux(build_dir, args.name)
+            else:
+                build_dir = default_build_dir
+                create_virtualbox_archlinux(build_dir, args.name)
+        # print(f"[+] Starting System Configuration...")
+        # print(f"[-] Updating files tables...")
+        # files_table()
+        # print(f"[-] Updating packages tables...")
+        # packages_table()
+        # run_sysconfig()
+
+if __name__ == "__main__":
     main()
