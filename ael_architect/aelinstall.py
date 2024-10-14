@@ -11,7 +11,8 @@
 
 from pathlib import Path
 
-from archinstall import Installer, profile, User
+from archinstall import Installer, profile
+from archinstall import models
 from archinstall.default_profiles.minimal import MinimalProfile
 from archinstall.lib.disk.device_model import FilesystemType
 from archinstall.lib.disk.encryption_menu import DiskEncryptionMenu
@@ -51,5 +52,5 @@ with Installer(
     profile_config = profile.ProfileConfiguration(MinimalProfile())
     profile.profile_handler.install_profile_config(installation, profile_config)
 
-    user = User('hacker1', 'password', True)
+    user = models.User('hacker1', 'password', True)
     installation.create_users(user)
