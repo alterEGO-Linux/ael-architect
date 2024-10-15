@@ -1,0 +1,41 @@
+{
+    "disks": {
+        "?": {
+            "partitions": {
+                "1": {
+                    "size": "512M",
+                    "format": "fat32",
+                    "mountpoint": "/boot"
+                },
+                "2": {
+                    "size": "100%",
+                    "format": "ext4",
+                    "mountpoint": "/"
+                }
+            }
+        }
+    },
+    "keyboard": {
+        "layout": "us"
+    },
+    "mirror-region": {
+        "name": "Worldwide"
+    },
+    "bootloader": {
+        "install": true,
+        "location": "/dev/?"
+    },
+    "users": {
+        "root": {
+            "password": "toor"
+        },
+        "hacker1": {
+            "password": "password",
+            "sudo": true,
+            "sudo_nopasswd": true
+        }
+    },
+    "kernel": {
+        "package": "linux"
+    }
+}
