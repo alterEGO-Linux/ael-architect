@@ -23,11 +23,12 @@ if response.status_code == 200:
     # Get the JSON content as text
     profile_json = response.text
     
-    # Create the ProfileConfiguration with the fetched JSON data
-    profile_config = archinstall.profile.ProfileConfiguration(profile_json)
-    
-    # Install the profile using the configuration
-    archinstall.profile.profile_handler.install_profile_config(profile_config)
+    with archinstall.Installer() as installation:
+        # Create the ProfileConfiguration with the fetched JSON data
+        profile_config = archinstall.profile.ProfileConfiguration(profile_json)
+        
+        # Install the profile using the configuration
+        archinstall.profile.profile_handler.install_profile_config(profile_config)
 else:
     print(f"Failed to fetch the profile. Status code: {response.status_code}")
 
