@@ -2,21 +2,6 @@
     "keyboard": {
         "layout": "us"
     },
-    "mirror-region": {
-        "name": "Worldwide"
-    },
-    "bootloader": {
-        "install": true,
-        "location": "/dev/?"
-    },
-    "root-password": "toor",
-    "users": [
-        {
-            "password": "password",
-            "sudo": true,
-            "username": "hacker1"
-        }
-    ],
     "kernel": {
         "package": "linux"
     }
