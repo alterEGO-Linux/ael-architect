@@ -76,7 +76,7 @@ main_partition = disk.PartitionModification(
 	status=disk.ModificationStatus.Create,
 	type=disk.PartitionType.Primary,
 	start=disk.Size(513, disk.Unit.MiB, device.device_info.sector_size),
-	length=device.device_info.total_size - boot_partition.length,
+	length=device.device_info.total_size - boot_partition.length - disk.Size(10, disk.Unit.MiB, device.device_info.sector_size),
 	mountpoint=None,
 	fs_type=fs_type,
 	mount_options=[],
@@ -89,26 +89,27 @@ disk_config = disk.DiskLayoutConfiguration(
 )
 
 # disk encryption configuration (Optional)
-disk_encryption = disk.DiskEncryption(
-	encryption_password="enc_password",
-	encryption_type=disk.EncryptionType.Luks,
-	partitions=[home_partition],
-	hsm_device=None
-)
+# disk_encryption = disk.DiskEncryption(
+# 	encryption_password="enc_password",
+# 	encryption_type=disk.EncryptionType.Luks,
+# 	partitions=[home_partition],
+# 	hsm_device=None
+# )
 
 # initiate file handler with the disk config and the optional disk encryption config
-fs_handler = disk.FilesystemHandler(disk_config, disk_encryption)
+# fs_handler = disk.FilesystemHandler(disk_config, disk_encryption)
+fs_handler = disk.FilesystemHandler(disk_config)
 
 # perform all file operations
 # WARNING: this will potentially format the filesystem and delete all data
 fs_handler.perform_filesystem_operations(show_countdown=False)
 
-mountpoint = Path('/tmp')
+mountpoint = Path('/mnt')
 
 with Installer(
 	mountpoint,
 	disk_config,
-	disk_encryption=disk_encryption,
+# 	disk_encryption=disk_encryption,
 	kernels=['linux']
 ) as installation:
 	installation.mount_ordered_layout()
