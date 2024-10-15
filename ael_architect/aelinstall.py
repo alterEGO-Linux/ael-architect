@@ -9,12 +9,28 @@
 /ref/ https://github.com/archlinux/archinstall
 """
 
-from archinstall import profile
+import requests
+import archinstall
 
-profile-archlinux = "https://raw.githubusercontent.com/alterEGO-Linux/ael-architect/main/data/profile-archlinux.json"
+# URL of the profile JSON file
+profile_archlinux_url = "https://raw.githubusercontent.com/alterEGO-Linux/ael-architect/main/data/profile-archlinux.json"
 
-profile_config = profile.ProfileConfiguration(profile-archlinux)
-profile.profile_handler.install_profile_config(profile_config)
+# Fetch the profile JSON from the URL
+response = requests.get(profile_archlinux_url)
+
+# Check if the request was successful
+if response.status_code == 200:
+    # Get the JSON content as text
+    profile_json = response.text
+    
+    # Create the ProfileConfiguration with the fetched JSON data
+    profile_config = archinstall.ProfileConfiguration(profile_json)
+    
+    # Install the profile using the configuration
+    archinstall.profile_handler.install_profile_config(profile_config)
+else:
+    print(f"Failed to fetch the profile. Status code: {response.status_code}")
+
 
 
 
