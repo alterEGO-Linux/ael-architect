@@ -1,20 +1,4 @@
 {
-    "disks": {
-        "?": {
-            "partitions": {
-                "1": {
-                    "size": "512M",
-                    "format": "fat32",
-                    "mountpoint": "/boot"
-                },
-                "2": {
-                    "size": "100%",
-                    "format": "ext4",
-                    "mountpoint": "/"
-                }
-            }
-        }
-    },
     "keyboard": {
         "layout": "us"
     },
@@ -25,16 +9,14 @@
         "install": true,
         "location": "/dev/?"
     },
-    "users": {
-        "root": {
-            "password": "toor"
-        },
-        "hacker1": {
-            "password": "password",
+    "!root-password": "toor",
+    "!users": [
+        {
+            "!password": "password",
             "sudo": true,
-            "sudo_nopasswd": true
+            "username": "hacker1"
         }
-    },
+    ],
     "kernel": {
         "package": "linux"
     }
