@@ -9,10 +9,10 @@
         "install": true,
         "location": "/dev/?"
     },
-    "!root-password": "toor",
-    "!users": [
+    "root-password": "toor",
+    "users": [
         {
-            "!password": "password",
+            "password": "password",
             "sudo": true,
             "username": "hacker1"
         }
