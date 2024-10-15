@@ -77,7 +77,7 @@ main_partition = disk.PartitionModification(
 	type=disk.PartitionType.Primary,
 	start=disk.Size(513, disk.Unit.MiB, device.device_info.sector_size),
 	length=device.device_info.total_size - boot_partition.length - disk.Size(10, disk.Unit.MiB, device.device_info.sector_size),
-	mountpoint=None,
+	mountpoint=Path('/'),
 	fs_type=fs_type,
 	mount_options=[],
 )
