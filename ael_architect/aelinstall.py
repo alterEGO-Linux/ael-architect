@@ -8,6 +8,9 @@
 """
 /ref/ https://github.com/archlinux/archinstall
 """
+
+from archinstall import profile
+
 profile-archlinux = "https://raw.githubusercontent.com/alterEGO-Linux/ael-architect/main/data/profile-archlinux.json"
 
 profile_config = profile.ProfileConfiguration(profile-archlinux)
