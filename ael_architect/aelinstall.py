@@ -85,7 +85,7 @@ fs_handler = disk.FilesystemHandler(disk_config, disk_encryption)
 # WARNING: this will potentially format the filesystem and delete all data
 fs_handler.perform_filesystem_operations(show_countdown=False)
 
-mountpoint = Path('/tmp')
+mountpoint = Path('/mnt')
 
 with Installer(
 	mountpoint,
