@@ -30,7 +30,7 @@ VBoxManage modifyvm "$VM_NAME" --memory 2048 --vram 128 --cpus 2 --nic1 nat
 
 # :/Create a virtual disk
 echo "Creating virtual disk..."
-VBoxManage createhd --filename ~/VirtualBox\ VMs/"$VM_NAME"/"$VM_NAME".vdi --size 20000
+VBoxManage createhd --filename ~/VirtualBox\ VMs/"$VM_NAME"/"$VM_NAME".vdi --size 40000
 
 # :/Attach the virtual disk to the VM
 echo "Attaching virtual disk..."
