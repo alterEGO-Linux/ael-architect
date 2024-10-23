@@ -2,7 +2,7 @@
 # :ael-rchitect/ael_architect/config.py]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2023-12-14 11:37:06 UTC
-# :updated       : 2024-09-07 02:00:21 UTC
+# :updated       : 2024-10-23 10:29:06 UTC
 # :description   : General config for ael-architect.
 
 import os
@@ -10,7 +10,7 @@ import os
 # :---/ architect.db /---:
 
 AEL_DB = os.path.join(os.path.expanduser('~'), '.ael', 'ael.db')
-AEL_BUILD_DIRECTORY = os.path.join(os.path.expanduser('~'), '.build')
+AEL_BUILD_DIRECTORY = os.path.join(os.path.expanduser('~'), '.cache', '.build')
 
 ## PATHS
 AELFILES_GIT = 'https://github.com/alterEGO-Linux/ael-files.git'

@@ -26,7 +26,7 @@ VBoxManage createvm --name "$VM_NAME" --ostype "Linux_64" --register
 
 # :/Configure VM settings
 echo "Configuring VM settings..."
-VBoxManage modifyvm "$VM_NAME" --memory 2048 --vram 128 --cpus 2 --nic1 nat
+VBoxManage modifyvm "$VM_NAME" --memory 4096 --vram 128 --cpus 4 --nic1 nat
 
 # :/Create a virtual disk
 echo "Creating virtual disk..."
