@@ -2,30 +2,19 @@
 # :[ael-architect/ael_architect/__init__.py]
 # :author        : fantomH
 # :created       : 2024-09-06 15:17:01 UTC
-# :updated       : 2024-09-25 12:09:40 UTC
+# :updated       : 2024-12-11 11:47:30 UTC
 # :description   : Main.
 
 import argparse
-from sysconfig import run_sysconfig
-from files import files_table
-from packages import packages_table
-
-def start_gui_app():
-    print("Starting GUI app...")
+import os
+import subprocess
 
 def main():
     parser = argparse.ArgumentParser(description="AEL Architect.")
-    
-    parser.add_argument('--gui', action='store_true', help="Start the GUI app instead of the CLI app.")
-    
+
+    parser.add_argument('--config', help="Path to custom ael.toml configuration file.")
+
     args = parser.parse_args()
-    
-    if args.gui:
-        start_gui_app()
-    else:
-        files_table()
-        packages_table()
-        run_sysconfig()
 
 if __name__ == "__main__":
     main()
