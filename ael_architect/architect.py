@@ -31,7 +31,7 @@ def deploy_ael_file(files_toml, file_id):
     with open(files_toml, 'rb') as _input:
         data = tomllib.load(_input)
 
-        print(data.get("root--ael", {}))
+        print(data["root--ael"])
 
 def main():
 
