@@ -2,7 +2,7 @@
 # :[ael-architect/ael_architect/architect.py]
 # :author        : fantomH
 # :created       : 2024-09-06 15:17:01 UTC
-# :updated       : 2024-12-11 11:28:21 UTC
+# :updated       : 2025-01-09 10:49:56 UTC
 # :description   : Main.
 
 import argparse
@@ -27,8 +27,10 @@ def check_local_git_repository(remote_url, local_path):
         except subprocess.CalledProcessError as e:
             print(f"Error cloning the repository: {e}")
 
-def deploy_ael_file(files_toml, file_id):
-    with open(files_toml, 'rb') as _input:
+def deploy_ael_file(file_id):
+
+    AEL_FILES_TOML = os.path.join(LOCAL_FILES_REPOSITORY, 'files.toml')
+    with open(AEL_FILES_TOML, 'rb') as _input:
         data = tomllib.load(_input)
 
         print(data["root--ael"])
@@ -44,21 +46,29 @@ def main():
 
     if not args.system_wide:
 
-        user_home = os.path.expanduser("~")
-        src_files_repository = "https://github.com/alterEGO-Linux/ael-files.git"
-        local_files_repository = os.path.join(user_home, ".local/share/ael-files")
-        ael_directory = os.path.join(user_home, ".ael")
+        SRC_FILES_REPOSITORY = "https://github.com/alterEGO-Linux/ael-files.git"
+
+        global USERHOME
+        USERHOME = os.path.expanduser("~")
+
+        global USRSHARE
+        USRSHARE = os.path.join(USERHOME, '.local/share')
+        
+        global LOCAL_FILES_REPOSITORY
+        LOCAL_FILES_REPOSITORY = os.path.join(USRSHARE, "ael-files")
+
+        AEL_DIRECTORY = os.path.join(USERHOME, ".ael")
 
         # :Clone or pull source 
-        check_local_git_repository(src_files_repository, local_files_repository)
+        check_local_git_repository(SRC_FILES_REPOSITORY, LOCAL_FILES_REPOSITORY)
 
         # :Make sure path ~/.ael/ exists.
-        os.makedirs(ael_directory, exist_ok=True)
+        os.makedirs(AEL_DIRECTORY, exist_ok=True)
 
         if args.config:
             ael_config_file = args.config
         else:
-            deploy_ael_file(os.path.join(local_files_repository, "files.toml"), "root--ael")
+            deploy_ael_file("root--ael")
     else:
         print("System-wide take over not yet implemented!")
 
