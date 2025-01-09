@@ -33,7 +33,11 @@ def deploy_ael_file(file_id):
     with open(AEL_FILES_TOML, 'rb') as _input:
         data = tomllib.load(_input)
 
-        print(data["root--ael"])
+    for path in ['src', 'dst']:
+        if data[file_id][path]:
+            data[file_id][path] = data[file_id][path].replace('USERHOME', USERHOME).replace('USRSHARE', USRSHARE)
+
+    print(data[file_id])
 
 def main():
 
