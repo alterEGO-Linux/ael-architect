@@ -38,6 +38,58 @@ def get_md5(f):
             hash_md5.update(chunk)
     return hash_md5.hexdigest()
 
+def get_file_md5_history(file_path):
+    """
+    Get the MD5 checksum of all versions of a specific file in a Git repository.
+
+    :param file_path: Path to the file relative to the repository root.
+    :return: A dictionary mapping commit hashes to their file MD5 checksums.
+    """
+
+    file_directory = os.path.dirname(file_path)
+
+    top_level = subprocess.run(
+                    ["git", "rev-parse", "--show-toplevel"],
+                    cwd=file_directory,
+                    capture_output=True,
+                    text=True,
+                    check=True).stdout.strip()
+
+    file_path = os.path.relpath(file_path, top_level)
+
+    md5_history = {}
+    
+    # Get commit hashes where the file was modified
+    result = subprocess.run(
+        ["git", "log", "--pretty=format:%H", "--", file_path],
+        cwd=top_level,
+        capture_output=True,
+        text=True,
+        check=True
+    )
+    commit_hashes = result.stdout.splitlines()
+    
+    # For each commit, get the file's content and calculate the MD5 checksum
+    for commit in commit_hashes:
+        file_content = subprocess.run(
+            ["git", "show", f"{commit}:{file_path}"],
+            capture_output=True,
+            text=True,
+            check=True
+        ).stdout
+        md5sum = subprocess.run(
+            ["md5sum"],
+            input=file_content,
+            capture_output=True,
+            text=True,
+            check=True
+        ).stdout.split()[0]
+        
+        md5_history[commit] = md5sum
+    
+    return md5_history
+
+
 def deploy_ael_file(file_id):
 
     AEL_FILES_TOML = os.path.join(LOCAL_FILES_REPOSITORY, 'files.toml')
@@ -53,26 +105,29 @@ def deploy_ael_file(file_id):
     is_symlink = data[file_id]['is_symlink']
     create_bkp = data[file_id]['create_bkp']
 
+    md5_history = get_file_md5_history(src)
+    print(md5_history)
+
     # :Create parent directories.
     dst.parent.mkdir(parents=True, exist_ok=True)
 
     if dst.exists():
         if dst.is_symlink():
             if is_symlink:
-                # Update symlink if it points to a different source
+                # :Update symlink if it points to a different source.
                 if dst.resolve() != src:
-                    print(f"Updating symlink: {dst} -> {src}")
+                    print(f"[-] Updating symlink: {dst} -> {src}")
                     dst.unlink()
                     dst.symlink_to(src)
             else:
-                # Replace symlink with a regular file
-                print(f"Replacing symlink with file: {dst}")
+                # :Replace symlink with a regular file.
+                print(f"[-] Replacing symlink with file: {dst}")
                 dst.unlink()
                 shutil.copy2(src, dst)
         else:
             if is_symlink:
-                # Replace regular file with a symlink
-                print(f"Replacing file with symlink: {dst} -> {src}")
+                # :Replace regular file with a symlink.
+                print(f"[-] Replacing file with symlink: {dst} -> {src}")
                 if create_bkp:
                     backup = dst.with_suffix(dst.suffix + ".bkp")
                     print(f"Creating backup: {backup}")
@@ -96,7 +151,6 @@ def deploy_ael_file(file_id):
         else:
             print(f"Copying file: {src} -> {dst}")
             shutil.copy2(src, dst)
-
 
 def main():
 
