@@ -104,10 +104,8 @@ def deploy_ael_file(file_id):
     src = Path(data[file_id]['src'])
     dst = Path(data[file_id]['dst'])
     is_symlink = data[file_id]['is_symlink']
-    create_bkp = data[file_id]['create_bkp']
 
     md5_history = list(get_file_md5_history(src).values())
-    print(md5_history)
 
     # :Create parent directories.
     dst.parent.mkdir(parents=True, exist_ok=True)
@@ -145,8 +143,8 @@ def deploy_ael_file(file_id):
                     print(f"[!] Custom {dst} found.")
                     print(f"    Creating {aelnew}.")
                     print(f"    Manual intervention may be required.")
-                else:
-                    print(f"[-] Updating file: {dst}.")
+                elif get_md5(dst) != get_md5(src):
+                    print(f"[-] Udating {dst}.")
                     shutil.copy2(src, dst)
     else:
         # :Destination does not exist
@@ -156,6 +154,8 @@ def deploy_ael_file(file_id):
         else:
             print(f"[-] Copying file: {src} -> {dst}.")
             shutil.copy2(src, dst)
+
+    return dst
 
 def main():
 
@@ -190,7 +190,9 @@ def main():
         if args.config:
             ael_config_file = args.config
         else:
-            deploy_ael_file("root--ael")
+            ael_config_file = deploy_ael_file("root--ael")
+            print(ael_config_file)
+            
     else:
         print("System-wide take over not yet implemented!")
 
