@@ -68,11 +68,12 @@ def get_file_md5_history(file_path):
         check=True
     )
     commit_hashes = result.stdout.splitlines()
-    
+
     # For each commit, get the file's content and calculate the MD5 checksum
     for commit in commit_hashes:
         file_content = subprocess.run(
             ["git", "show", f"{commit}:{file_path}"],
+            cwd=top_level,
             capture_output=True,
             text=True,
             check=True
@@ -105,7 +106,7 @@ def deploy_ael_file(file_id):
     is_symlink = data[file_id]['is_symlink']
     create_bkp = data[file_id]['create_bkp']
 
-    md5_history = get_file_md5_history(src)
+    md5_history = list(get_file_md5_history(src).values())
     print(md5_history)
 
     # :Create parent directories.
@@ -128,28 +129,32 @@ def deploy_ael_file(file_id):
             if is_symlink:
                 # :Replace regular file with a symlink.
                 print(f"[-] Replacing file with symlink: {dst} -> {src}")
-                if create_bkp:
-                    backup = dst.with_suffix(dst.suffix + ".bkp")
-                    print(f"Creating backup: {backup}")
-                    shutil.copy2(dst, backup)
+                if get_md5(dst) not in md5_history:
+                    aelbkp = dst.with_suffix(dst.suffix + ".aelbpk")
+                    shutil.copy2(dst, aelbpk)
+                    print(f"[!] Custom {dst} found.")
+                    print(f"    Creating {aelpkp}.")
+                    print(f"    Manual intervention may be required.")
                 dst.unlink()
                 dst.symlink_to(src)
             else:
-                # Replace the file only if contents differ
-                if get_md5(dst) != get_md5(src):
-                    print(f"Updating file: {dst}")
-                    if create_bkp:
-                        backup = dst.with_suffix(dst.suffix + ".bkp")
-                        print(f"Creating backup: {backup}")
-                        shutil.copy2(dst, backup)
+                # :Create .aelnew if custom file found, else overwrites.
+                if get_md5(dst) not in md5_history:
+                    aelnew = dst.with_suffix(dst.suffix + ".aelnew")
+                    shutil.copy2(src, aelnew)
+                    print(f"[!] Custom {dst} found.")
+                    print(f"    Creating {aelnew}.")
+                    print(f"    Manual intervention may be required.")
+                else:
+                    print(f"[-] Updating file: {dst}.")
                     shutil.copy2(src, dst)
     else:
-        # Destination does not exist
+        # :Destination does not exist
         if is_symlink:
-            print(f"Creating symlink: {dst} -> {src}")
+            print(f"[-] Creating symlink: {dst} -> {src}.")
             dst.symlink_to(src)
         else:
-            print(f"Copying file: {src} -> {dst}")
+            print(f"[-] Copying file: {src} -> {dst}.")
             shutil.copy2(src, dst)
 
 def main():
