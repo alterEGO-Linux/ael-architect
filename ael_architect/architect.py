@@ -130,10 +130,10 @@ def deploy_ael_file(file_id):
                 # :Replace regular file with a symlink.
                 print(f"[-] Replacing file with symlink: {dst} -> {src}")
                 if get_md5(dst) not in md5_history:
-                    aelbkp = dst.with_suffix(dst.suffix + ".aelbpk")
-                    shutil.copy2(dst, aelbpk)
+                    aelbkp = dst.with_suffix(dst.suffix + ".aelbkp")
+                    shutil.copy2(dst, aelbkp)
                     print(f"[!] Custom {dst} found.")
-                    print(f"    Creating {aelpkp}.")
+                    print(f"    Creating {aelbkp}.")
                     print(f"    Manual intervention may be required.")
                 dst.unlink()
                 dst.symlink_to(src)
