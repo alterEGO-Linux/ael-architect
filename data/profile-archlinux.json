@@ -1,8 +1,0 @@
-{
-    "keyboard": {
-        "layout": "us"
-    },
-    "kernel": {
-        "package": "linux"
-    }
-}
