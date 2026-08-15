@@ -1,0 +1,209 @@
+#!/usr/bin/env python
+# [+] -------------------------------------------------------------------| INFO
+# [/ael-architect/ael-architect]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2026-05-11 20:08:18 UTC
+# updated       : 2026-05-11 20:08:18 UTC
+# description   : alterEGO Linux post install script.
+#!/usr/bin/env python3
+
+from __future__ import annotations
+
+import shutil
+import subprocess
+from pathlib import Path
+
+import click
+import tomllib
+
+AEL_BUILD = Path.home() / ".ael/build"
+AEL_PACKAGES = Path("/home/ghost/.local/share/ael-files/data/ael-packages.toml")
+
+class AppContext:
+    def __init__(self) -> None:
+        self.config: dict = {}
+
+
+pass_context = click.make_pass_decorator(
+    AppContext,
+    ensure=True
+)
+
+
+def load_toml(path: Path) -> dict:
+    with path.open("rb") as f:
+        return tomllib.load(f)
+
+
+def unique_keep_order(items: list[str]) -> list[str]:
+    seen = set()
+    result = []
+
+    for item in items:
+        if item not in seen:
+            seen.add(item)
+            result.append(item)
+
+    return result
+
+def is_installed(app: str) -> bool:
+
+    return shutil.which(app) is not None
+
+def execute(cmd: list[str], cwd: Path | None = None) -> int:
+
+    result = subprocess.run(
+        cmd,
+        cwd=cwd,
+        check=False
+    )
+
+    return result.returncode
+
+def install_paru():
+
+    click.echo("[+] Installing paru...")
+
+    AEL_BUILD.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+    # --| Install requirements.
+    rc = execute([
+        "sudo",
+        "pacman",
+        "-S",
+        "--needed",
+        "base-devel",
+        "git"
+    ])
+
+
+    if rc != 0:
+        raise click.ClickException(
+            "[!] Failed to install paru dependencies."
+        )
+
+    # --| Clone paru.
+
+    shutil.rmtree(Path(AEL_BUILD) / "paru", ignore_errors=True)
+
+    rc = execute([
+        "git",
+        "clone",
+        "https://aur.archlinux.org/paru.git",
+        str(Path(AEL_BUILD) / "paru")
+    ])
+
+    if rc != 0:
+        raise click.ClickException(
+            "[!] Failed to clone paru."
+        )
+
+    # --| Build/install paru.
+    rc = execute(
+        [
+            "makepkg",
+            "-si"
+        ],
+        cwd=Path(AEL_BUILD) / "paru"
+    )
+
+    if rc != 0:
+        raise click.ClickException(
+            "[!] Failed to build/install paru."
+        )
+
+def get_packages_list(mode: str) -> list[str]:
+
+    ael_packages = load_toml(AEL_PACKAGES)
+
+    packages_to_install = []
+
+    for pkg, pkg_data in ael_packages.items():
+
+        modes = pkg_data.get("mode", [])
+
+        if mode in modes:
+            # --| Install inclusive package.
+            if pkg_data.get("install"):
+                packages_to_install.extend(
+                    pkg_data.get("install", [])
+                )
+            else:
+                packages_to_install.append(
+                    pkg_data.get("pkg_name")
+                )
+
+    return unique_keep_order(packages_to_install)
+
+def package_installer(packages: list[str]) -> int:
+
+    if not is_installed("paru"):
+        install_paru()
+
+    if not packages:
+        raise click.ClickException(
+            "No packages to install."
+        )
+
+    result = execute([
+        "paru",
+        "-S",
+        "--needed",
+        "--noconfirm",
+        "--skipreview",
+        *packages
+    ])
+
+    return result
+
+@click.group()
+@click.option(
+    "-c",
+    "--config",
+    "config_path",
+    required=True,
+    type=click.Path(
+        exists=True,
+        dir_okay=False,
+        path_type=Path
+    ),
+)
+@pass_context
+def cli(ctx: AppContext, config_path: Path) -> None:
+
+    ctx.config = load_toml(config_path)
+
+
+@cli.command("install-packages")
+@pass_context
+def install_packages(ctx: AppContext) -> None:
+
+
+    mode = ctx.config.get("mode")
+
+    if not mode:
+        raise click.ClickException(
+            "[!] Missing 'mode' in config."
+        )
+
+    packages = get_packages_list(mode)
+
+    result = package_installer(packages)
+
+    if result != 0:
+        raise click.ClickException(
+            "[!] paru installation failed."
+        )
+
+@cli.command("run-test")
+@pass_context
+def run_test(ctx: AppContext) -> None:
+
+    print(get_packages_list(mode='ael-bare'))
+    
+
+if __name__ == "__main__":
+    cli()

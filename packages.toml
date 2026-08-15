@@ -1,0 +1,95 @@
+[settings]
+aur_helper = "paru"
+git_root = "~/.cache/ael-architect/git"
+
+[packages.bash]
+enabled = true
+state = "installed"
+name = "Bash"
+description = "GNU Bourne Again shell."
+category = "System"
+source = "pacman"
+package = "bash"
+command = ["bash"]
+
+[packages.chromium]
+enabled = true
+visible = true
+state = "installed"
+name = "Chromium"
+description = "Web browser used for testing."
+category = "Development"
+source = "pacman"
+package = "chromium"
+command = ["chromium"]
+
+[packages.coreutils]
+enabled = true
+state = "installed"
+name = "GNU Core Utilities"
+description = "Standard GNU utilities including date, who and uname."
+category = "System"
+source = "pacman"
+package = "coreutils"
+command = ["date", "who", "uname"]
+
+[packages.git]
+enabled = true
+state = "installed"
+name = "Git"
+description = "Distributed version control system."
+category = "Development"
+source = "pacman"
+package = "git"
+command = ["git"]
+
+[packages.nmap]
+enabled = true
+state = "installed"
+name = "Nmap"
+description = "Network exploration and security auditing utility."
+category = "Network"
+source = "pacman"
+package = "nmap"
+command = ["nmap"]
+
+[packages.flatpak]
+enabled = false
+state = "uninstalled"
+name = "Flatpak"
+description = "Application distribution framework."
+category = "System"
+source = "pacman"
+package = "flatpak"
+command = ["flatpak"]
+
+[packages.snapd]
+enabled = true
+state = "installed"
+name = "Snap"
+description = "Canonical snap package manager."
+category = "System"
+source = "aur"
+package = "snapd"
+command = ["snap"]
+
+[packages.flatseal]
+enabled = false
+state = "uninstalled"
+name = "Flatseal"
+description = "Manage Flatpak application permissions."
+category = "Utilities"
+source = "flatpak"
+package = "com.github.tchx84.Flatseal"
+command = ["flatseal"]
+remote = "flathub"
+
+[packages.spotify]
+enabled = false
+state = "uninstalled"
+name = "Spotify"
+description = "Spotify desktop client."
+category = "Media"
+source = "snap"
+package = "spotify"
+command = ["spotify"]

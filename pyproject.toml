@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ael-architect"
+version = "0.2.0"
+description = "AlterEGO Linux configuration architect prototype"
+requires-python = ">=3.11"
+dependencies = ["Flask>=3.1", "textual>=1.0"]
+
+[project.scripts]
+ael-architect = "ael_architect.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]

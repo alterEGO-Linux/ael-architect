@@ -1,0 +1,26 @@
+[addons.show-utc]
+enabled = true
+state = "loaded"
+ael_root = "~/.ael"
+
+[addons.windows-11]
+enabled = false
+visible = false
+state = "none"
+storage_path = "~/VirtualBox VMs"
+
+[addons.windows-11.vm]
+name = "AlterEGO-Windows-11"
+memory_mb = 8192
+cpus = 4
+disk_gb = 80
+vram_mb = 128
+
+[addons.windows-11.install]
+iso = "~/Downloads/Win11_25H2_English_x64.iso"
+
+[addons.windows-11.features]
+usb = true
+shared_clipboard = true
+drag_and_drop = false
+secure_boot = true
